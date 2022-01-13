@@ -82,7 +82,7 @@ struct PlayerView: View {
                 }
                 
                 Button {
-                    print("forward")
+                    viewModel.onNext()
                 } label: {
                     Image(systemName: "forward")
                 }
