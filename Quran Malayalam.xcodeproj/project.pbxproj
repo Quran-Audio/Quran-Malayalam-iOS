@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C1586CF278F013000085F6E /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1586CE278F013000085F6E /* AudioService.swift */; };
+		2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B444278FCB71005FB345 /* Url+Extensions.swift */; };
+		2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B446278FCC43005FB345 /* DownloadService.swift */; };
 		2C463DA0278C614A00099415 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C463D9F278C614A00099415 /* PlayerView.swift */; };
 		2C5559EF278D282300FE21FD /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5559EE278D282300FE21FD /* PlayerViewModel.swift */; };
 		2C5559F1278D283C00FE21FD /* PlayingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5559F0278D283C00FE21FD /* PlayingModel.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		2C1586CE278F013000085F6E /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		2C22B444278FCB71005FB345 /* Url+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+Extensions.swift"; sourceTree = "<group>"; };
+		2C22B446278FCC43005FB345 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		2C463D9F278C614A00099415 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2C5559EE278D282300FE21FD /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		2C5559F0278D283C00FE21FD /* PlayingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingModel.swift; sourceTree = "<group>"; };
@@ -79,12 +83,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C1586CD278F00D600085F6E /* Utilities */ = {
+		2C1586CD278F00D600085F6E /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				2C1586CE278F013000085F6E /* AudioService.swift */,
+				2C22B446278FCC43005FB345 /* DownloadService.swift */,
 			);
-			path = Utilities;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2C22B443278FCB50005FB345 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C22B444278FCB71005FB345 /* Url+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2C463D9E278C611700099415 /* Player */ = {
@@ -120,7 +133,8 @@
 		2C8D305E278A81A400674BC5 /* Quran Malayalam */ = {
 			isa = PBXGroup;
 			children = (
-				2C1586CD278F00D600085F6E /* Utilities */,
+				2C22B443278FCB50005FB345 /* Extensions */,
+				2C1586CD278F00D600085F6E /* Services */,
 				2C463D9E278C611700099415 /* Player */,
 				2C8D305F278A81A400674BC5 /* Quran_MalayalamApp.swift */,
 				2C8D3061278A81A400674BC5 /* ContentView.swift */,
@@ -286,9 +300,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C5559F1278D283C00FE21FD /* PlayingModel.swift in Sources */,
+				2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */,
 				2C463DA0278C614A00099415 /* PlayerView.swift in Sources */,
 				2C5559EF278D282300FE21FD /* PlayerViewModel.swift in Sources */,
 				2C8D3062278A81A400674BC5 /* ContentView.swift in Sources */,
+				2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */,
 				2C8D3060278A81A400674BC5 /* Quran_MalayalamApp.swift in Sources */,
 				2C1586CF278F013000085F6E /* AudioService.swift in Sources */,
 			);
