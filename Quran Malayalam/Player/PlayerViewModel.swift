@@ -34,6 +34,10 @@ class PlayerViewModel:ObservableObject {
         configureAudio()
     }
     
+    init() {
+        print(DataService.shared.loadData())
+    }
+    
     //MARK: play and seek
     func playPause() {
         AudioService.shared.playPause()

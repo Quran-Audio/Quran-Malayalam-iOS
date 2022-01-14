@@ -20,6 +20,9 @@
 		2C8D3071278A81A600674BC5 /* Quran_MalayalamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D3070278A81A600674BC5 /* Quran_MalayalamTests.swift */; };
 		2C8D307B278A81A600674BC5 /* Quran_MalayalamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D307A278A81A600674BC5 /* Quran_MalayalamUITests.swift */; };
 		2C8D307D278A81A600674BC5 /* Quran_MalayalamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D307C278A81A600674BC5 /* Quran_MalayalamUITestsLaunchTests.swift */; };
+		2C8E503B2791C2A20050FADE /* Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E503A2791C2A20050FADE /* Data.json */; };
+		2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E503D2791C2C70050FADE /* ChapterModel.swift */; };
+		2C8E50402791C3780050FADE /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E503F2791C3780050FADE /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		2C8D3076278A81A600674BC5 /* Quran MalayalamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Quran MalayalamUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8D307A278A81A600674BC5 /* Quran_MalayalamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quran_MalayalamUITests.swift; sourceTree = "<group>"; };
 		2C8D307C278A81A600674BC5 /* Quran_MalayalamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quran_MalayalamUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2C8E503A2791C2A20050FADE /* Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Data.json; sourceTree = "<group>"; };
+		2C8E503D2791C2C70050FADE /* ChapterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterModel.swift; sourceTree = "<group>"; };
+		2C8E503F2791C3780050FADE /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,7 @@
 			children = (
 				2C1586CE278F013000085F6E /* AudioService.swift */,
 				2C22B446278FCC43005FB345 /* DownloadService.swift */,
+				2C8E503F2791C3780050FADE /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -133,6 +140,8 @@
 		2C8D305E278A81A400674BC5 /* Quran Malayalam */ = {
 			isa = PBXGroup;
 			children = (
+				2C8E50392791C2830050FADE /* Data */,
+				2C8E503C2791C2B10050FADE /* Models */,
 				2C22B443278FCB50005FB345 /* Extensions */,
 				2C1586CD278F00D600085F6E /* Services */,
 				2C463D9E278C611700099415 /* Player */,
@@ -167,6 +176,22 @@
 				2C8D307C278A81A600674BC5 /* Quran_MalayalamUITestsLaunchTests.swift */,
 			);
 			path = "Quran MalayalamUITests";
+			sourceTree = "<group>";
+		};
+		2C8E50392791C2830050FADE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2C8E503A2791C2A20050FADE /* Data.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2C8E503C2791C2B10050FADE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2C8E503D2791C2C70050FADE /* ChapterModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +300,7 @@
 			files = (
 				2C8D3067278A81A600674BC5 /* Preview Assets.xcassets in Resources */,
 				2C8D3064278A81A600674BC5 /* Assets.xcassets in Resources */,
+				2C8E503B2791C2A20050FADE /* Data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +332,9 @@
 				2C8D3062278A81A400674BC5 /* ContentView.swift in Sources */,
 				2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */,
 				2C8D3060278A81A400674BC5 /* Quran_MalayalamApp.swift in Sources */,
+				2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */,
 				2C1586CF278F013000085F6E /* AudioService.swift in Sources */,
+				2C8E50402791C3780050FADE /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
