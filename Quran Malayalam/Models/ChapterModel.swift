@@ -20,4 +20,5 @@ struct ChapterModel:Codable {
     let fileName: String
     let size: String
     let durationInSecs: Int
+    var isPlaying:Bool? = false //Not loaded from file
 }

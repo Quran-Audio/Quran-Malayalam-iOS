@@ -11,6 +11,7 @@ import AVKit
 class AudioService {
     static var shared:AudioService = AudioService()
     private init() {}
+    private var timer = Timer()
     
     var onPlayFinished: () -> Void = {}
     var onBuffering: (Bool) -> Void = { _ in }
@@ -57,6 +58,8 @@ class AudioService {
     
     func setupAudio(urlText:String) {
         guard let audioUrl = URL(string: urlText) else {return}
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerEvent), userInfo: nil, repeats: true)
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             let item = AVPlayerItem(url: audioUrl)
@@ -102,5 +105,9 @@ class AudioService {
         isPlaying ? player?.pause() : ()
         player?.seek(to: seekTime)
         isPlaying ? player?.play() : ()
+    }
+    
+    @objc private func onTimerEvent() {
+        setIsBuffering()
     }
 }
