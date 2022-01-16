@@ -11,6 +11,11 @@
 		2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B444278FCB71005FB345 /* Url+Extensions.swift */; };
 		2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B446278FCC43005FB345 /* DownloadService.swift */; };
 		2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04B2792A23C00FC38C9 /* ChapterCellView.swift */; };
+		2C26A04E2792AA7900FC38C9 /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04D2792AA7900FC38C9 /* ThemeService.swift */; };
+		2C26A0502792AD3C00FC38C9 /* ProtoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04F2792AD3C00FC38C9 /* ProtoCell.swift */; };
+		2C26A0542792BD3200FC38C9 /* XB Niloofar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C26A0522792BD3200FC38C9 /* XB Niloofar.ttf */; };
+		2C26A0552792BD3200FC38C9 /* Meera-05.1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C26A0532792BD3200FC38C9 /* Meera-05.1.ttf */; };
+		2C27EEB02793B8B600BF1E84 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C27EEAF2793B8B600BF1E84 /* HomeView.swift */; };
 		2C463DA0278C614A00099415 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C463D9F278C614A00099415 /* PlayerView.swift */; };
 		2C5559EF278D282300FE21FD /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5559EE278D282300FE21FD /* PlayerViewModel.swift */; };
 		2C5559F1278D283C00FE21FD /* PlayingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5559F0278D283C00FE21FD /* PlayingModel.swift */; };
@@ -51,6 +56,12 @@
 		2C22B444278FCB71005FB345 /* Url+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+Extensions.swift"; sourceTree = "<group>"; };
 		2C22B446278FCC43005FB345 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		2C26A04B2792A23C00FC38C9 /* ChapterCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCellView.swift; sourceTree = "<group>"; };
+		2C26A04D2792AA7900FC38C9 /* ThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
+		2C26A04F2792AD3C00FC38C9 /* ProtoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoCell.swift; sourceTree = "<group>"; };
+		2C26A0522792BD3200FC38C9 /* XB Niloofar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "XB Niloofar.ttf"; sourceTree = "<group>"; };
+		2C26A0532792BD3200FC38C9 /* Meera-05.1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Meera-05.1.ttf"; sourceTree = "<group>"; };
+		2C26A0562792BDB400FC38C9 /* Quran-Malayalam-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Quran-Malayalam-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2C27EEAF2793B8B600BF1E84 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2C463D9F278C614A00099415 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2C5559EE278D282300FE21FD /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		2C5559F0278D283C00FE21FD /* PlayingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingModel.swift; sourceTree = "<group>"; };
@@ -103,6 +114,7 @@
 				2C1586CE278F013000085F6E /* AudioService.swift */,
 				2C22B446278FCC43005FB345 /* DownloadService.swift */,
 				2C8E503F2791C3780050FADE /* DataService.swift */,
+				2C26A04D2792AA7900FC38C9 /* ThemeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -115,6 +127,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2C26A0512792BCFC00FC38C9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2C26A0532792BD3200FC38C9 /* Meera-05.1.ttf */,
+				2C26A0522792BD3200FC38C9 /* XB Niloofar.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		2C27EEAE2793B88B00BF1E84 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2C27EEAF2793B8B600BF1E84 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		2C463D9E278C611700099415 /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,7 +154,7 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		2C797035279252BD00A078BF /* Home */ = {
+		2C797035279252BD00A078BF /* ChapterList */ = {
 			isa = PBXGroup;
 			children = (
 				2C797036279256C300A078BF /* ChapterListView.swift */,
@@ -133,7 +162,7 @@
 				2C79703A27926CAC00A078BF /* PlayerCellView.swift */,
 				2C7970382792628100A078BF /* ChapterListViewModel.swift */,
 			);
-			path = Home;
+			path = ChapterList;
 			sourceTree = "<group>";
 		};
 		2C8D3053278A81A400674BC5 = {
@@ -159,9 +188,12 @@
 		2C8D305E278A81A400674BC5 /* Quran Malayalam */ = {
 			isa = PBXGroup;
 			children = (
+				2C26A0562792BDB400FC38C9 /* Quran-Malayalam-Info.plist */,
+				2C26A0512792BCFC00FC38C9 /* Fonts */,
 				2C8E50392791C2830050FADE /* Data */,
 				2C8E503C2791C2B10050FADE /* Models */,
-				2C797035279252BD00A078BF /* Home */,
+				2C27EEAE2793B88B00BF1E84 /* Home */,
+				2C797035279252BD00A078BF /* ChapterList */,
 				2C22B443278FCB50005FB345 /* Extensions */,
 				2C1586CD278F00D600085F6E /* Services */,
 				2C463D9E278C611700099415 /* Player */,
@@ -169,6 +201,7 @@
 				2C8D3061278A81A400674BC5 /* ContentView.swift */,
 				2C8D3063278A81A600674BC5 /* Assets.xcassets */,
 				2C8D3065278A81A600674BC5 /* Preview Content */,
+				2C26A04F2792AD3C00FC38C9 /* ProtoCell.swift */,
 			);
 			path = "Quran Malayalam";
 			sourceTree = "<group>";
@@ -321,6 +354,8 @@
 				2C8D3067278A81A600674BC5 /* Preview Assets.xcassets in Resources */,
 				2C8D3064278A81A600674BC5 /* Assets.xcassets in Resources */,
 				2C8E503B2791C2A20050FADE /* Data.json in Resources */,
+				2C26A0552792BD3200FC38C9 /* Meera-05.1.ttf in Resources */,
+				2C26A0542792BD3200FC38C9 /* XB Niloofar.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +385,8 @@
 				2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */,
 				2C463DA0278C614A00099415 /* PlayerView.swift in Sources */,
 				2C79703B27926CAC00A078BF /* PlayerCellView.swift in Sources */,
+				2C27EEB02793B8B600BF1E84 /* HomeView.swift in Sources */,
+				2C26A04E2792AA7900FC38C9 /* ThemeService.swift in Sources */,
 				2C5559EF278D282300FE21FD /* PlayerViewModel.swift in Sources */,
 				2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */,
 				2C797037279256C300A078BF /* ChapterListView.swift in Sources */,
@@ -358,6 +395,7 @@
 				2C8D3060278A81A400674BC5 /* Quran_MalayalamApp.swift in Sources */,
 				2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */,
 				2C1586CF278F013000085F6E /* AudioService.swift in Sources */,
+				2C26A0502792AD3C00FC38C9 /* ProtoCell.swift in Sources */,
 				2C8E50402791C3780050FADE /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +560,7 @@
 				DEVELOPMENT_TEAM = 46445P5L6D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Quran-Malayalam-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -551,6 +590,7 @@
 				DEVELOPMENT_TEAM = 46445P5L6D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Quran-Malayalam-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

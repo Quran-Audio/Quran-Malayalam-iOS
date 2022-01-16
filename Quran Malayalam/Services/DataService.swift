@@ -34,4 +34,37 @@ class DataService {
         }
         return nil
     }
+    
+    
+    //MARK: Favourites
+    func getFavourites() -> [Int] {
+        guard let favourites = UserDefaults.standard.object(forKey: "QMFavourites") as? [Int] else {
+            return []
+        }
+        return favourites
+    }
+    
+    func setFavourite(index:Int) {
+        var favourites = getFavourites()
+        if !favourites.contains(index) {
+            favourites.append(index)
+            UserDefaults.standard.set(favourites, forKey: "QMFavourites")
+        }
+    }
+    
+    //MARK: Downnloaded
+    func getDownloads() -> [Int] {
+        guard let downloads = UserDefaults.standard.object(forKey: "QMDownloads") as? [Int] else {
+            return []
+        }
+        return downloads
+    }
+    
+    func setDownloads(index:Int) {
+        var downloads = getDownloads()
+        if !downloads.contains(index) {
+            downloads.append(index)
+            UserDefaults.standard.set(downloads, forKey: "QMDownloads")
+        }
+    }
 }

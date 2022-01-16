@@ -12,6 +12,7 @@ import CoreGraphics
 class ChapterListViewModel: ObservableObject {
     @Published var currentChapter:ChapterModel?
     @Published var isBuffering:Bool = false
+    var listType:EListType = .all
     var shareText: String {"App to Listen Quran Arabic and malayalam translation\n Url: "}
     var isPlaying:Bool {AudioService.shared.isPlaying}
     var chapterName:String {currentChapter?.name ?? ""}
@@ -19,9 +20,28 @@ class ChapterListViewModel: ObservableObject {
     var sliderMaxValue: CGFloat{CGFloat(currentChapter?.durationInSecs ?? 0)}
     var currentTimeText:String {AudioService.shared.currentTimeText}
     var durationText:String {AudioService.shared.durationText(secs: currentChapter?.durationInSecs ?? 0)}
-    var numberOfChapters:Int {data?.chapters.count ?? 0}
     var baseUrl:String {data?.baseUrl ?? ""}
-    var chapters:[ChapterModel] {data?.chapters ?? []}
+    
+    
+    
+    var chapters:[ChapterModel] {
+        switch listType {
+        case .all:
+            return data?.chapters ?? []
+        case .downloads:
+            let downloads = DataService.shared.getDownloads()
+            return data?.chapters.filter({ chapter in
+                downloads.contains(chapter.index)
+            }) ?? []
+        case .favourites:
+            let favourites = DataService.shared.getFavourites()
+            return data?.chapters.filter({ chapter in
+                favourites.contains(chapter.index)
+            }) ?? []
+        }
+    }
+        
+
     
     private var data:DataModel?
     init() {
@@ -58,4 +78,10 @@ extension ChapterListViewModel {
             print("buffer set")
         }
     }
+}
+
+enum EListType {
+    case all
+    case downloads
+    case favourites
 }
