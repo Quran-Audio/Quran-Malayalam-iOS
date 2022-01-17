@@ -52,6 +52,19 @@ class DataService {
         }
     }
     
+    func removeFavourite(chapterIndex:Int) {
+        var favourites = getFavourites()
+        if let index = favourites.firstIndex(of: chapterIndex) {
+            favourites.remove(at: index)
+        }
+        UserDefaults.standard.set(favourites, forKey: "QMFavourites")
+    }
+    
+    func isFavourite(index:Int) -> Bool {
+        let favourites = getFavourites()
+        return favourites.contains(index) ? true : false
+    }
+    
     //MARK: Downnloaded
     func getDownloads() -> [Int] {
         guard let downloads = UserDefaults.standard.object(forKey: "QMDownloads") as? [Int] else {
@@ -66,5 +79,18 @@ class DataService {
             downloads.append(index)
             UserDefaults.standard.set(downloads, forKey: "QMDownloads")
         }
+    }
+    
+    func isDownloaded(index:Int) -> Bool {
+        let downloads = getDownloads()
+        return downloads.contains(index) ? true : false
+    }
+    
+    func deleteDownloaded(chapterIndex:Int) {
+        var downloads = getDownloads()
+        if let index = downloads.firstIndex(of: chapterIndex) {
+            downloads.remove(at: index)
+        }
+        UserDefaults.standard.set(downloads, forKey: "QMDownloads")
     }
 }

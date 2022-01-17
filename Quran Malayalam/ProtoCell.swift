@@ -8,44 +8,61 @@
 import SwiftUI
 
 struct ProtoCell: View {
+    @State var showSwipeButtons:Bool = false
     var body: some View {
-        VStack {
-            ZStack {
-                HStack {
-                    ZStack {
-                        Image(systemName: "speaker.wave.2")
-                            .font(.system(size: 25))
-                        Rectangle()
-                            .strokeBorder(.white,lineWidth: 2)
-                            .frame(width: 50, height: 50)
-                        Text("114")
-                            .font(ThemeService.shared.arabicFont(size: 20))
-                    }
-                    VStack(alignment: .leading) {
-                        Text("Chpater 1")
-                            .font(ThemeService.shared.arabicFont(size: 25))
-                        Text("Chapter 1 en")
-                            .font(.system(size: 20))
-                            .foregroundColor(ThemeService.subTitleColor)
-                    }
-                    Spacer()
-                    ZStack {
-                        //if viewModel.isBuffering {
-                        //LoaderView()
-                        //}
-                        Image(systemName: "play")
-                            .font(.system(size: 25)).onTapGesture {
-                                //viewModel.playPause()
-                            }
-                        
-                    }.offset(x:-10)
+        HStack {
+            HStack {
+                ZStack {
+                    Rectangle()
+                        .frame(width: 40, height: 40)
+                        .cornerRadius(5)
+                        .foregroundColor(ThemeService.themeColor)
+                    Text("1").foregroundColor(.white).font(.system(size: 20))
                 }
-                .padding(.leading,5)
+                VStack(alignment:.leading) {
+                    Text("Chapter 1")
+                        .font(ThemeService.shared.arabicFont(size: 20))
+                        .offset(y:3)
+                    Text("Chapter 1 en")
+                        .foregroundColor(ThemeService.subTitleColor)
+                        .offset(y:-3)
+                }
+                Spacer()
+                Button {
+                    showSwipeButtons.toggle()
+                } label: {
+                    Image("more")
+                        .resizable()
+                        .frame(width: 25 , height: 25)
+                }
                 
-            }.padding()
-        }.background(ThemeService.themeColor)
-            .foregroundColor(.white)
-            .shadow(color: .gray, radius: 3, x: 1, y: -1)
+            }.offset(x: showSwipeButtons ? -88 : 0)
+            if showSwipeButtons {
+                HStack(spacing:0){
+                    ZStack {
+                        Rectangle()
+                            .fill(.blue.opacity(0.8)).frame(width: 44, height: 44)
+                        Button {
+                            //TODO:
+                        } label: {
+                            Image(systemName: "square.and.arrow.down")
+                        }
+                    }
+                    ZStack {
+                        Rectangle().fill(.blue).frame(width: 44, height: 44)
+                        Button {
+                            //TODO:
+                        } label: {
+                            Image(systemName: "star")
+                        }
+                    }
+                }.foregroundColor(.white)
+            }
+            
+            
+
+        }.foregroundColor(ThemeService.titleColor)
+            .padding(.horizontal,7)
     }
 }
 

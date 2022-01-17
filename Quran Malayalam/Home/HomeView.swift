@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct HomeView: View {
-    
     init() {
         UITabBar.appearance().unselectedItemTintColor = UIColor.lightGray
         UITabBar.appearance().backgroundColor = UIColor(ThemeService.themeColor)
         UITabBar.appearance().barTintColor = UIColor(ThemeService.themeColor)
     }
     var body: some View {
+        
         TabView {
             ChapterListView(listType: .all).tabItem {
                 Image(systemName: "house")
@@ -27,7 +27,6 @@ struct HomeView: View {
             }
         }
         .accentColor(.white)
-        
     }
 }
 

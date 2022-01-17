@@ -50,6 +50,9 @@ struct ChapterListView: View {
             if let _ = viewModel.currentChapter {
                 PlayerCellView(viewModel: viewModel)
             }
+        }.onAppear {
+            //FIXME: Just to update the whole view
+            self.viewModel.listType = self.viewModel.listType
         }
     }
     
@@ -87,7 +90,8 @@ struct ChapterListView: View {
     @ViewBuilder private var chapterListView: some View {
         VStack(spacing:0) {
             ForEach(viewModel.chapters, id: \.index) { chapter in
-                ChapterCell(chapter:chapter)
+                ChapterCell(viewModel: viewModel,
+                            chapter:chapter)
                     .onTapGesture {
                         self.viewModel.setCurrent(chapter: chapter)
                     }

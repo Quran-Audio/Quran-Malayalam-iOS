@@ -12,7 +12,7 @@ import CoreGraphics
 class ChapterListViewModel: ObservableObject {
     @Published var currentChapter:ChapterModel?
     @Published var isBuffering:Bool = false
-    var listType:EListType = .all
+    @Published var listType:EListType = .all
     var shareText: String {"App to Listen Quran Arabic and malayalam translation\n Url: "}
     var isPlaying:Bool {AudioService.shared.isPlaying}
     var chapterName:String {currentChapter?.name ?? ""}
@@ -77,6 +77,30 @@ extension ChapterListViewModel {
             self.isBuffering = isBuffering
             print("buffer set")
         }
+    }
+}
+
+//MARK: Favourite
+extension ChapterListViewModel {
+    func onFavouriteChapter(chapterIndex:Int) {
+        if DataService.shared.isFavourite(index: chapterIndex) {
+            DataService.shared.removeFavourite(chapterIndex: chapterIndex)
+        }else {
+            DataService.shared.setFavourite(index: chapterIndex)
+        }
+        self.listType = self.listType
+    }
+}
+
+//MARK: Download
+extension ChapterListViewModel {
+    func onDownloadChapter(chapterIndex:Int) {
+        if DataService.shared.isDownloaded(index: chapterIndex) {
+            DataService.shared.deleteDownloaded(chapterIndex: chapterIndex)
+        }else {
+            DataService.shared.setDownloads(index: chapterIndex)
+        }
+        self.listType = self.listType
     }
 }
 
