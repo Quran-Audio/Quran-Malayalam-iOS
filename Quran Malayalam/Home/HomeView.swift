@@ -17,13 +17,13 @@ struct HomeView: View {
         
         TabView {
             ChapterListView(listType: .all).tabItem {
-                Image(systemName: "house")
+                Label("Home", systemImage: "house")
             }
             ChapterListView(listType: .downloads).tabItem {
-                Image(systemName: "square.and.arrow.down")
+                Label("Downloads", systemImage: "square.and.arrow.down")
             }
             ChapterListView(listType: .favourites).tabItem {
-                Image(systemName: "star")
+                Label("Favourites", systemImage: "star")
             }
         }
         .accentColor(.white)

@@ -8,26 +8,34 @@
 import SwiftUI
 
 struct ChapterCell:View {
-    @ObservedObject var viewModel:ChapterListViewModel
+    @ObservedObject var viewModel:ChapterListViewModel = ChapterListViewModel()
     @State var showSwipeButtons:Bool = false
+    
     var chapter:ChapterModel
     var body: some View {
         ZStack(alignment: .trailing) {
+            RoundedRectangle(cornerRadius: 15)
+                .strokeBorder(ThemeService.borderColor,lineWidth: 2)
+                .frame(height: 80)
             HStack {
                 ZStack {
-                    Rectangle()
-                        .frame(width: 40, height: 40)
+                    Circle()
+                        .strokeBorder(ThemeService.borderColor, lineWidth: 3)
+                        .background(Circle().fill(ThemeService.titleColor.opacity(0.8)))
+                        .frame(width: 60, height: 60)
                         .cornerRadius(5)
                         .foregroundColor(ThemeService.themeColor)
-                    Text("\(chapter.index)").foregroundColor(.white).font(.system(size: 20))
+                        
+                    Text("\(chapter.index)").foregroundColor(.white).font(.system(size: 30))
                 }
                 VStack(alignment:.leading) {
                     Text("سورة \(chapter.name)")
-                        .font(ThemeService.shared.arabicFont(size: 20))
-                        .offset(y:3)
+                        .font(ThemeService.shared.arabicFont(size: 30))
+                        .foregroundColor(ThemeService.titleColor)
                     Text("Surah \(chapter.nameEn)")
+                        .font(.system(size: 20))
                         .foregroundColor(ThemeService.subTitleColor)
-                        .offset(y:-3)
+                        .offset(y:-5)
                 }
                 Spacer()
                 Button {
@@ -36,9 +44,11 @@ struct ChapterCell:View {
                     Image("more")
                         .resizable()
                         .frame(width: 25 , height: 25)
+                        .tint(ThemeService.titleColor)
                 }
                 
             }.offset(x: showSwipeButtons ? -88 : 0)
+                .padding(.horizontal,7)
             if showSwipeButtons {
                 HStack(spacing:0){
                     ZStack {
@@ -65,37 +75,20 @@ struct ChapterCell:View {
                     }
                 }.foregroundColor(.white)
             }
-            
-            
-
         }.foregroundColor(ThemeService.titleColor)
             .padding(.horizontal,7)
-//        HStack {
-//            ZStack {
-//                Rectangle()
-//                    .frame(width: 40, height: 40)
-//                    .cornerRadius(5)
-//                    .foregroundColor(ThemeService.themeColor)
-//                Text("\(chapter.index)").foregroundColor(.white).font(.system(size: 20))
-//            }
-//            VStack(alignment:.leading) {
-//                Text("سورة \(chapter.name)")
-//                    .font(ThemeService.shared.arabicFont(size: 20))
-//                    .offset(y:3)
-//                Text("Surah \(chapter.nameEn)")
-//                    .foregroundColor(ThemeService.subTitleColor)
-//                    .offset(y:-3)
-//            }
-//            Spacer()
-//            Button {
-//
-//            } label: {
-//                Image("more")
-//                    .resizable()
-//                    .frame(width: 25 , height: 25)
-//            }
-//
-//        }.foregroundColor(ThemeService.titleColor)
-//            .padding(.horizontal,7)
     }
 }
+
+struct ChapterCell_Previews: PreviewProvider {
+    static var previews: some View {
+        ChapterCell(chapter:ChapterModel(index: 1,
+                                         name: "ٱلْفَاتِحَة",
+                                         nameEn: "Al-Fatihah",
+                                         nameMl: "-",
+                                         fileName: "000_Al_Fattiha.mp3",
+                                         size: "768Kb",
+                                         durationInSecs: 98))
+    }
+}
+

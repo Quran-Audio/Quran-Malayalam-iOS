@@ -8,9 +8,32 @@
 import SwiftUI
 
 class ThemeService {
-    static let themeColor = Color(red: 0.48, green: 0.48, blue: 1.00)
-    static let titleColor = Color(red: 0, green: 0, blue: 0)
-    static let subTitleColor = Color(red: 0.71, green: 0.74, blue: 0.74)
+    static let themeColor = Color("theme")
+    static let subTitleColor = Color("subTitle")
+    static let titleColor = Color("title")
+    static let borderColor = Color("borderColor")
+    static let colorSet = [
+        Color("type1"),
+        Color("type2"),
+        Color("type3"),
+        Color("type4"),
+        Color("type5"),
+        Color("type6"),
+        Color("type7"),
+        Color("type8"),
+        Color("type9"),
+        Color("type10"),
+        Color("type11"),
+        Color("type12"),
+        Color("type13"),
+        Color("type14"),
+        Color("type15"),
+        Color("type16"),
+        Color("type17")
+    ]
+    
+    
+    
     
     static let shared = ThemeService()
     private init() {}

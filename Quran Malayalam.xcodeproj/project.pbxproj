@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C1586CF278F013000085F6E /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1586CE278F013000085F6E /* AudioService.swift */; };
+		2C19A6B52795D0C900949579 /* DownloadManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A6B42795D0C900949579 /* DownloadManagerView.swift */; };
+		2C19A6B72795DD9600949579 /* DownloadManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A6B62795DD9600949579 /* DownloadManagerViewModel.swift */; };
 		2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B444278FCB71005FB345 /* Url+Extensions.swift */; };
 		2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B446278FCC43005FB345 /* DownloadService.swift */; };
 		2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04B2792A23C00FC38C9 /* ChapterCellView.swift */; };
@@ -53,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		2C1586CE278F013000085F6E /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		2C19A6B42795D0C900949579 /* DownloadManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManagerView.swift; sourceTree = "<group>"; };
+		2C19A6B62795DD9600949579 /* DownloadManagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManagerViewModel.swift; sourceTree = "<group>"; };
 		2C22B444278FCB71005FB345 /* Url+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+Extensions.swift"; sourceTree = "<group>"; };
 		2C22B446278FCC43005FB345 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		2C26A04B2792A23C00FC38C9 /* ChapterCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCellView.swift; sourceTree = "<group>"; };
@@ -117,6 +121,15 @@
 				2C26A04D2792AA7900FC38C9 /* ThemeService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		2C19A6B32795D06900949579 /* DownloadManagerView */ = {
+			isa = PBXGroup;
+			children = (
+				2C19A6B42795D0C900949579 /* DownloadManagerView.swift */,
+				2C19A6B62795DD9600949579 /* DownloadManagerViewModel.swift */,
+			);
+			path = DownloadManagerView;
 			sourceTree = "<group>";
 		};
 		2C22B443278FCB50005FB345 /* Extensions */ = {
@@ -194,6 +207,7 @@
 				2C8E503C2791C2B10050FADE /* Models */,
 				2C27EEAE2793B88B00BF1E84 /* Home */,
 				2C797035279252BD00A078BF /* ChapterList */,
+				2C19A6B32795D06900949579 /* DownloadManagerView */,
 				2C22B443278FCB50005FB345 /* Extensions */,
 				2C1586CD278F00D600085F6E /* Services */,
 				2C463D9E278C611700099415 /* Player */,
@@ -380,12 +394,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C19A6B52795D0C900949579 /* DownloadManagerView.swift in Sources */,
 				2C7970392792628100A078BF /* ChapterListViewModel.swift in Sources */,
 				2C5559F1278D283C00FE21FD /* PlayingModel.swift in Sources */,
 				2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */,
 				2C463DA0278C614A00099415 /* PlayerView.swift in Sources */,
 				2C79703B27926CAC00A078BF /* PlayerCellView.swift in Sources */,
 				2C27EEB02793B8B600BF1E84 /* HomeView.swift in Sources */,
+				2C19A6B72795DD9600949579 /* DownloadManagerViewModel.swift in Sources */,
 				2C26A04E2792AA7900FC38C9 /* ThemeService.swift in Sources */,
 				2C5559EF278D282300FE21FD /* PlayerViewModel.swift in Sources */,
 				2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */,

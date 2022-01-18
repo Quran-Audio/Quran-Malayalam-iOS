@@ -23,7 +23,8 @@ struct ChapterListView: View {
                     }else {
                         chapterListView
                     }
-                }.navigationBarTitle("Quran Malayalam",displayMode: .inline)
+                }
+                .navigationBarTitle("Quran Malayalam",displayMode: .inline)
                     .toolbar {
                         ToolbarItemGroup(placement: .navigationBarTrailing) {
                             Button {
@@ -88,10 +89,12 @@ struct ChapterListView: View {
     }
     
     @ViewBuilder private var chapterListView: some View {
-        VStack(spacing:0) {
+        VStack(spacing:10) {
+            Spacer(minLength: 5)
             ForEach(viewModel.chapters, id: \.index) { chapter in
                 ChapterCell(viewModel: viewModel,
                             chapter:chapter)
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         self.viewModel.setCurrent(chapter: chapter)
                     }
@@ -103,6 +106,6 @@ struct ChapterListView: View {
 
 struct ChapterListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChapterListView(listType: .favourites)
+        ChapterListView(listType: .all)
     }
 }
