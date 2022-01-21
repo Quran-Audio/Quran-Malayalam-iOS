@@ -69,7 +69,9 @@ extension ChapterListViewModel {
     }
     
     func configureAudio() {
-        AudioService.shared.setupAudio(urlText: "\(data?.baseUrl ?? "")/\(currentChapter?.fileName ?? "")")
+        guard let baseUrl = data?.baseUrl,
+              let chapter = currentChapter else {return}
+        AudioService.shared.setModel(baseUrl: baseUrl, model: chapter)
         AudioService.shared.onPlayFinished = {
             self.currentChapter?.isPlaying = false
         }

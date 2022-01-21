@@ -9,6 +9,8 @@ import Foundation
 import AVKit
 
 class AudioService {
+    private static let currentChapterKey = "qa-current-chapter"
+    private static let baseUrlKey = "qa-base-url"
     static var shared:AudioService = AudioService()
     private init() {}
     private var timer = Timer()
@@ -56,8 +58,10 @@ class AudioService {
     private var player:AVPlayer?
     
     
-    func setupAudio(urlText:String) {
-        guard let audioUrl = URL(string: urlText) else {return}
+    func setupAudio() {
+        guard let baseUrl = loadBaseUrl(),
+              let chapter = loadChapter() else {return}
+        guard let audioUrl = URL(string: "\(baseUrl)/\(chapter.fileName)") else {return}
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerEvent), userInfo: nil, repeats: true)
         do {
@@ -71,6 +75,12 @@ class AudioService {
         } catch {
             print("\(error)")
         }
+    }
+    
+    func setModel(baseUrl:String,model:ChapterModel) {
+        saveChapter(model)
+        saveBaseUrl(baseUrl)
+        setupAudio()
     }
     
     private func setIsBuffering() {
@@ -109,5 +119,41 @@ class AudioService {
     
     @objc private func onTimerEvent() {
         setIsBuffering()
+    }
+}
+
+//MARK: Save & Load Current Chapter
+extension AudioService {
+    private func saveBaseUrl(_ baseUrl:String) {
+        UserDefaults.standard.set(baseUrl, forKey: AudioService.baseUrlKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func loadBaseUrl() -> String? {
+        return UserDefaults.standard.string(forKey: AudioService.baseUrlKey)
+    }
+    
+    private func saveChapter(_ chapter:ChapterModel) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(chapter) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: AudioService.currentChapterKey)
+            defaults.synchronize()
+        }
+    }
+    
+    func loadChapter() -> ChapterModel? {
+        guard let chapterData = UserDefaults.standard.object(forKey: AudioService.currentChapterKey) as? Data else {
+            return nil
+        }
+        let decoder = JSONDecoder()
+        if let chapter = try? decoder.decode(ChapterModel.self, from: chapterData) {
+            return chapter
+        }
+        return nil
+    }
+    
+    func isCurrentChapterAvailable() -> Bool {
+        return loadChapter() != nil ? true : false
     }
 }

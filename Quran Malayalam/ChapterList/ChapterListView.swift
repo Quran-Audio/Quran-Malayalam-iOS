@@ -48,8 +48,8 @@ struct ChapterListView: View {
             .onAppear {
                 navigationAppearance()
             }
-            if let _ = viewModel.currentChapter {
-                PlayerCellView(viewModel: viewModel)
+            if AudioService.shared.isCurrentChapterAvailable() {
+                PlayerCellView()
             }
         }.onAppear {
             //FIXME: Just to update the whole view

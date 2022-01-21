@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayerCellView: View {
-    @ObservedObject var viewModel:ChapterListViewModel
+    @ObservedObject var viewModel = PlayerCellViewModel()
     
     var body: some View {
         VStack(spacing:0) {
@@ -39,7 +39,7 @@ struct PlayerCellView: View {
                             Text("سورَة \(viewModel.currentChapter?.name ?? "")")
                                 .foregroundColor(ThemeService.whiteColor)
                                 .font(ThemeService.shared.arabicFont(size: 25).bold())
-                                //.offset(y:3)
+                            //.offset(y:3)
                             
                             Text("Surah \(viewModel.currentChapter?.nameEn ?? "")")
                                 .foregroundColor(ThemeService.whiteColor.opacity(0.7))

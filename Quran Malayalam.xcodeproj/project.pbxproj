@@ -34,6 +34,7 @@
 		2C8E503B2791C2A20050FADE /* Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E503A2791C2A20050FADE /* Data.json */; };
 		2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E503D2791C2C70050FADE /* ChapterModel.swift */; };
 		2C8E50402791C3780050FADE /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E503F2791C3780050FADE /* DataService.swift */; };
+		2CF987A1279B024F00A4E5AB /* PlayerCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF987A0279B024F00A4E5AB /* PlayerCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		2C8E503A2791C2A20050FADE /* Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Data.json; sourceTree = "<group>"; };
 		2C8E503D2791C2C70050FADE /* ChapterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterModel.swift; sourceTree = "<group>"; };
 		2C8E503F2791C3780050FADE /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		2CF987A0279B024F00A4E5AB /* PlayerCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +174,6 @@
 			children = (
 				2C797036279256C300A078BF /* ChapterListView.swift */,
 				2C26A04B2792A23C00FC38C9 /* ChapterCellView.swift */,
-				2C79703A27926CAC00A078BF /* PlayerCellView.swift */,
 				2C7970382792628100A078BF /* ChapterListViewModel.swift */,
 			);
 			path = ChapterList;
@@ -207,6 +208,7 @@
 				2C8E503C2791C2B10050FADE /* Models */,
 				2C27EEAE2793B88B00BF1E84 /* Home */,
 				2C797035279252BD00A078BF /* ChapterList */,
+				2CF9879F279B022100A4E5AB /* PlayerCell */,
 				2C19A6B32795D06900949579 /* DownloadManagerView */,
 				2C22B443278FCB50005FB345 /* Extensions */,
 				2C1586CD278F00D600085F6E /* Services */,
@@ -259,6 +261,15 @@
 				2C8E503D2791C2C70050FADE /* ChapterModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2CF9879F279B022100A4E5AB /* PlayerCell */ = {
+			isa = PBXGroup;
+			children = (
+				2C79703A27926CAC00A078BF /* PlayerCellView.swift */,
+				2CF987A0279B024F00A4E5AB /* PlayerCellViewModel.swift */,
+			);
+			path = PlayerCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +418,7 @@
 				2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */,
 				2C797037279256C300A078BF /* ChapterListView.swift in Sources */,
 				2C8D3062278A81A400674BC5 /* ContentView.swift in Sources */,
+				2CF987A1279B024F00A4E5AB /* PlayerCellViewModel.swift in Sources */,
 				2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */,
 				2C8D3060278A81A400674BC5 /* Quran_MalayalamApp.swift in Sources */,
 				2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */,

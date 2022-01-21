@@ -9,6 +9,7 @@ import Foundation
 import AVKit
 
 class PlayerViewModel:ObservableObject {
+    
     //MARK: published
     @Published private var model = PlayingModel(name: "Surah AlFathiha",
                                      durationInSec: 98,
@@ -46,7 +47,7 @@ class PlayerViewModel:ObservableObject {
     }
     
     func configureAudio() {
-        AudioService.shared.setupAudio(urlText: model.streamUrl)
+        AudioService.shared.setupAudio()
         AudioService.shared.onPlayFinished = {
             self.model.isPlaying = false
         }
