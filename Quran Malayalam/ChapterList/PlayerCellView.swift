@@ -10,51 +10,71 @@ import SwiftUI
 struct PlayerCellView: View {
     @ObservedObject var viewModel:ChapterListViewModel
     
-    var body:some View {
-        VStack {
-            ZStack {
-                HStack {
+    var body: some View {
+        VStack(spacing:0) {
+            ZStack(alignment:.leading) {
+                Rectangle().frame(height: 5)
+                    .foregroundColor(ThemeService.borderColor)
+                Rectangle().frame(width:10,height: 5)
+                    .foregroundColor(.yellow)
+            }
+            HStack {
+                ZStack {
+                    titleBox
                     ZStack {
                         if viewModel.isPlaying {
                             Image(systemName: "speaker.wave.2")
+                                .foregroundColor(ThemeService.whiteColor)
                                 .font(.system(size: 25))
                         }else {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(.white)
-                                .frame(width: 40, height: 40)
                             Text("\(viewModel.currentChapter?.index ?? 0)")
-                                .font(ThemeService.shared.arabicFont(size: 20))
-                                .foregroundColor(ThemeService.themeColor)
+                                .font(.system(size: 30))
+                                .foregroundColor(ThemeService.whiteColor)
                         }
                     }
-                    VStack(alignment: .leading) {
-                        Text("سورة \(viewModel.currentChapter?.name ?? "")")
-                            .font(ThemeService.shared.arabicFont(size: 25))
-                            .offset(y:5)
-                        Text("Surah \(viewModel.currentChapter?.nameEn ?? "")")
-                            .font(.system(size: 20))
-                            .foregroundColor(ThemeService.subTitleColor)
-                            .offset(y:-5)
-                    }
-                    Spacer()
-                    ZStack {
-                        if viewModel.isBuffering {
-                            LoaderView()
-                        }
-                        Image(systemName: viewModel.isPlaying ? "pause" : "play")
-                            .font(.system(size: 25)).onTapGesture {
-                                viewModel.playPause()
-                            }
-                        
-                    }.offset(x:-10)
                 }
-                .padding(.leading,5)
-                
+                HStack {
+                    VStack(alignment:.leading) {
+                        VStack(alignment: .leading,spacing: 0) {
+                            Text("سورَة \(viewModel.currentChapter?.name ?? "")")
+                                .foregroundColor(ThemeService.whiteColor)
+                                .font(ThemeService.shared.arabicFont(size: 25).bold())
+                                //.offset(y:3)
+                            
+                            Text("Surah \(viewModel.currentChapter?.nameEn ?? "")")
+                                .foregroundColor(ThemeService.whiteColor.opacity(0.7))
+                                .font(.system(size: 18))
+                                .offset(y:-6)
+                        }
+                    }
+                    Spacer(minLength: 10)
+                }
+                ZStack {
+                    if viewModel.isBuffering {
+                        LoaderView()
+                    }
+                    Image(systemName: viewModel.isPlaying ? "pause" : "play")
+                        .foregroundColor(ThemeService.whiteColor)
+                        .font(.system(size: 30))
+                        .frame(width: 50,height: 50).onTapGesture {
+                            viewModel.playPause()
+                        }
+                    
+                }
             }
-            .padding(.vertical,5)
-        }.background(ThemeService.themeColor)
-            .foregroundColor(.white)
-            .shadow(color: .gray, radius: 1, x: 1, y: -1)
+            .background(ThemeService.secondaryColor)
+            Rectangle().frame(height: 0.5)
+                .foregroundColor(ThemeService.borderColor)
+        }
+    }
+    
+    @ViewBuilder private var titleBox: some View {
+        HStack(spacing:0) {
+            Rectangle().frame(width: 50,height: 75)
+                .foregroundColor(ThemeService.themeColor)
+            Rectangle().frame(width: 1,height: 75)
+                .foregroundColor(ThemeService.whiteColor)
+        }
     }
     
     struct LoaderView:View {

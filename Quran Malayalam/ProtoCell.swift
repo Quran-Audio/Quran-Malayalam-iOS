@@ -10,61 +10,50 @@ import SwiftUI
 struct ProtoCell: View {
     @State var showSwipeButtons:Bool = false
     var body: some View {
-        HStack {
+        VStack(spacing:0) {
+            ZStack(alignment:.leading) {
+                Rectangle().frame(height: 5)
+                    .foregroundColor(ThemeService.borderColor)
+                Rectangle().frame(width:10,height: 5)
+                    .foregroundColor(.yellow)
+            }
             HStack {
                 ZStack {
-                    Rectangle()
-                        .frame(width: 40, height: 40)
-                        .cornerRadius(5)
-                        .foregroundColor(ThemeService.themeColor)
-                    Text("1").foregroundColor(.white).font(.system(size: 20))
+                    titleBox
+                    Text("1")
+                        .font(.system(size: 25).bold())
+                        .foregroundColor(ThemeService.whiteColor)
                 }
-                VStack(alignment:.leading) {
-                    Text("Chapter 1")
-                        .font(ThemeService.shared.arabicFont(size: 20))
-                        .offset(y:3)
-                    Text("Chapter 1 en")
-                        .foregroundColor(ThemeService.subTitleColor)
-                        .offset(y:-3)
-                }
-                Spacer()
-                Button {
-                    showSwipeButtons.toggle()
-                } label: {
-                    Image("more")
-                        .resizable()
-                        .frame(width: 25 , height: 25)
-                }
-                
-            }.offset(x: showSwipeButtons ? -88 : 0)
-            if showSwipeButtons {
-                HStack(spacing:0){
-                    ZStack {
-                        Rectangle()
-                            .fill(.blue.opacity(0.8)).frame(width: 44, height: 44)
-                        Button {
-                            //TODO:
-                        } label: {
-                            Image(systemName: "square.and.arrow.down")
-                        }
+                HStack {
+                    VStack(alignment:.leading) {
+                        Text("Chapter Name")
+                            .foregroundColor(ThemeService.whiteColor)
+                            .font(.system(size: 25))
+                        Text("Chapter Name Mal")
+                            .foregroundColor(ThemeService.whiteColor.opacity(0.7))
+                            .font(.system(size: 20))
                     }
-                    ZStack {
-                        Rectangle().fill(.blue).frame(width: 44, height: 44)
-                        Button {
-                            //TODO:
-                        } label: {
-                            Image(systemName: "star")
-                        }
-                    }
-                }.foregroundColor(.white)
-            }
-            
-            
-
-        }.foregroundColor(ThemeService.titleColor)
-            .padding(.horizontal,7)
+                    Spacer(minLength: 10)
+                }
+                Image(systemName: "play")
+                    .foregroundColor(ThemeService.whiteColor)
+                    .font(.system(size: 30))
+                    .frame(width: 50,height: 50)
+            }.background(ThemeService.secondaryColor)
+        }
+    }
+    
+    @ViewBuilder private var titleBox: some View {
+        HStack(spacing:0) {
+            Rectangle().frame(width: 60,height: 60)
+                .foregroundColor(ThemeService.themeColor)
+            Rectangle().frame(width: 2,height: 60)
+                .foregroundColor(ThemeService.whiteColor)
+        }
     }
 }
+
+
 
 struct ProtoCell_Previews: PreviewProvider {
     static var previews: some View {

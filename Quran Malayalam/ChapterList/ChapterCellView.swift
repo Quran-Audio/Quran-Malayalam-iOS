@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChapterCell:View {
-    @ObservedObject var viewModel:ChapterListViewModel = ChapterListViewModel()
+    @ObservedObject var viewModel:ChapterListViewModel
     @State var showSwipeButtons:Bool = false
     
     var chapter:ChapterModel
@@ -26,16 +26,16 @@ struct ChapterCell:View {
                         .cornerRadius(5)
                         .foregroundColor(ThemeService.themeColor)
                         
-                    Text("\(chapter.index)").foregroundColor(.white).font(.system(size: 30))
+                    Text("\(chapter.index)").foregroundColor(.white).font(.system(size: 25))
                 }
                 VStack(alignment:.leading) {
-                    Text("سورة \(chapter.name)")
-                        .font(ThemeService.shared.arabicFont(size: 30))
+                    Text("سورَة \(chapter.name)")
+                        .font(ThemeService.shared.arabicFont(size: 25))
                         .foregroundColor(ThemeService.titleColor)
                     Text("Surah \(chapter.nameEn)")
-                        .font(.system(size: 20))
+                        .font(.system(size: 18))
                         .foregroundColor(ThemeService.subTitleColor)
-                        .offset(y:-5)
+                        .offset(y:-3)
                 }
                 Spacer()
                 Button {
@@ -82,7 +82,8 @@ struct ChapterCell:View {
 
 struct ChapterCell_Previews: PreviewProvider {
     static var previews: some View {
-        ChapterCell(chapter:ChapterModel(index: 1,
+        ChapterCell(viewModel: ChapterListViewModel(),
+                    chapter:ChapterModel(index: 1,
                                          name: "ٱلْفَاتِحَة",
                                          nameEn: "Al-Fatihah",
                                          nameMl: "-",

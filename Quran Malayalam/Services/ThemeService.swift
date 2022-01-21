@@ -8,6 +8,8 @@
 import SwiftUI
 
 class ThemeService {
+    static let secondaryColor = Color("secondaryColor")
+    static let whiteColor = Color.white
     static let themeColor = Color("theme")
     static let subTitleColor = Color("subTitle")
     static let titleColor = Color("title")

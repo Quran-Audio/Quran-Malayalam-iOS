@@ -15,7 +15,7 @@ struct ChapterListView: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing:0) {
             NavigationView {
                 ScrollView {
                     if viewModel.chapters.count == 0 {
@@ -106,6 +106,6 @@ struct ChapterListView: View {
 
 struct ChapterListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChapterListView(listType: .all)
+        ChapterListView(listType: .downloads)
     }
 }
