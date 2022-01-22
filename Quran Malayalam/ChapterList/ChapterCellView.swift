@@ -16,24 +16,26 @@ struct ChapterCell:View {
         ZStack(alignment: .trailing) {
             RoundedRectangle(cornerRadius: 15)
                 .strokeBorder(ThemeService.borderColor,lineWidth: 2)
-                .frame(height: 80)
+                .frame(height: 55)
             HStack {
                 ZStack {
                     Circle()
                         .strokeBorder(ThemeService.borderColor, lineWidth: 3)
                         .background(Circle().fill(ThemeService.titleColor.opacity(0.8)))
-                        .frame(width: 60, height: 60)
+                        .frame(width: 40, height: 40)
                         .cornerRadius(5)
                         .foregroundColor(ThemeService.themeColor)
                         
-                    Text("\(chapter.index)").foregroundColor(.white).font(.system(size: 25))
+                    Text("\(chapter.index)")
+                        .foregroundColor(.white)
+                        .font(.system(size: 19))
                 }
                 VStack(alignment:.leading) {
                     Text("سورَة \(chapter.name)")
-                        .font(ThemeService.shared.arabicFont(size: 25))
+                        .font(ThemeService.shared.arabicFont(size: 20))
                         .foregroundColor(ThemeService.titleColor)
                     Text("Surah \(chapter.nameEn)")
-                        .font(.system(size: 18))
+                        .font(.system(size: 15))
                         .foregroundColor(ThemeService.subTitleColor)
                         .offset(y:-3)
                 }

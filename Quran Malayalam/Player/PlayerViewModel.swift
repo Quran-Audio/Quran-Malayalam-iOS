@@ -30,6 +30,10 @@ class PlayerViewModel:ObservableObject {
         AudioService.shared.durationText(secs: model.durationInSec)
     }
     
+    init() {
+        configureAudio()
+    }
+    
     func setModel(model:PlayingModel) {
         self.model = model
         configureAudio()

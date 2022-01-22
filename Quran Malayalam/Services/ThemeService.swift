@@ -43,4 +43,17 @@ class ThemeService {
     func arabicFont(size:CGFloat) -> Font {
         Font.custom("XB Niloofar", size: size)
     }
+    
+    func navigationAppearance()  {
+        let appearance = UINavigationBarAppearance()
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+        appearance.backgroundColor = UIColor(ThemeService.themeColor)
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .foregroundColor: UIColor.white
+        ]
+    }
 }

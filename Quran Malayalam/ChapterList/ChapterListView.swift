@@ -45,15 +45,64 @@ struct ChapterListView: View {
                     .background(ThemeService.themeColor)
                     
             }
+            .ignoresSafeArea(.container, edges: [.top, .horizontal])
             .onAppear {
-                navigationAppearance()
+                ThemeService.shared.navigationAppearance()
             }
             if AudioService.shared.isCurrentChapterAvailable() {
                 PlayerCellView()
             }
-        }.onAppear {
-            //FIXME: Just to update the whole view
-            self.viewModel.listType = self.viewModel.listType
+            TabBarView(viewModel: viewModel)
+        }
+        .background(ThemeService.themeColor)
+    }
+    
+    struct TabBarView: View {
+        @ObservedObject var viewModel:ChapterListViewModel
+        var body: some View {
+            HStack(spacing:0) {
+                ZStack {
+                    Rectangle()
+                    VStack {
+                        Image(systemName: "house.fill")
+                            .font(.system(size: 23))
+                        Text("Home")
+                            .font(.system(size: 15))
+                    }.foregroundColor(viewModel.listType == .all ? ThemeService.whiteColor : ThemeService.borderColor.opacity(0.7))
+                }.onTapGesture {
+                    if viewModel.listType != .all {
+                        viewModel.listType = .all
+                    }
+                }
+                ZStack {
+                    Rectangle()
+                    VStack {
+                        Image(systemName: "square.and.arrow.down.fill")
+                            .font(.system(size: 23))
+                        Text("Downloads")
+                            .font(.system(size: 15))
+                    }.foregroundColor(viewModel.listType == .downloads ? ThemeService.whiteColor : ThemeService.borderColor.opacity(0.7))
+                }.onTapGesture {
+                    if viewModel.listType != .downloads {
+                        viewModel.listType = .downloads
+                    }
+                }
+                ZStack {
+                    Rectangle()
+                    VStack {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 23))
+                        Text("Favourites")
+                            .font(.system(size: 13))
+                    }.foregroundColor(viewModel.listType == .favourites ? ThemeService.whiteColor : ThemeService.borderColor.opacity(0.7))
+                }.onTapGesture {
+                    if viewModel.listType != .favourites {
+                        viewModel.listType = .favourites
+                    }
+                }
+            }
+            .foregroundColor(ThemeService.themeColor)
+                .frame(height: 60)
         }
     }
     
@@ -63,18 +112,7 @@ struct ChapterListView: View {
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
     
-    private func navigationAppearance()  {
-        let appearance = UINavigationBarAppearance()
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-        appearance.backgroundColor = UIColor(ThemeService.themeColor)
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        UINavigationBar.appearance().largeTitleTextAttributes = [
-            .foregroundColor: UIColor.white
-        ]
-    }
+    
     
     @ViewBuilder private var emptyListView: some View {
         HStack {
@@ -99,6 +137,7 @@ struct ChapterListView: View {
                         self.viewModel.setCurrent(chapter: chapter)
                     }
             }
+            Spacer(minLength: 5)
         }
         .background(.white)
     }
@@ -106,6 +145,6 @@ struct ChapterListView: View {
 
 struct ChapterListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChapterListView(listType: .downloads)
+        ChapterListView(listType: .all)
     }
 }

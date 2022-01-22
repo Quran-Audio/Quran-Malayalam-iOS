@@ -11,8 +11,7 @@ import SwiftUI
 struct Quran_MalayalamApp: App {
     var body: some Scene {
         WindowGroup {
-//            DownloadView()
-           HomeView()
+            ChapterListView(listType: .all)
         }
     }
 }

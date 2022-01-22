@@ -84,7 +84,7 @@ struct PlayerCellView: View {
         var body: some View {
             ProgressView()
                 .scaleEffect(scaleSize,anchor: .center)
-                .progressViewStyle(CircularProgressViewStyle(tint: tintColor))
+                .progressViewStyle(CircularProgressViewStyle(tint: ThemeService.whiteColor))
         }
     }
 }

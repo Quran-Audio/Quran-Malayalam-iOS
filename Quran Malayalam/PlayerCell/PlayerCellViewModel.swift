@@ -24,6 +24,7 @@ class PlayerCellViewModel:ObservableObject {
     init() {
         currentChapter = AudioService.shared.loadChapter()
         baseUrl = AudioService.shared.loadBaseUrl()
+        configureAudio()
         AudioService.shared.onPlayFinished = {
             self.currentChapter?.isPlaying = false
         }
