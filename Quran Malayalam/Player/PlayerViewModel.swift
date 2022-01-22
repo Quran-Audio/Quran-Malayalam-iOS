@@ -52,12 +52,12 @@ class PlayerViewModel:ObservableObject {
     
     func configureAudio() {
         AudioService.shared.setupAudio()
-        AudioService.shared.onPlayFinished = {
-            self.model.isPlaying = false
-        }
-        AudioService.shared.onBuffering = { isBuffering in
-            self.isBuffering = isBuffering
-        }
+//        AudioService.shared.onPlayFinished = {
+//            self.model.isPlaying = false
+//        }
+//        AudioService.shared.onBuffering = { isBuffering in
+//            self.isBuffering = isBuffering
+//        }
     }
     
     func onNext() {

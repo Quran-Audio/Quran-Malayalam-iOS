@@ -15,8 +15,8 @@ class AudioService {
     private init() {}
     private var timer = Timer()
     
-    var onPlayFinished: () -> Void = {}
-    var onBuffering: (Bool) -> Void = { _ in }
+    //var onPlayFinished: () -> Void = {}
+    //var onBuffering: (Bool) -> Void = { _ in }
     private var isBuffering:Bool = false
     
     
@@ -89,14 +89,15 @@ class AudioService {
         let isBuffering = isPlaybackLikelyToKeepUp == false ? true : false
         if self.isBuffering != isBuffering {
             self.isBuffering = isBuffering
-            onBuffering(isBuffering)
+            //onBuffering(isBuffering)
+            pushlishBufferingChage()
         }
     }
     
     @objc private func playerDidFinishPlaying(sender: Notification) {
         seekTo(seconds: 0)
         player?.pause()
-        onPlayFinished()
+        pushlishAudioFinished()
     }
     
     func playPause() {
@@ -155,5 +156,37 @@ extension AudioService {
     
     func isCurrentChapterAvailable() -> Bool {
         return loadChapter() != nil ? true : false
+    }
+}
+//MARK: Notification
+extension AudioService {
+    struct BufferChangeEvent:Equatable {
+        let type = "buffering-changed"
+        var isBuffering:Bool
+    }
+    
+    struct AudioFinishedEvent:Equatable {
+        let type = "audio-finished"
+    }
+    private func pushlishBufferingChage() {
+        NotificationCenter.default.post(name:.onAudioBufferingChange,
+                                        object: BufferChangeEvent(isBuffering: isBuffering),
+                                        userInfo: nil)
+    }
+    
+    private func pushlishAudioFinished() {
+        NotificationCenter.default.post(name:.onAudioFinished,
+                                        object: AudioFinishedEvent(),
+                                        userInfo: nil)
+    }
+}
+
+extension Notification.Name {
+    static var onAudioBufferingChange: Notification.Name {
+        return .init(rawValue: "Audio.Buffering")
+    }
+    
+    static var onAudioFinished: Notification.Name {
+        return .init(rawValue: "Audio.Finished")
     }
 }

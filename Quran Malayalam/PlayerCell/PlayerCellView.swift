@@ -65,6 +65,10 @@ struct PlayerCellView: View {
             .background(ThemeService.secondaryColor)
             Rectangle().frame(height: 0.5)
                 .foregroundColor(ThemeService.borderColor)
+        }.onAppear {
+            viewModel.subscribeAudioNotification()
+        }.onDisappear {
+            viewModel.unSubscribeAudioNotification()
         }
     }
     
@@ -88,3 +92,4 @@ struct PlayerCellView: View {
         }
     }
 }
+

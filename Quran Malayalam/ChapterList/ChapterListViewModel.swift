@@ -72,13 +72,13 @@ extension ChapterListViewModel {
         guard let baseUrl = data?.baseUrl,
               let chapter = currentChapter else {return}
         AudioService.shared.setModel(baseUrl: baseUrl, model: chapter)
-        AudioService.shared.onPlayFinished = {
-            self.currentChapter?.isPlaying = false
-        }
-        AudioService.shared.onBuffering = { isBuffering in
-            self.isBuffering = isBuffering
-            print("buffer set")
-        }
+//        AudioService.shared.onPlayFinished = {
+//            self.currentChapter?.isPlaying = false
+//        }
+//        AudioService.shared.onBuffering = { isBuffering in
+//            self.isBuffering = isBuffering
+//            print("buffer set")
+//        }
     }
 }
 

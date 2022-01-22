@@ -25,13 +25,14 @@ class PlayerCellViewModel:ObservableObject {
         currentChapter = AudioService.shared.loadChapter()
         baseUrl = AudioService.shared.loadBaseUrl()
         configureAudio()
-        AudioService.shared.onPlayFinished = {
-            self.currentChapter?.isPlaying = false
-        }
-        AudioService.shared.onBuffering = { isBuffering in
-            self.isBuffering = isBuffering
-            print("buffer set")
-        }
+        subscribeAudioNotification()
+//        AudioService.shared.onPlayFinished = {
+//            self.currentChapter?.isPlaying = false
+//        }
+//        AudioService.shared.onBuffering = { isBuffering in
+//            self.isBuffering = isBuffering
+//            print("buffer set")
+//        }
     }
     
     func reloadCurrenntChapter()  {
@@ -63,12 +64,49 @@ extension PlayerCellViewModel {
         guard let baseUrl = baseUrl,
               let chapter = currentChapter else {return}
         AudioService.shared.setModel(baseUrl: baseUrl, model: chapter)
-        AudioService.shared.onPlayFinished = {
+//        AudioService.shared.onPlayFinished = {
+//            self.currentChapter?.isPlaying = false
+//        }
+//        AudioService.shared.onBuffering = { isBuffering in
+//            self.isBuffering = isBuffering
+//            print("buffer set")
+//        }
+    }
+}
+
+//MARK: Notification Handling
+extension PlayerCellViewModel {
+    func subscribeAudioNotification() {
+        unSubscribeAudioNotification()
+        NotificationCenter.default
+                          .addObserver(self,
+                                       selector:#selector(eventsController(_:)),
+                                       name:.onAudioBufferingChange,                                           object: nil)
+        NotificationCenter.default
+                          .addObserver(self,
+                                       selector:#selector(eventsController(_:)),
+                                       name:.onAudioFinished,
+                                       object: nil)
+    }
+    
+    func unSubscribeAudioNotification() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .onAudioFinished,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .onAudioBufferingChange,
+                                                  object: nil)
+    }
+    
+    @objc func eventsController(_ notification: Notification) {
+        guard let event = notification.object else {return}
+        switch event {
+        case let bufferEvent as AudioService.BufferChangeEvent:
+            self.isBuffering = bufferEvent.isBuffering
+        case _ as AudioService.AudioFinishedEvent:
             self.currentChapter?.isPlaying = false
-        }
-        AudioService.shared.onBuffering = { isBuffering in
-            self.isBuffering = isBuffering
-            print("buffer set")
+        default:
+            print("===> Unknown")
         }
     }
 }
