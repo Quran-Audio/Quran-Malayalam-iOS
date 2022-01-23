@@ -10,9 +10,37 @@ import SwiftUI
 struct ChapterListView: View {
     @ObservedObject var viewModel = ChapterListViewModel()
     @ObservedObject var playerCellViewModel = PlayerCellViewModel()
-
+    @State var fullPlayerFrameHeight:CGFloat = 0
+    @State var fullPlayerOpacity:CGFloat = 0
+    
     var body: some View {
         VStack(spacing:0) {
+            ZStack(alignment: .bottom) {
+                VStack(spacing:0) {
+                    NaviagationView(viewModel: viewModel)
+                    if AudioService.shared.isCurrentChapterAvailable() {
+                        PlayerCellView(viewModel: playerCellViewModel)
+                            .onTapGesture {
+                                fullPlayerFrameHeight = 250
+                                fullPlayerOpacity = 1
+                            }
+                    }
+                    TabBarView(viewModel: viewModel)
+                }
+                FullPlayerView(frameHeight: $fullPlayerFrameHeight,
+                               opacity:$fullPlayerOpacity)
+                    .shadow(color: ThemeService.whiteColor.opacity(0.2),
+                            radius: 1,
+                            x: 0,
+                            y: -1)
+            }
+        }
+        .background(ThemeService.themeColor)
+    }
+    
+    struct NaviagationView: View {
+        @ObservedObject var viewModel:ChapterListViewModel
+        var body: some View {
             NavigationView {
                 ScrollView {
                     if viewModel.chapters.count == 0 {
@@ -22,35 +50,64 @@ struct ChapterListView: View {
                     }
                 }
                 .navigationBarTitle("Quran Malayalam",displayMode: .inline)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .navigationBarTrailing) {
-                            Button {
-                                print("Test")
-                            } label: {
-                                Image(systemName: "gearshape")
-                            }
-                        }
-                        ToolbarItemGroup(placement: .navigationBarLeading) {
-                            Button {
-                                actionSheet()
-                            } label: {
-                                Image(systemName: "square.and.arrow.up")
-                            }
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button {
+                            print("Test")
+                        } label: {
+                            Image(systemName: "gearshape")
                         }
                     }
-                    .foregroundColor(.white)
-                    .background(ThemeService.themeColor)
-                    
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button {
+                            actionSheet()
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    }
+                }
+                .foregroundColor(.white)
+                .background(ThemeService.themeColor)
+                
             }
             .onAppear {
                 ThemeService.shared.navigationAppearance()
             }
-            if AudioService.shared.isCurrentChapterAvailable() {
-                PlayerCellView(viewModel: playerCellViewModel)
-            }
-            TabBarView(viewModel: viewModel)
         }
-        .background(ThemeService.themeColor)
+        
+        @ViewBuilder private var emptyListView: some View {
+            HStack {
+                Spacer()
+                if viewModel.listType == .downloads {
+                    Text("Empty Download List")
+                }else if viewModel.listType == .favourites {
+                    Text("Empty Favourites List")
+                }
+                Spacer()
+            }
+        }
+        
+        @ViewBuilder private var chapterListView: some View {
+            VStack(spacing:10) {
+                Spacer(minLength: 5)
+                ForEach(viewModel.chapters, id: \.index) { chapter in
+                    ChapterCell(viewModel: viewModel,
+                                chapter:chapter)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            self.viewModel.setCurrent(chapter: chapter)
+                        }
+                }
+                Spacer(minLength: 5)
+            }
+            .background(.white)
+        }
+        
+        private func actionSheet() {
+            let data = viewModel.shareText
+            let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+        }
     }
     
     struct TabBarView: View {
@@ -98,45 +155,11 @@ struct ChapterListView: View {
                 }
             }
             .foregroundColor(ThemeService.themeColor)
-                .frame(height: 60)
+            .frame(height: 60)
         }
     }
     
-    private func actionSheet() {
-        let data = viewModel.shareText
-        let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-    }
     
-    
-    
-    @ViewBuilder private var emptyListView: some View {
-        HStack {
-            Spacer()
-            if viewModel.listType == .downloads {
-                Text("Empty Download List")
-            }else if viewModel.listType == .favourites {
-                Text("Empty Favourites List")
-            }
-            Spacer()
-        }
-    }
-    
-    @ViewBuilder private var chapterListView: some View {
-        VStack(spacing:10) {
-            Spacer(minLength: 5)
-            ForEach(viewModel.chapters, id: \.index) { chapter in
-                ChapterCell(viewModel: viewModel,
-                            chapter:chapter)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        self.viewModel.setCurrent(chapter: chapter)
-                    }
-            }
-            Spacer(minLength: 5)
-        }
-        .background(.white)
-    }
 }
 
 struct ChapterListView_Previews: PreviewProvider {

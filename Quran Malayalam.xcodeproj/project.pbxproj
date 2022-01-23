@@ -14,12 +14,11 @@
 		2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B446278FCC43005FB345 /* DownloadService.swift */; };
 		2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04B2792A23C00FC38C9 /* ChapterCellView.swift */; };
 		2C26A04E2792AA7900FC38C9 /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04D2792AA7900FC38C9 /* ThemeService.swift */; };
-		2C26A0502792AD3C00FC38C9 /* ProtoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04F2792AD3C00FC38C9 /* ProtoCell.swift */; };
+		2C26A0502792AD3C00FC38C9 /* ProtoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04F2792AD3C00FC38C9 /* ProtoType.swift */; };
 		2C26A0542792BD3200FC38C9 /* XB Niloofar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C26A0522792BD3200FC38C9 /* XB Niloofar.ttf */; };
 		2C26A0552792BD3200FC38C9 /* Meera-05.1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C26A0532792BD3200FC38C9 /* Meera-05.1.ttf */; };
-		2C463DA0278C614A00099415 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C463D9F278C614A00099415 /* PlayerView.swift */; };
-		2C5559EF278D282300FE21FD /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5559EE278D282300FE21FD /* PlayerViewModel.swift */; };
-		2C5559F1278D283C00FE21FD /* PlayingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5559F0278D283C00FE21FD /* PlayingModel.swift */; };
+		2C463DA0278C614A00099415 /* FullPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C463D9F278C614A00099415 /* FullPlayerView.swift */; };
+		2C5559EF278D282300FE21FD /* FullPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5559EE278D282300FE21FD /* FullPlayerViewModel.swift */; };
 		2C797037279256C300A078BF /* ChapterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C797036279256C300A078BF /* ChapterListView.swift */; };
 		2C7970392792628100A078BF /* ChapterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7970382792628100A078BF /* ChapterListViewModel.swift */; };
 		2C79703B27926CAC00A078BF /* PlayerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C79703A27926CAC00A078BF /* PlayerCellView.swift */; };
@@ -61,13 +60,12 @@
 		2C22B446278FCC43005FB345 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		2C26A04B2792A23C00FC38C9 /* ChapterCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCellView.swift; sourceTree = "<group>"; };
 		2C26A04D2792AA7900FC38C9 /* ThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
-		2C26A04F2792AD3C00FC38C9 /* ProtoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoCell.swift; sourceTree = "<group>"; };
+		2C26A04F2792AD3C00FC38C9 /* ProtoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoType.swift; sourceTree = "<group>"; };
 		2C26A0522792BD3200FC38C9 /* XB Niloofar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "XB Niloofar.ttf"; sourceTree = "<group>"; };
 		2C26A0532792BD3200FC38C9 /* Meera-05.1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Meera-05.1.ttf"; sourceTree = "<group>"; };
 		2C26A0562792BDB400FC38C9 /* Quran-Malayalam-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Quran-Malayalam-Info.plist"; sourceTree = SOURCE_ROOT; };
-		2C463D9F278C614A00099415 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		2C5559EE278D282300FE21FD /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
-		2C5559F0278D283C00FE21FD /* PlayingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingModel.swift; sourceTree = "<group>"; };
+		2C463D9F278C614A00099415 /* FullPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayerView.swift; sourceTree = "<group>"; };
+		2C5559EE278D282300FE21FD /* FullPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayerViewModel.swift; sourceTree = "<group>"; };
 		2C797036279256C300A078BF /* ChapterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListView.swift; sourceTree = "<group>"; };
 		2C7970382792628100A078BF /* ChapterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListViewModel.swift; sourceTree = "<group>"; };
 		2C79703A27926CAC00A078BF /* PlayerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCellView.swift; sourceTree = "<group>"; };
@@ -152,9 +150,8 @@
 		2C463D9E278C611700099415 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				2C5559EE278D282300FE21FD /* PlayerViewModel.swift */,
-				2C463D9F278C614A00099415 /* PlayerView.swift */,
-				2C5559F0278D283C00FE21FD /* PlayingModel.swift */,
+				2C5559EE278D282300FE21FD /* FullPlayerViewModel.swift */,
+				2C463D9F278C614A00099415 /* FullPlayerView.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -206,7 +203,7 @@
 				2C8D3061278A81A400674BC5 /* ContentView.swift */,
 				2C8D3063278A81A600674BC5 /* Assets.xcassets */,
 				2C8D3065278A81A600674BC5 /* Preview Content */,
-				2C26A04F2792AD3C00FC38C9 /* ProtoCell.swift */,
+				2C26A04F2792AD3C00FC38C9 /* ProtoType.swift */,
 			);
 			path = "Quran Malayalam";
 			sourceTree = "<group>";
@@ -396,13 +393,12 @@
 			files = (
 				2C19A6B52795D0C900949579 /* DownloadManagerView.swift in Sources */,
 				2C7970392792628100A078BF /* ChapterListViewModel.swift in Sources */,
-				2C5559F1278D283C00FE21FD /* PlayingModel.swift in Sources */,
 				2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */,
-				2C463DA0278C614A00099415 /* PlayerView.swift in Sources */,
+				2C463DA0278C614A00099415 /* FullPlayerView.swift in Sources */,
 				2C79703B27926CAC00A078BF /* PlayerCellView.swift in Sources */,
 				2C19A6B72795DD9600949579 /* DownloadManagerViewModel.swift in Sources */,
 				2C26A04E2792AA7900FC38C9 /* ThemeService.swift in Sources */,
-				2C5559EF278D282300FE21FD /* PlayerViewModel.swift in Sources */,
+				2C5559EF278D282300FE21FD /* FullPlayerViewModel.swift in Sources */,
 				2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */,
 				2C797037279256C300A078BF /* ChapterListView.swift in Sources */,
 				2C8D3062278A81A400674BC5 /* ContentView.swift in Sources */,
@@ -411,7 +407,7 @@
 				2C8D3060278A81A400674BC5 /* Quran_MalayalamApp.swift in Sources */,
 				2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */,
 				2C1586CF278F013000085F6E /* AudioService.swift in Sources */,
-				2C26A0502792AD3C00FC38C9 /* ProtoCell.swift in Sources */,
+				2C26A0502792AD3C00FC38C9 /* ProtoType.swift in Sources */,
 				2C8E50402791C3780050FADE /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

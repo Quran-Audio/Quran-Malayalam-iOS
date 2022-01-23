@@ -1,20 +1,31 @@
 //
-//  PlayerCellViewModel.swift
+//  FullPlayerViewModel.swift
 //  Quran Malayalam
 //
-//  Created by Mohammed Shafeer on 21/01/22.
+//  Created by Mohammed Shafeer on 11/01/22.
 //
 
 import Foundation
 import CoreGraphics
 
-class PlayerCellViewModel:ObservableObject {
+class FullPlayerViewModel:ObservableObject {
+    //MARK: published
     @Published var currentChapter:ChapterModel?
     @Published var isBuffering:Bool = false
     @Published var sliderValue:CGFloat = 0
-    var shareText: String {"App to Listen Quran Arabic and malayalam translation\n Url: "}
+    @Published var currentTimeText:String = "0:00"
+
+    private var baseUrl:String?
+    
+    //MARK: Stored Properties
     var isPlaying:Bool {AudioService.shared.isPlaying}
-    var baseUrl:String?
+    var chapterName:String {currentChapter?.name ?? ""}
+    var chapterNameTrans:String {currentChapter?.nameEn ?? ""}
+    var sliderCurrentValue:CGFloat {AudioService.shared.currentTimeInSecs}
+    var sliderMaxValue:CGFloat {CGFloat(currentChapter?.durationInSecs ?? 0)}
+        var durationText:String {
+        AudioService.shared.durationText(secs: currentChapter?.durationInSecs ?? 0)
+    }
     
     init() {
         subscribeAudioNotification()
@@ -23,14 +34,7 @@ class PlayerCellViewModel:ObservableObject {
         loadChapter()
     }
     
-    func loadChapter() {
-        guard let currentChapter = AudioService.shared.loadChapter() else {return}
-        self.currentChapter = currentChapter
-    }
-}
-
-//MARK: play and seek
-extension PlayerCellViewModel {
+    //MARK: play and seek
     func playPause() {
         AudioService.shared.playPause()
         currentChapter?.isPlaying = AudioService.shared.isPlaying
@@ -40,16 +44,29 @@ extension PlayerCellViewModel {
         AudioService.shared.seekTo(seconds: seconds)
         currentChapter?.isPlaying = AudioService.shared.isPlaying
     }
+    
+    func onNext() {
+        //FIXME: on next
+    }
+    
+    func onPrevoius() {
+        //FIXME: on previus
+    }
+    
+    func loadChapter() {
+        guard let currentChapter = AudioService.shared.loadChapter() else {return}
+        self.currentChapter = currentChapter
+    }
 }
 
 //MARK: Notification Handling
-extension PlayerCellViewModel {
+extension FullPlayerViewModel {
     @objc func eventsController(_ notification: Notification) {
         guard let event = notification.object else {return}
         switch event {
-        case let progressEvent as AudioService.PlayProgressEvent:
-            sliderValue = progressEvent.progress
-            
+        case _ as AudioService.PlayProgressEvent:
+            sliderValue = AudioService.shared.currentTimeInSecs
+            currentTimeText = AudioService.shared.currentTimeText
         case let bufferEvent as AudioService.BufferChangeEvent:
             self.isBuffering = bufferEvent.isBuffering
         case _ as AudioService.ChapterFinishedEvent:
@@ -64,25 +81,25 @@ extension PlayerCellViewModel {
     func subscribeAudioNotification() {
         unSubscribeAudioNotification()
         NotificationCenter.default
-                          .addObserver(self,
-                                       selector:#selector(eventsController(_:)),
-                                       name:.onAudioProgress,
-                                       object: nil)
+            .addObserver(self,
+                         selector:#selector(eventsController(_:)),
+                         name:.onAudioProgress,
+                         object: nil)
         NotificationCenter.default
-                          .addObserver(self,
-                                       selector:#selector(eventsController(_:)),
-                                       name:.onBufferingChange,
-                                       object: nil)
+            .addObserver(self,
+                         selector:#selector(eventsController(_:)),
+                         name:.onBufferingChange,
+                         object: nil)
         NotificationCenter.default
-                          .addObserver(self,
-                                       selector:#selector(eventsController(_:)),
-                                       name:.onChapterFinished,
-                                       object: nil)
+            .addObserver(self,
+                         selector:#selector(eventsController(_:)),
+                         name:.onChapterFinished,
+                         object: nil)
         NotificationCenter.default
-                          .addObserver(self,
-                                       selector:#selector(eventsController(_:)),
-                                       name:.onChapterChange,
-                                       object: nil)
+            .addObserver(self,
+                         selector:#selector(eventsController(_:)),
+                         name:.onChapterChange,
+                         object: nil)
     }
     
     func unSubscribeAudioNotification() {
