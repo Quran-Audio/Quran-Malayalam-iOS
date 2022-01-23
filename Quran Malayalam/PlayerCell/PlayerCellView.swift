@@ -37,35 +37,37 @@ struct PlayerCellView: View {
                     }
                 }
                 HStack {
-                    VStack(alignment:.leading) {
-                        VStack(alignment: .leading,spacing: 0) {
-                            Text("سورَة \(viewModel.currentChapter?.name ?? "")")
-                                .foregroundColor(ThemeService.whiteColor)
-                                .font(ThemeService.shared.arabicFont(size: 25).bold())
-                            //.offset(y:3)
-                            
-                            Text("Surah \(viewModel.currentChapter?.nameEn ?? "")")
-                                .foregroundColor(ThemeService.whiteColor.opacity(0.7))
-                                .font(.system(size: 18))
-                                .offset(y:-6)
+                    HStack {
+                        VStack(alignment:.leading) {
+                            VStack(alignment: .leading,spacing: 0) {
+                                Text("سورَة \(viewModel.currentChapter?.name ?? "")")
+                                    .foregroundColor(ThemeService.whiteColor)
+                                    .font(ThemeService.shared.arabicFont(size: 25).bold())
+                                //.offset(y:3)
+                                
+                                Text("Surah \(viewModel.currentChapter?.nameEn ?? "")")
+                                    .foregroundColor(ThemeService.whiteColor.opacity(0.7))
+                                    .font(.system(size: 18))
+                                    .offset(y:-6)
+                            }
                         }
+                        Spacer(minLength: 10)
                     }
-                    Spacer(minLength: 10)
-                }
-                ZStack {
-                    if viewModel.isBuffering {
-                        LoaderView()
-                    }
-                    Image(systemName: viewModel.isPlaying ? "pause" : "play")
-                        .foregroundColor(ThemeService.whiteColor)
-                        .font(.system(size: 30))
-                        .frame(width: 50,height: 50).onTapGesture {
-                            viewModel.playPause()
+                    ZStack {
+                        if viewModel.isBuffering {
+                            LoaderView()
                         }
-                    
+                        Image(systemName: viewModel.isPlaying ? "pause" : "play")
+                            .foregroundColor(ThemeService.whiteColor)
+                            .font(.system(size: 30))
+                            .frame(width: 50,height: 50).onTapGesture {
+                                viewModel.playPause()
+                            }
+                        
+                    }
                 }
             }
-            .background(ThemeService.secondaryColor)
+            .background(ThemeService.themeColor)
             Rectangle().frame(height: 0.5)
                 .foregroundColor(ThemeService.borderColor)
         }

@@ -46,11 +46,11 @@ struct FullPlayerView: View {
         @ObservedObject var viewModel:FullPlayerViewModel
         var body: some View {
             VStack(alignment:.center,spacing: 0) {
-                Text("\(viewModel.chapterName)")
+                Text("سورَة \(viewModel.chapterName)")
                     .font(ThemeService.shared.arabicFont(size: 30))
                     .foregroundColor(ThemeService.whiteColor)
-                Text("\(viewModel.chapterNameTrans)")
-                    .font(ThemeService.shared.arabicFont(size: 20))
+                Text("Surah \(viewModel.chapterNameTrans)")
+                    .font(.system(size: 20))
                     .foregroundColor(ThemeService.whiteColor.opacity(0.7))
             }.frame(maxWidth:.infinity)
             

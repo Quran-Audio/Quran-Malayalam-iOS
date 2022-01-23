@@ -165,5 +165,6 @@ struct ChapterListView: View {
 struct ChapterListView_Previews: PreviewProvider {
     static var previews: some View {
         ChapterListView()
+            //.previewInterfaceOrientation(.landscapeLeft)
     }
 }

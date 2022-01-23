@@ -67,7 +67,6 @@ extension FullPlayerViewModel {
         case _ as AudioService.PlayProgressEvent:
             sliderValue = AudioService.shared.currentTimeInSecs
             currentTimeText = AudioService.shared.currentTimeText
-            print("===> \(sliderValue)")
         case let bufferEvent as AudioService.BufferChangeEvent:
             self.isBuffering = bufferEvent.isBuffering
         case _ as AudioService.ChapterFinishedEvent:
