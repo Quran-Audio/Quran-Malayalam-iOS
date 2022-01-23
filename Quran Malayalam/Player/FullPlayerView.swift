@@ -15,19 +15,10 @@ struct FullPlayerView: View {
     var body: some View {
         VStack(spacing:10){
             Spacer()
-            Image(systemName: "chevron.down")
-                .font(.system(size: 20))
-                .frame(width: 40, height: 40)
-                .foregroundColor(ThemeService.borderColor)
-                .onTapGesture {
-                    frameHeight = 0
-                    withAnimation(.easeIn(duration: 2)) {
-                        opacity = 0
-                    }
-                }
+            closeButton
             TitleView(viewModel: viewModel)
             ButtonView(viewModel: viewModel)
-            SliderView(viewModel: viewModel, sliderValue: $viewModel.sliderValue)
+            SliderView(viewModel: viewModel)
             Divider()
         }
         .background(ThemeService.themeColor)
@@ -35,17 +26,21 @@ struct FullPlayerView: View {
         .cornerRadius(radius: 20,corners:[.topLeft,.topRight])
         .animation(.spring(dampingFraction: 0.55),value: frameHeight)
         .opacity(opacity)
-        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onEnded({ value in
-            if value.translation.height > 0 {
-                frameHeight = 0
-                withAnimation(.easeIn(duration: 2)) {
-                    opacity = 0
-                }
-            }
-        }))
     }
     
+    @ViewBuilder var closeButton: some View {
+        Button {
+            frameHeight = 0
+            withAnimation(.easeIn(duration: 2)) {
+                opacity = 0
+            }
+        } label: {
+            Image(systemName: "chevron.down")
+                .font(.system(size: 20))
+                .foregroundColor(ThemeService.whiteColor)
+        }
+        .frame(width: 44, height: 40)
+    }
     
     struct TitleView: View {
         @ObservedObject var viewModel:FullPlayerViewModel
@@ -97,13 +92,13 @@ struct FullPlayerView: View {
     }
     
     struct SliderView: View {
-        @ObservedObject var viewModel:FullPlayerViewModel
-        @Binding var sliderValue:CGFloat
+        @StateObject var viewModel:FullPlayerViewModel
+        @State var sliderVal:Double = 0
         var body: some View {
             VStack(spacing:20){
-                Slider(value: $sliderValue,in: 0...viewModel.sliderMaxValue)
-                { isEdited in
-                    viewModel.seekTo(seconds: sliderValue)
+                Slider(value: $viewModel.sliderValue,
+                       in: 0...viewModel.sliderMaxValue){ isEdited in
+                    viewModel.seekTo(seconds: viewModel.sliderValue)
                 }
                 .accentColor(.white)
                 .padding(.horizontal)
@@ -160,11 +155,3 @@ extension View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
     }
 }
-
-
-
-//struct PlayerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlayerView(frameHeight: <#T##Binding<CGFloat>#>)
-//    }
-//}
