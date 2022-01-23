@@ -14,14 +14,18 @@ class PlayerCellViewModel:ObservableObject {
     @Published var sliderValue:CGFloat = 0
     var shareText: String {"App to Listen Quran Arabic and malayalam translation\n Url: "}
     var isPlaying:Bool {AudioService.shared.isPlaying}
-    var chapterName:String {currentChapter?.name ?? ""}
     var baseUrl:String?
     
     init() {
         subscribeAudioNotification()
-        currentChapter = AudioService.shared.loadChapter()
         baseUrl = AudioService.shared.loadBaseUrl()
         isBuffering = AudioService.shared.isBuffering
+        loadChapter()
+    }
+    
+    func loadChapter() {
+        guard let currentChapter = AudioService.shared.loadChapter() else {return}
+        self.currentChapter = currentChapter
     }
 }
 
@@ -50,12 +54,17 @@ extension PlayerCellViewModel {
         NotificationCenter.default
                           .addObserver(self,
                                        selector:#selector(eventsController(_:)),
-                                       name:.onAudioBufferingChange,
+                                       name:.onBufferingChange,
                                        object: nil)
         NotificationCenter.default
                           .addObserver(self,
                                        selector:#selector(eventsController(_:)),
-                                       name:.onAudioFinished,
+                                       name:.onChapterFinished,
+                                       object: nil)
+        NotificationCenter.default
+                          .addObserver(self,
+                                       selector:#selector(eventsController(_:)),
+                                       name:.onChapterChange,
                                        object: nil)
     }
     
@@ -64,23 +73,28 @@ extension PlayerCellViewModel {
                                                   name: .onAudioProgress,
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
-                                                  name: .onAudioFinished,
+                                                  name: .onChapterFinished,
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
-                                                  name: .onAudioBufferingChange,
+                                                  name: .onBufferingChange,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .onChapterChange,
                                                   object: nil)
     }
     
     @objc func eventsController(_ notification: Notification) {
         guard let event = notification.object else {return}
         switch event {
-        case let progressEvent as AudioService.AudioProgressEvent:
+        case let progressEvent as AudioService.PlayProgressEvent:
             sliderValue = progressEvent.progress
+            
         case let bufferEvent as AudioService.BufferChangeEvent:
             self.isBuffering = bufferEvent.isBuffering
-        case _ as AudioService.AudioFinishedEvent:
+        case _ as AudioService.ChapterFinishedEvent:
             self.currentChapter?.isPlaying = false
-            
+        case _ as AudioService.ChapterChangeEvent:
+            loadChapter()
         default:
             print("===> Unknown")
         }

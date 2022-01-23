@@ -81,6 +81,7 @@ class AudioService {
         saveChapter(model)
         saveBaseUrl(baseUrl)
         setupAudio()
+        publishChapterChange()
     }
     
     private func setIsBuffering() {
@@ -165,23 +166,28 @@ extension AudioService {
         var isBuffering:Bool
     }
     
-    struct AudioFinishedEvent:Equatable {
+    struct ChapterFinishedEvent:Equatable {
         let type = "audio-finished"
     }
     
-    struct AudioProgressEvent:Equatable {
+    struct PlayProgressEvent:Equatable {
         let type = "audio-proress"
         var progress:CGFloat
     }
+    
+    struct ChapterChangeEvent:Equatable {
+        let type = "audio-chapter-change"
+    }
+    
     private func publishBufferingChage() {
-        NotificationCenter.default.post(name:.onAudioBufferingChange,
+        NotificationCenter.default.post(name:.onBufferingChange,
                                         object: BufferChangeEvent(isBuffering: isBuffering),
                                         userInfo: nil)
     }
     
     private func publishAudioFinished() {
-        NotificationCenter.default.post(name:.onAudioFinished,
-                                        object: AudioFinishedEvent(),
+        NotificationCenter.default.post(name:.onChapterFinished,
+                                        object: ChapterFinishedEvent(),
                                         userInfo: nil)
     }
     
@@ -189,21 +195,31 @@ extension AudioService {
         guard let chapter = loadChapter() else {return}
         let progress = currentTimeInSecs/CGFloat(chapter.durationInSecs)
         NotificationCenter.default.post(name:.onAudioProgress,
-                                        object: AudioProgressEvent(progress: progress),
+                                        object: PlayProgressEvent(progress: progress),
+                                        userInfo: nil)
+    }
+    
+    private func publishChapterChange() {
+        NotificationCenter.default.post(name:.onChapterChange,
+                                        object: ChapterChangeEvent(),
                                         userInfo: nil)
     }
 }
 
 extension Notification.Name {
-    static var onAudioBufferingChange: Notification.Name {
+    static var onBufferingChange: Notification.Name {
         return .init(rawValue: "Audio.Buffering")
     }
     
-    static var onAudioFinished: Notification.Name {
+    static var onChapterFinished: Notification.Name {
         return .init(rawValue: "Audio.Finished")
     }
     
     static var onAudioProgress: Notification.Name {
         return .init(rawValue: "Audio.Progress")
+    }
+    
+    static var onChapterChange: Notification.Name {
+        return .init(rawValue: "Audio.ChapterChange")
     }
 }

@@ -42,7 +42,6 @@ struct ChapterListView: View {
                     .background(ThemeService.themeColor)
                     
             }
-            .ignoresSafeArea(.container, edges: [.top, .horizontal])
             .onAppear {
                 ThemeService.shared.navigationAppearance()
             }

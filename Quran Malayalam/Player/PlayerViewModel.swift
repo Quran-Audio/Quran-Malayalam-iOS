@@ -65,12 +65,12 @@ extension PlayerViewModel {
         NotificationCenter.default
                           .addObserver(self,
                                        selector:#selector(eventsController(_:)),
-                                       name:.onAudioBufferingChange,
+                                       name:.onBufferingChange,
                                        object: nil)
         NotificationCenter.default
                           .addObserver(self,
                                        selector:#selector(eventsController(_:)),
-                                       name:.onAudioFinished,
+                                       name:.onChapterFinished,
                                        object: nil)
     }
     
@@ -79,21 +79,21 @@ extension PlayerViewModel {
                                                   name: .onAudioProgress,
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
-                                                  name: .onAudioFinished,
+                                                  name: .onChapterFinished,
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
-                                                  name: .onAudioBufferingChange,
+                                                  name: .onBufferingChange,
                                                   object: nil)
     }
     
     @objc func eventsController(_ notification: Notification) {
         guard let event = notification.object else {return}
         switch event {
-        case let progressEvent as AudioService.AudioProgressEvent:
+        case let progressEvent as AudioService.PlayProgressEvent:
             sliderValue = progressEvent.progress
         case let bufferEvent as AudioService.BufferChangeEvent:
             self.isBuffering = bufferEvent.isBuffering
-        case _ as AudioService.AudioFinishedEvent:
+        case _ as AudioService.ChapterFinishedEvent:
             self.currentChapter?.isPlaying = false
             
         default:

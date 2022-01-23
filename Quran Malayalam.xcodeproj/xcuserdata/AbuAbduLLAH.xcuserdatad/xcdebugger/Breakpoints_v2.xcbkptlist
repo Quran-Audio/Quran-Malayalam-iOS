@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FFD79430-69EE-4290-A8CE-2BDE0EF04370"
+            uuid = "9C8DA71A-824D-44D6-A93F-D184FB568E35"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quran Malayalam/PlayerCell/PlayerCellViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "eventsController(_:)"
             landmarkType = "7">
          </BreakpointContent>
