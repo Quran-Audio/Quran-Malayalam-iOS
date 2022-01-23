@@ -9,10 +9,7 @@ import SwiftUI
 
 struct ChapterListView: View {
     @ObservedObject var viewModel = ChapterListViewModel()
-    
-    init(listType:EListType) {
-        viewModel.listType = listType
-    }
+    @ObservedObject var playerCellViewModel = PlayerCellViewModel()
 
     var body: some View {
         VStack(spacing:0) {
@@ -50,7 +47,7 @@ struct ChapterListView: View {
                 ThemeService.shared.navigationAppearance()
             }
             if AudioService.shared.isCurrentChapterAvailable() {
-                PlayerCellView()
+                PlayerCellView(viewModel: playerCellViewModel)
             }
             TabBarView(viewModel: viewModel)
         }
@@ -145,6 +142,6 @@ struct ChapterListView: View {
 
 struct ChapterListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChapterListView(listType: .all)
+        ChapterListView()
     }
 }

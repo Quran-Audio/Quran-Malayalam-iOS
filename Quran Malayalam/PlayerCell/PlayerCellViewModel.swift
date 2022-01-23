@@ -11,45 +11,22 @@ import CoreGraphics
 class PlayerCellViewModel:ObservableObject {
     @Published var currentChapter:ChapterModel?
     @Published var isBuffering:Bool = false
-    @Published var listType:EListType = .all
+    @Published var sliderValue:CGFloat = 0
     var shareText: String {"App to Listen Quran Arabic and malayalam translation\n Url: "}
     var isPlaying:Bool {AudioService.shared.isPlaying}
     var chapterName:String {currentChapter?.name ?? ""}
-    var sliderCurrentValue: CGFloat{AudioService.shared.currentTimeInSecs}
-    var sliderMaxValue: CGFloat{CGFloat(currentChapter?.durationInSecs ?? 0)}
-    var currentTimeText:String {AudioService.shared.currentTimeText}
-    var durationText:String {AudioService.shared.durationText(secs: currentChapter?.durationInSecs ?? 0)}
     var baseUrl:String?
     
     init() {
-        currentChapter = AudioService.shared.loadChapter()
-        baseUrl = AudioService.shared.loadBaseUrl()
-        configureAudio()
         subscribeAudioNotification()
-//        AudioService.shared.onPlayFinished = {
-//            self.currentChapter?.isPlaying = false
-//        }
-//        AudioService.shared.onBuffering = { isBuffering in
-//            self.isBuffering = isBuffering
-//            print("buffer set")
-//        }
-    }
-    
-    func reloadCurrenntChapter()  {
         currentChapter = AudioService.shared.loadChapter()
         baseUrl = AudioService.shared.loadBaseUrl()
+        isBuffering = AudioService.shared.isBuffering
     }
 }
 
-//MARK: Audio
+//MARK: play and seek
 extension PlayerCellViewModel {
-    func setCurrent(chapter:ChapterModel) {
-        self.currentChapter = chapter
-        configureAudio()
-        playPause()
-    }
-    
-    //MARK: play and seek
     func playPause() {
         AudioService.shared.playPause()
         currentChapter?.isPlaying = AudioService.shared.isPlaying
@@ -58,19 +35,6 @@ extension PlayerCellViewModel {
     func seekTo(seconds:CGFloat) {
         AudioService.shared.seekTo(seconds: seconds)
         currentChapter?.isPlaying = AudioService.shared.isPlaying
-    }
-    
-    func configureAudio() {
-        guard let baseUrl = baseUrl,
-              let chapter = currentChapter else {return}
-        AudioService.shared.setModel(baseUrl: baseUrl, model: chapter)
-//        AudioService.shared.onPlayFinished = {
-//            self.currentChapter?.isPlaying = false
-//        }
-//        AudioService.shared.onBuffering = { isBuffering in
-//            self.isBuffering = isBuffering
-//            print("buffer set")
-//        }
     }
 }
 
@@ -81,7 +45,13 @@ extension PlayerCellViewModel {
         NotificationCenter.default
                           .addObserver(self,
                                        selector:#selector(eventsController(_:)),
-                                       name:.onAudioBufferingChange,                                           object: nil)
+                                       name:.onAudioProgress,
+                                       object: nil)
+        NotificationCenter.default
+                          .addObserver(self,
+                                       selector:#selector(eventsController(_:)),
+                                       name:.onAudioBufferingChange,
+                                       object: nil)
         NotificationCenter.default
                           .addObserver(self,
                                        selector:#selector(eventsController(_:)),
@@ -90,6 +60,9 @@ extension PlayerCellViewModel {
     }
     
     func unSubscribeAudioNotification() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .onAudioProgress,
+                                                  object: nil)
         NotificationCenter.default.removeObserver(self,
                                                   name: .onAudioFinished,
                                                   object: nil)
@@ -101,10 +74,13 @@ extension PlayerCellViewModel {
     @objc func eventsController(_ notification: Notification) {
         guard let event = notification.object else {return}
         switch event {
+        case let progressEvent as AudioService.AudioProgressEvent:
+            sliderValue = progressEvent.progress
         case let bufferEvent as AudioService.BufferChangeEvent:
             self.isBuffering = bufferEvent.isBuffering
         case _ as AudioService.AudioFinishedEvent:
             self.currentChapter?.isPlaying = false
+            
         default:
             print("===> Unknown")
         }

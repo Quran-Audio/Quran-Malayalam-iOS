@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct PlayerCellView: View {
-    @ObservedObject var viewModel = PlayerCellViewModel()
+    @ObservedObject var viewModel:PlayerCellViewModel
     
     var body: some View {
         VStack(spacing:0) {
             ZStack(alignment:.leading) {
-                Rectangle().frame(height: 5)
-                    .foregroundColor(ThemeService.borderColor)
-                Rectangle().frame(width:10,height: 5)
-                    .foregroundColor(.yellow)
+                GeometryReader { geometry in
+                    Rectangle().frame(height: 5)
+                        .foregroundColor(ThemeService.borderColor)
+                    Rectangle().frame(width:geometry.size.width * viewModel.sliderValue,height: 5)
+                        .foregroundColor(.yellow)
+                }.frame(height: 5)
+                
             }
             HStack {
                 ZStack {
@@ -65,10 +68,6 @@ struct PlayerCellView: View {
             .background(ThemeService.secondaryColor)
             Rectangle().frame(height: 0.5)
                 .foregroundColor(ThemeService.borderColor)
-        }.onAppear {
-            viewModel.subscribeAudioNotification()
-        }.onDisappear {
-            viewModel.unSubscribeAudioNotification()
         }
     }
     

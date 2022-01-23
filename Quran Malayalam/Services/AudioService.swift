@@ -12,12 +12,12 @@ class AudioService {
     private static let currentChapterKey = "qa-current-chapter"
     private static let baseUrlKey = "qa-base-url"
     static var shared:AudioService = AudioService()
-    private init() {}
+    private init() {setupAudio()}
     private var timer = Timer()
     
     //var onPlayFinished: () -> Void = {}
     //var onBuffering: (Bool) -> Void = { _ in }
-    private var isBuffering:Bool = false
+    var isBuffering:Bool = false
     
     
     var currentTimeInSecs:CGFloat {CMTimeGetSeconds(player?.currentTime() ?? .zero)}
@@ -89,15 +89,14 @@ class AudioService {
         let isBuffering = isPlaybackLikelyToKeepUp == false ? true : false
         if self.isBuffering != isBuffering {
             self.isBuffering = isBuffering
-            //onBuffering(isBuffering)
-            pushlishBufferingChage()
+            publishBufferingChage()
         }
     }
     
     @objc private func playerDidFinishPlaying(sender: Notification) {
         seekTo(seconds: 0)
         player?.pause()
-        pushlishAudioFinished()
+        publishAudioFinished()
     }
     
     func playPause() {
@@ -119,6 +118,7 @@ class AudioService {
     }
     
     @objc private func onTimerEvent() {
+        publishAudioProgress()
         setIsBuffering()
     }
 }
@@ -168,15 +168,28 @@ extension AudioService {
     struct AudioFinishedEvent:Equatable {
         let type = "audio-finished"
     }
-    private func pushlishBufferingChage() {
+    
+    struct AudioProgressEvent:Equatable {
+        let type = "audio-proress"
+        var progress:CGFloat
+    }
+    private func publishBufferingChage() {
         NotificationCenter.default.post(name:.onAudioBufferingChange,
                                         object: BufferChangeEvent(isBuffering: isBuffering),
                                         userInfo: nil)
     }
     
-    private func pushlishAudioFinished() {
+    private func publishAudioFinished() {
         NotificationCenter.default.post(name:.onAudioFinished,
                                         object: AudioFinishedEvent(),
+                                        userInfo: nil)
+    }
+    
+    private func publishAudioProgress() {
+        guard let chapter = loadChapter() else {return}
+        let progress = currentTimeInSecs/CGFloat(chapter.durationInSecs)
+        NotificationCenter.default.post(name:.onAudioProgress,
+                                        object: AudioProgressEvent(progress: progress),
                                         userInfo: nil)
     }
 }
@@ -188,5 +201,9 @@ extension Notification.Name {
     
     static var onAudioFinished: Notification.Name {
         return .init(rawValue: "Audio.Finished")
+    }
+    
+    static var onAudioProgress: Notification.Name {
+        return .init(rawValue: "Audio.Progress")
     }
 }

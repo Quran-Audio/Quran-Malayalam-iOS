@@ -152,8 +152,8 @@
 		2C463D9E278C611700099415 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				2C463D9F278C614A00099415 /* PlayerView.swift */,
 				2C5559EE278D282300FE21FD /* PlayerViewModel.swift */,
+				2C463D9F278C614A00099415 /* PlayerView.swift */,
 				2C5559F0278D283C00FE21FD /* PlayingModel.swift */,
 			);
 			path = Player;
