@@ -92,7 +92,7 @@ extension ChapterListViewModel {
     func onDownloadChapter(chapter:ChapterModel) {
         if DataService.shared.isDownloaded(index: chapter.index) {
             //FIXME: Delete the chapter mp3 file
-            DataService.shared.deleteDownloaded(chapterIndex: chapter.index)
+            DataService.shared.deleteDownloaded(chapter: chapter)
         }else {
             let fullUrl = "\(baseUrl)/\(chapter.fileName)"
             do {

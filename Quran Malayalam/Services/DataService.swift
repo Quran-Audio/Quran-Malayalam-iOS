@@ -86,11 +86,29 @@ class DataService {
         return downloads.contains(index) ? true : false
     }
     
-    func deleteDownloaded(chapterIndex:Int) {
+    func deleteDownloaded(chapter:ChapterModel) {
         var downloads = getDownloads()
-        if let index = downloads.firstIndex(of: chapterIndex) {
+        if let index = downloads.firstIndex(of: chapter.index) {
+            deleteFile(chapter: chapter)
             downloads.remove(at: index)
         }
         UserDefaults.standard.set(downloads, forKey: "QMDownloads")
+    }
+    
+    
+    private func deleteFile(chapter:ChapterModel) {
+        do {
+            let directory = try FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: true)
+            let localUrl = directory
+                .appendingPathComponent(chapter.fileName)
+            if FileManager.default.fileExists(atPath: localUrl.path) {
+                try FileManager.default.removeItem(atPath: localUrl.path)
+            }
+        }catch {
+            print("Error \(error)")
+        }
     }
 }

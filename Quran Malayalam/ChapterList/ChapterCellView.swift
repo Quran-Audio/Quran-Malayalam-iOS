@@ -14,48 +14,56 @@ struct ChapterCell:View {
     var chapter:ChapterModel
     var body: some View {
         ZStack(alignment: .trailing) {
-            RoundedRectangle(cornerRadius: 15)
-                .strokeBorder(ThemeService.borderColor,lineWidth: 2)
-                .frame(height: 55)
             HStack {
                 ZStack {
-                    Circle()
-                        .strokeBorder(ThemeService.borderColor, lineWidth: 3)
-                        .background(Circle().fill(ThemeService.titleColor.opacity(0.8)))
-                        .frame(width: 40, height: 40)
-                        .cornerRadius(5)
-                        .foregroundColor(ThemeService.themeColor)
+                    RoundedRectangle(cornerRadius: 15)
+                        .strokeBorder(ThemeService.borderColor,lineWidth: 2)
+                        .frame(height: 55)
+                    HStack {
+                        ZStack {
+                            Circle()
+                                .strokeBorder(ThemeService.borderColor, lineWidth: 3)
+                                .background(Circle().fill(ThemeService.titleColor.opacity(0.8)))
+                                .frame(width: 40, height: 40)
+                                .cornerRadius(5)
+                                .foregroundColor(ThemeService.themeColor)
+                            
+                            Text("\(chapter.index)")
+                                .foregroundColor(.white)
+                                .font(.system(size: 19))
+                        }
+                        VStack(alignment:.leading) {
+                            Text("سورَة \(chapter.name)")
+                                .font(ThemeService.shared.arabicFont(size: 20))
+                                .foregroundColor(ThemeService.titleColor)
+                            Text("Surah \(chapter.nameEn)")
+                                .font(.system(size: 15))
+                                .foregroundColor(ThemeService.subTitleColor)
+                                .offset(y:-3)
+                        }
+                        Spacer()
+                        Button {
+                            showSwipeButtons.toggle()
+                        } label: {
+                            Image("more")
+                                .resizable()
+                                .frame(width: 25 , height: 25)
+                                .tint(ThemeService.titleColor)
+                        }
                         
-                    Text("\(chapter.index)")
-                        .foregroundColor(.white)
-                        .font(.system(size: 19))
+                    }
+                    .padding(.horizontal,7)
                 }
-                VStack(alignment:.leading) {
-                    Text("سورَة \(chapter.name)")
-                        .font(ThemeService.shared.arabicFont(size: 20))
-                        .foregroundColor(ThemeService.titleColor)
-                    Text("Surah \(chapter.nameEn)")
-                        .font(.system(size: 15))
-                        .foregroundColor(ThemeService.subTitleColor)
-                        .offset(y:-3)
-                }
-                Spacer()
-                Button {
-                    showSwipeButtons.toggle()
-                } label: {
-                    Image("more")
-                        .resizable()
-                        .frame(width: 25 , height: 25)
-                        .tint(ThemeService.titleColor)
-                }
-                
-            }.offset(x: showSwipeButtons ? -88 : 0)
-                .padding(.horizontal,7)
+                .offset(x: showSwipeButtons ? -88 : 0)
+                .animation(.spring(dampingFraction: 0.5),
+                           value: showSwipeButtons)
+            }
             if showSwipeButtons {
                 HStack(spacing:0){
                     ZStack {
                         Rectangle()
-                            .fill(.blue.opacity(0.8)).frame(width: 44, height: 44)
+                            .fill(ThemeService.themeColor.opacity(0.8))
+                            .frame(width: 44, height: 44)
                         Button {
                             //TODO: Navigate to DownloadView
                             viewModel.onDownloadChapter(chapter:chapter)
@@ -66,7 +74,9 @@ struct ChapterCell:View {
                         }
                     }
                     ZStack {
-                        Rectangle().fill(.blue).frame(width: 44, height: 44)
+                        Rectangle()
+                            .fill(ThemeService.themeColor.opacity(0.7))
+                            .frame(width: 44, height: 44)
                         Button {
                             viewModel.onFavouriteChapter(chapterIndex: chapter.index)
                             showSwipeButtons.toggle()
@@ -77,6 +87,7 @@ struct ChapterCell:View {
                     }
                 }.foregroundColor(.white)
             }
+            
         }.foregroundColor(ThemeService.titleColor)
             .padding(.horizontal,7)
     }
