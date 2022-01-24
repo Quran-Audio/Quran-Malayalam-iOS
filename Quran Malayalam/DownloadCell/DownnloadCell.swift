@@ -1,15 +1,14 @@
 //
-//  ContentView.swift
+//  DownnloadCell.swift
 //  Quran Malayalam
 //
-//  Created by Mohammed Shafeer on 09/01/22.
+//  Created by Mohammed Shafeer on 24/01/22.
 //
 
 import SwiftUI
 
-struct ContentView: View {
-    @State var isPlay:Bool = false
-    @State var progress:CGFloat = 0.00
+struct DownnloadCell: View {
+    @ObservedObject var viewModel = DownloadCellViewModel()
     var body: some View {
         HStack {
             ZStack(alignment:.trailing) {
@@ -20,15 +19,15 @@ struct ContentView: View {
                                 .foregroundColor(ThemeService.borderColor)
                             Rectangle()
                                 .foregroundColor(ThemeService.themeColor.opacity(0.8))
-                                .frame(width: progress * geometry.size.width)
+                                .frame(width: viewModel.progress * geometry.size.width)
                                 .animation(.spring(dampingFraction: 0.5),
-                                           value: progress)
+                                           value: viewModel.progress)
                         }
                     }
                     VStack {
                         Text("Chapter 1")
                             .font(.system(size: 15)).bold()
-                        Text("\(Int(progress*100))% Downloaded")
+                        Text("\(Int(viewModel.progress*100))% Downloaded")
                             .font(.system(size: 21)).bold()
                     }
                     .foregroundColor(ThemeService.whiteColor)
@@ -36,16 +35,15 @@ struct ContentView: View {
                 }
                 HStack(spacing:0) {
                     Button {
-                        progress += 0.10
-                        isPlay.toggle()
+                        viewModel.startDownload()
                     } label: {
-                        Image(systemName: isPlay ? "pause":"play")
+                        Image(systemName: viewModel.isDownloading ? "pause":"play")
                             .font(.system(size: 25))
                             .foregroundColor(ThemeService.whiteColor)
                             .padding(.horizontal)
                     }.frame(width: 40)
                     Button {
-                        progress = 0
+                        viewModel.progress = 0
                     } label: {
                         Image(systemName: "xmark.circle")
                             .font(.system(size: 20))
@@ -59,8 +57,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct DownnloadCell_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        DownnloadCell()
     }
 }

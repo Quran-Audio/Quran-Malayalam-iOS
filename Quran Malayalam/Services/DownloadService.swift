@@ -10,39 +10,51 @@ import UIKit
 class DownloadService: NSObject,URLSessionDownloadDelegate {
     static var shared = DownloadService()
     private override init() {}
+    private var task:URLSessionDownloadTask?
     
-    var onProgress:(Int) -> Void = {_ in}
-    var onInvalid:() -> Void = {}
+    
+    func startDownload() {
+        if task?.state != .running {
+            guard let url = URL(string: "https://archive.org/download/malayalam-meal/000_Al_Fattiha.mp3") else {return}
+            let session = URLSession(configuration: .default,
+                                     delegate: self,
+                                     delegateQueue: .main)
+            task = session.downloadTask(with: url)
+            task?.resume()
+            task?.state
+        }
+    }
+    
     
     func startDownload(urlText:String, completion: @escaping (URL?, Error?) -> Void) throws {
-        guard let url = URL(string: urlText) else {return}
-        
-        let directory = try FileManager.default.url(for: .documentDirectory,
-                                                       in: .userDomainMask,
-                                                       appropriateFor: nil,
-                                                       create: true)
-        let destination: URL
-        destination = directory
-            .appendingPathComponent(url.lastPathComponent)
-        let session = URLSession(configuration: .default,
-                                 delegate: self,
-                                 delegateQueue: .main)
-        
-        session.downloadTask(with: url) { location, _, error in
-            guard let location = location else {
-                completion(nil, error)
-                return
-            }
-            do {
-                if FileManager.default.fileExists(atPath: destination.path) {
-                    try FileManager.default.removeItem(at: destination)
-                }
-                try FileManager.default.moveItem(at: location, to: destination)
-                completion(destination, nil)
-            } catch {
-                print(error)
-            }
-        }.resume()
+//        guard let url = URL(string: urlText) else {return}
+//
+//        let directory = try FileManager.default.url(for: .documentDirectory,
+//                                                       in: .userDomainMask,
+//                                                       appropriateFor: nil,
+//                                                       create: true)
+//        let destination: URL
+//        destination = directory
+//            .appendingPathComponent(url.lastPathComponent)
+//        let session = URLSession(configuration: .default,
+//                                 delegate: self,
+//                                 delegateQueue: .main)
+//
+//        session.downloadTask(with: url) { location, _, error in
+//            guard let location = location else {
+//                completion(nil, error)
+//                return
+//            }
+//            do {
+//                if FileManager.default.fileExists(atPath: destination.path) {
+//                    try FileManager.default.removeItem(at: destination)
+//                }
+//                try FileManager.default.moveItem(at: location, to: destination)
+//                completion(destination, nil)
+//            } catch {
+//                print(error)
+//            }
+//        }.resume()
     }
     
     
@@ -50,6 +62,8 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession,
                     downloadTask: URLSessionDownloadTask,
                     didFinishDownloadingTo location: URL) {
+        moveFrom(source: location)
+        publishDownnloadFinished()
         print("download completion")
     }
     
@@ -60,20 +74,79 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
                     totalBytesWritten: Int64,
                     totalBytesExpectedToWrite: Int64) {
 
-        let percentDownloaded = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite) * 100
-        print("download progress \(percentDownloaded)")
-        onProgress(Int(percentDownloaded))
+        let progress = CGFloat(totalBytesWritten) / CGFloat(totalBytesExpectedToWrite)
+        publishDownloadProgress(progress: progress)
     }
 
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
-        onInvalid()
+        publishDownloadStopped()
     }
     
-    func specialDownload() {
-        guard let url = URL(string: "https://archive.org/download/malayalam-meal/000_Al_Fattiha.mp3") else {return}
-        let session = URLSession(configuration: .default,
-                                 delegate: self,
-                                 delegateQueue: .main)
-        session.downloadTask(with: url).resume()
+    func moveFrom(source:URL) {
+        do {
+            let directory = try FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: true)
+            let destination: URL
+            destination = directory
+                .appendingPathComponent(source.lastPathComponent)
+            if FileManager.default.fileExists(atPath: destination.path) {
+                try FileManager.default.removeItem(at: destination)
+            }
+            try FileManager.default.moveItem(at: source, to: destination)
+        }catch {
+            print("File Copy error : \(error.localizedDescription)")
+        }
+    }
+}
+
+//MARK: Notification
+extension DownloadService {
+    struct DownloadStoppedEvent:Equatable {
+        let type = "download-stopped"
+    }
+    
+    struct DownloadFinishedEvent:Equatable {
+        let type = "download-finished"
+    }
+    
+    struct DownloadProgressEvent:Equatable {
+        let type = "download-proress"
+        var progress:CGFloat
+    }
+    
+    
+    
+    private func publishDownnloadFinished() {
+        NotificationCenter.default.post(name:.onDownloadFinished,
+                                        object: DownloadFinishedEvent(),
+                                        userInfo: nil)
+    }
+    
+    private func publishDownloadProgress(progress:CGFloat) {
+        NotificationCenter.default.post(name:.onDownloadProgress,
+                                        object: DownloadProgressEvent(progress: progress),
+                                        userInfo: nil)
+    }
+    
+    private func publishDownloadStopped () {
+        NotificationCenter.default.post(name:.onDownloadStopped,
+                                        object: DownloadStoppedEvent(),
+                                        userInfo: nil)
+    }
+}
+
+extension Notification.Name {
+    static var onDownloadFinished: Notification.Name {
+        return .init(rawValue: "Download.Finished")
+    }
+    
+    static var onDownloadProgress: Notification.Name {
+        return .init(rawValue: "Download.Progress")
+    }
+    
+    static var onDownloadStopped: Notification.Name {
+        return .init(rawValue: "Download.Stopped")
     }
 }

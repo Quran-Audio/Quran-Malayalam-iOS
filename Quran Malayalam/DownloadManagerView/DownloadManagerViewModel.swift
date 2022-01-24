@@ -27,16 +27,16 @@ class DownloadManagerViewModel:ObservableObject {
     func startDownload() {
         guard let model = model,let baseUrl = baseUrl else {return}
 
-        DownloadService.shared.onInvalid = {
-            self.progressText = "0%"
-            self.progressPercent = 0
-            self.progressInPi = 0
-        }
-        DownloadService.shared.onProgress = { progressPercent in
-            self.progressText = "\(progressPercent)%"
-            self.progressPercent = progressPercent
-            self.progressInPi = CGFloat((progressPercent / 100) * 360)
-        }
+//        DownloadService.shared.onInvalid = {
+//            self.progressText = "0%"
+//            self.progressPercent = 0
+//            self.progressInPi = 0
+//        }
+//        DownloadService.shared.onProgress = { progressPercent in
+//            self.progressText = "\(progressPercent)%"
+//            self.progressPercent = progressPercent
+//            self.progressInPi = CGFloat((progressPercent / 100) * 360)
+//        }
         do {
             let urlText = "\(baseUrl)\(model.fileName)"
             try DownloadService.shared.startDownload(urlText:urlText) { url, error in
