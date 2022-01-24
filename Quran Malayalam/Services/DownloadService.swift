@@ -7,10 +7,9 @@
 
 import UIKit
 
-class DownloadService: NSObject, URLSessionDataDelegate,URLSessionDownloadDelegate {
+class DownloadService: NSObject,URLSessionDownloadDelegate {
     static var shared = DownloadService()
     private override init() {}
-    private var task:URLSessionDownloadTask?
     
     var onProgress:(Int) -> Void = {_ in}
     var onInvalid:() -> Void = {}
@@ -24,13 +23,12 @@ class DownloadService: NSObject, URLSessionDataDelegate,URLSessionDownloadDelega
                                                        create: true)
         let destination: URL
         destination = directory
-            .appendingPathComponent(directory.lastPathComponent)
-        let conf = URLSessionConfiguration.default
-        let session = URLSession(configuration: conf,
+            .appendingPathComponent(url.lastPathComponent)
+        let session = URLSession(configuration: .default,
                                  delegate: self,
-                                 delegateQueue: OperationQueue())
+                                 delegateQueue: .main)
         
-        task = session.downloadTask(with: url) { location, _, error in
+        session.downloadTask(with: url) { location, _, error in
             guard let location = location else {
                 completion(nil, error)
                 return
@@ -44,9 +42,7 @@ class DownloadService: NSObject, URLSessionDataDelegate,URLSessionDownloadDelega
             } catch {
                 print(error)
             }
-        }
-        task?.delegate = self
-        task?.resume()
+        }.resume()
     }
     
     
@@ -55,11 +51,6 @@ class DownloadService: NSObject, URLSessionDataDelegate,URLSessionDownloadDelega
                     downloadTask: URLSessionDownloadTask,
                     didFinishDownloadingTo location: URL) {
         print("download completion")
-        // get downloaded data from location
-        //let data = readDownloadedData(of: location)
-        
-        // set image to imageview
-        //setImageToImageView(from: data)
     }
     
     // MARK: protocol stubs for tracking download progress
@@ -69,12 +60,20 @@ class DownloadService: NSObject, URLSessionDataDelegate,URLSessionDownloadDelega
                     totalBytesWritten: Int64,
                     totalBytesExpectedToWrite: Int64) {
 
-        let percentDownloaded = (totalBytesWritten / totalBytesExpectedToWrite) * 100
+        let percentDownloaded = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite) * 100
         print("download progress \(percentDownloaded)")
         onProgress(Int(percentDownloaded))
     }
 
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         onInvalid()
+    }
+    
+    func specialDownload() {
+        guard let url = URL(string: "https://archive.org/download/malayalam-meal/000_Al_Fattiha.mp3") else {return}
+        let session = URLSession(configuration: .default,
+                                 delegate: self,
+                                 delegateQueue: .main)
+        session.downloadTask(with: url).resume()
     }
 }

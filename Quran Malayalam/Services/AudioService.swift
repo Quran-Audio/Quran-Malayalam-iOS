@@ -59,9 +59,7 @@ class AudioService {
     
     
     func setupAudio() {
-        guard let baseUrl = loadBaseUrl(),
-              let chapter = loadChapter() else {return}
-        guard let audioUrl = URL(string: "\(baseUrl)/\(chapter.fileName)") else {return}
+        guard let audioUrl = getPlayUrl() else {return}
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerEvent), userInfo: nil, repeats: true)
         do {
@@ -157,6 +155,29 @@ extension AudioService {
     
     func isCurrentChapterAvailable() -> Bool {
         return loadChapter() != nil ? true : false
+    }
+    
+    func getPlayUrl() -> URL? {
+        guard let baseUrl = loadBaseUrl(),
+                let chapter = loadChapter() else {return nil}
+        do {
+            let directory = try FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: true)
+            let localUrl = directory
+                .appendingPathComponent(chapter.fileName)
+            if FileManager.default.fileExists(atPath: localUrl.path) {
+                //Load Local URL
+                return localUrl
+            }
+        }catch {
+            print("Error \(error)")
+        }
+        
+        //Load Streaming URL
+        return  URL(string: "\(baseUrl)/\(chapter.fileName)")
+        
     }
 }
 //MARK: Notification

@@ -72,13 +72,6 @@ extension ChapterListViewModel {
         guard let baseUrl = data?.baseUrl,
               let chapter = currentChapter else {return}
         AudioService.shared.setModel(baseUrl: baseUrl, model: chapter)
-//        AudioService.shared.onPlayFinished = {
-//            self.currentChapter?.isPlaying = false
-//        }
-//        AudioService.shared.onBuffering = { isBuffering in
-//            self.isBuffering = isBuffering
-//            print("buffer set")
-//        }
     }
 }
 
@@ -96,11 +89,19 @@ extension ChapterListViewModel {
 
 //MARK: Download
 extension ChapterListViewModel {
-    func onDownloadChapter(chapterIndex:Int) {
-        if DataService.shared.isDownloaded(index: chapterIndex) {
-            DataService.shared.deleteDownloaded(chapterIndex: chapterIndex)
+    func onDownloadChapter(chapter:ChapterModel) {
+        if DataService.shared.isDownloaded(index: chapter.index) {
+            //FIXME: Delete the chapter mp3 file
+            DataService.shared.deleteDownloaded(chapterIndex: chapter.index)
         }else {
-            DataService.shared.setDownloads(index: chapterIndex)
+            let fullUrl = "\(baseUrl)/\(chapter.fileName)"
+            do {
+                try DownloadService.shared.startDownload(urlText: fullUrl) { _, _ in
+                    DataService.shared.setDownloads(index: chapter.index)
+                }
+            }catch {
+                print("Download failed \(error.localizedDescription)")
+            }
         }
         self.listType = self.listType
     }

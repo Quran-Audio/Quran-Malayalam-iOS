@@ -58,7 +58,7 @@ struct ChapterCell:View {
                             .fill(.blue.opacity(0.8)).frame(width: 44, height: 44)
                         Button {
                             //TODO: Navigate to DownloadView
-                            viewModel.onDownloadChapter(chapterIndex: chapter.index)
+                            viewModel.onDownloadChapter(chapter:chapter)
                             showSwipeButtons.toggle()
                         } label: {
                             let isDownloaded = DataService.shared.isDownloaded(index: chapter.index)
