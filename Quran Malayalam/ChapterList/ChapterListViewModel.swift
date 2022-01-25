@@ -94,15 +94,7 @@ extension ChapterListViewModel {
             //FIXME: Toast Here
             DataService.shared.deleteDownloaded(chapter: chapter)
         }else {
-            //FIXME: Add to download queue
-            //            let fullUrl = "\(baseUrl)/\(chapter.fileName)"
-            //            do {
-            //                try DownloadService.shared.startDownload(urlText: fullUrl) { _, _ in
-            //                    DataService.shared.setDownloads(index: chapter.index)
-            //                }
-            //            }catch {
-            //                print("Download failed \(error.localizedDescription)")
-            //            }
+            DownloadService.shared.addToDownloadQueue(chapter: chapter)
         }
         self.listType = self.listType
     }

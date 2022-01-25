@@ -8,41 +8,13 @@
 import UIKit
 
 class DownloadService: NSObject,URLSessionDownloadDelegate {
+    var currentChapter:ChapterModel? {downloadList.first}
     private var baseUrl:String? = "https://archive.org/download/malayalam-meal/"
-    private var currentChapter:ChapterModel?
-    private var downloadList:[ChapterModel] = [ChapterModel(index: 1,
-                                                            name: "Chapter 1",
-                                                            nameEn: "",
-                                                            nameMl: "",
-                                                            fileName: "000_Al_Fattiha.mp3",
-                                                            size: "",
-                                                            durationInSecs: 1),
-                                               ChapterModel(index: 112,
-                                                            name: "Chapter 112",
-                                                            nameEn: "",
-                                                            nameMl: "",
-                                                            fileName: "112_Al_Ikhlas.mp3",
-                                                            size: "",
-                                                            durationInSecs: 1),
-                                               ChapterModel(index: 113,
-                                                            name: "Chapter 113",
-                                                            nameEn: "",
-                                                            nameMl: "",
-                                                            fileName: "113_Al_Falaq.mp3",
-                                                            size: "",
-                                                            durationInSecs: 1),
-                                               ChapterModel(index: 114,
-                                                            name: "Chapter 1114",
-                                                            nameEn: "",
-                                                            nameMl: "",
-                                                            fileName: "114_An_Nass.mp3",
-                                                            size: "",
-                                                            durationInSecs: 1)]
+    var downloadList:[ChapterModel] = []
     static var shared = DownloadService()
     private override init() {}
     private var task:URLSessionDownloadTask?
-    private var isDownloadingInProgress:Bool = false
-    
+    var isDownloadingInProgress:Bool = false
     
     func startDownload() {
         if task?.state != .running {
@@ -52,7 +24,6 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
                                      delegateQueue: .main)
             task = session.downloadTask(with: url)
             task?.resume()
-            task?.state
         }
     }
     
@@ -76,10 +47,11 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession,
                     downloadTask: URLSessionDownloadTask,
                     didFinishDownloadingTo location: URL) {
-        moveFrom(source: location)
-        publishDownnloadFinished()
-        removeFromDownloadQueue(chapter: downloadList.first)
+        let chapter = downloadList.first
+        moveFrom(source: location,chapter:chapter)
+        removeFromDownloadQueue(chapter: chapter)
         isDownloadingInProgress = false
+        publishDownnloadFinished(chapterIndex: chapter?.index ?? 0)
         processDownloadQueue()
     }
     
@@ -96,9 +68,12 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
 
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         publishDownloadStopped()
+        processDownloadQueue()
     }
     
-    func moveFrom(source:URL) {
+    func moveFrom(source:URL,chapter:ChapterModel?) {
+        guard let chapter = chapter else {return}
+
         do {
             let directory = try FileManager.default.url(for: .documentDirectory,
                                                            in: .userDomainMask,
@@ -106,7 +81,7 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
                                                            create: true)
             let destination: URL
             destination = directory
-                .appendingPathComponent(source.lastPathComponent)
+                .appendingPathComponent(chapter.fileName)
             if FileManager.default.fileExists(atPath: destination.path) {
                 try FileManager.default.removeItem(at: destination)
             }
@@ -125,19 +100,20 @@ extension DownloadService {
     
     struct DownloadFinishedEvent:Equatable {
         let type = "download-finished"
+        let chapterIndex:Int
     }
     
     struct DownloadProgressEvent:Equatable {
-        let type = "download-proress"
+        let type = "download-progress"
         var progress:CGFloat
         var chapterName:String
     }
     
     
     
-    private func publishDownnloadFinished() {
+    private func publishDownnloadFinished(chapterIndex:Int) {
         NotificationCenter.default.post(name:.onDownloadFinished,
-                                        object: DownloadFinishedEvent(),
+                                        object: DownloadFinishedEvent(chapterIndex:chapterIndex),
                                         userInfo: nil)
     }
     
@@ -200,7 +176,16 @@ extension DownloadService {
         }else {
             if let chapter = downloadList.first {
                 startFileDownload(chapter: chapter)
+                isDownloadingInProgress = true
             }
         }
+    }
+    
+    func cancelCurrentDownload() {
+        isDownloadingInProgress = false
+        removeFromDownloadQueue(chapter: downloadList.first)
+        task?.cancel()
+        publishDownloadStopped()
+        processDownloadQueue()
     }
 }

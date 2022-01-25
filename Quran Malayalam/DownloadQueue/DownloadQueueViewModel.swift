@@ -8,58 +8,71 @@
 import Foundation
 import CoreGraphics
 
-class DownloadCellViewModel:ObservableObject {
+class DownloadQueueViewModel:ObservableObject {
     @Published var progress:CGFloat = 0
     @Published var isDownloading:Bool = false
-    @Published var chapterName:String = ""
+    @Published var downloadQueue:[ChapterModel] = []
+    var progressInPi:CGFloat {progress * 360}
+    var chapterName:String {DownloadService.shared.currentChapter?.name ?? ""}
+    var chapterTrans:String {DownloadService.shared.currentChapter?.nameEn ?? ""}
+    var chapterSize:String {DownloadService.shared.currentChapter?.size ?? ""}
     
-    
-    private var model:ChapterModel? = ChapterModel(index: 1, name: "Surah Al Fathiha",
-                                                   nameEn: "Surah Al Fathiha",
-                                                   nameMl: "Surah Al Fathiha",
-                                                   fileName: "000_Al_Fattiha.mp3",
-                                                   size: "1mb",
-                                                   durationInSecs: 98)
     private var baseUrl:String? = AudioService.shared.loadBaseUrl()
     
     init() {
         subscribeDownloadNotification()
-        
+        downloadQueue = DownloadService.shared.downloadList
     }
-    
-    func setModel(model:ChapterModel,baseUrl:String) {
-        self.baseUrl = baseUrl
-        self.model = model
-    }
-    
-    
+
     func startDownload() {
-        isDownloading = true
+        downloadQueue = DownloadService.shared.downloadList
         DownloadService.shared.processDownloadQueue()
+        isDownloading.toggle()
     }
     
-    private func addToDownloadedList() {
-        guard let chapter = model else {return}
-        DataService.shared.setDownloads(index: chapter.index)
+    func cancelDownload() {
+        downloadQueue = DownloadService.shared.downloadList
+        DownloadService.shared.cancelCurrentDownload()
+        isDownloading = DownloadService.shared.isDownloadingInProgress
+    }
+    
+    func addToDownloadQueueList(chapter:ChapterModel) {
+        DownloadService.shared.addToDownloadQueue(chapter: chapter)
+        downloadQueue = DownloadService.shared.downloadList
+    }
+    
+    
+    func removeFromDownloadQueueList(chapter:ChapterModel) {
+        DownloadService.shared.removeFromDownloadQueue(chapter: chapter)
+        downloadQueue = DownloadService.shared.downloadList
+    }
+    
+    
+    private func addToDownloadedList(index:Int) {
+        DataService.shared.setDownloads(index: index)
     }
     
 }
 
 //MARK: Notification Handling
-extension DownloadCellViewModel {
+extension DownloadQueueViewModel {
     @objc func eventsController(_ notification: Notification) {
         guard let event = notification.object else {return}
         switch event {
         case let progressEvent as DownloadService.DownloadProgressEvent:
-            progress = progressEvent.progress
-            chapterName = progressEvent.chapterName
-            print("Progress \(progress)")
-        case _ as DownloadService.DownloadFinishedEvent:
-            addToDownloadedList()
-            isDownloading = false
+            if progressEvent.type == "download-progress" {
+                progress = progressEvent.progress
+                //isDownloading = DownloadService.shared.isDownloadingInProgress
+                print("Progress \(progress)")
+            }
+        case let finishedEvent as DownloadService.DownloadFinishedEvent:
+            downloadQueue = DownloadService.shared.downloadList
+            addToDownloadedList(index: finishedEvent.chapterIndex)
+            isDownloading = DownloadService.shared.isDownloadingInProgress
             print("Dowwnload Finished")
         case _ as DownloadService.DownloadStoppedEvent:
-            isDownloading = false
+            downloadQueue = DownloadService.shared.downloadList
+            isDownloading = DownloadService.shared.isDownloadingInProgress
             print("Dowwnload Stopped")
         default:
             print("===> Unknown")

@@ -65,7 +65,6 @@ struct ChapterCell:View {
                             .fill(ThemeService.themeColor.opacity(0.8))
                             .frame(width: 44, height: 44)
                         Button {
-                            //TODO: Navigate to DownloadView
                             viewModel.onDownloadChapter(chapter:chapter)
                             showSwipeButtons.toggle()
                         } label: {

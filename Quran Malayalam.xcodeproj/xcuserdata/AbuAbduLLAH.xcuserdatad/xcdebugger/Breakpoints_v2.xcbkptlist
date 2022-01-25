@@ -7,32 +7,81 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D877FD06-D165-4542-90D4-4E6D61EA8C8A"
-            shouldBeEnabled = "Yes"
+            uuid = "0BD86C77-A1AD-421D-B6A8-3710DC3AAB5A"
+            shouldBeEnabled = "No"
+            condition = "progress == 0.00"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Quran Malayalam/Services/DownloadService.swift"
+            filePath = "Quran Malayalam/DownloadQueue/DownloadQueueViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "processDownloadQueue()"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "eventsController(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0F45673E-67E8-435A-9FCF-A5670682D05E"
+            uuid = "E8BAD63C-E6AC-431E-AC99-2ED28ED6165B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Quran Malayalam/Services/AudioService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "setupAudio()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AAADC7C4-7E5C-4FD1-AD58-1F7D4C14368D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Quran Malayalam/Services/AudioService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "getPlayUrl()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C52EF53-6D09-49C7-8986-AC3F6C8C0B61"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quran Malayalam/Services/DownloadService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "urlSession(_:downloadTask:didFinishDownloadingTo:)"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "moveFrom(source:chapter:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4BC69C4C-70E1-437F-8E5B-B31E5DF4E2AA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Quran Malayalam/Services/DownloadService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "startFileDownload(chapter:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

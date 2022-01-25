@@ -12,20 +12,14 @@ struct ChapterListView: View {
     @ObservedObject var playerCellViewModel = PlayerCellViewModel()
     @State var fullPlayerFrameHeight:CGFloat = 0
     @State var fullPlayerOpacity:CGFloat = 0
-    
     var body: some View {
         VStack(spacing:0) {
             ZStack(alignment: .bottom) {
                 VStack(spacing:0) {
-                    NaviagationView(viewModel: viewModel)
-                    if AudioService.shared.isCurrentChapterAvailable() {
-                        PlayerCellView(viewModel: playerCellViewModel)
-                            .onTapGesture {
-                                fullPlayerFrameHeight = 250
-                                fullPlayerOpacity = 1
-                            }
-                    }
-                    TabBarView(viewModel: viewModel)
+                    NaviagationView(viewModel: viewModel,
+                                    playerCellViewModel:playerCellViewModel,
+                                    fullPlayerFrameHeight:$fullPlayerFrameHeight,
+                                    fullPlayerOpacity:$fullPlayerOpacity)
                 }
                 FullPlayerView(frameHeight: $fullPlayerFrameHeight,
                                opacity:$fullPlayerOpacity)
@@ -40,22 +34,37 @@ struct ChapterListView: View {
     
     struct NaviagationView: View {
         @ObservedObject var viewModel:ChapterListViewModel
+        @ObservedObject var playerCellViewModel:PlayerCellViewModel
+        @Binding var fullPlayerFrameHeight:CGFloat
+        @Binding var fullPlayerOpacity:CGFloat
+        
         var body: some View {
             NavigationView {
-                ScrollView {
-                    if viewModel.chapters.count == 0 {
-                        emptyListView
-                    }else {
-                        chapterListView
+                VStack(spacing:0) {
+                    ScrollView {
+                        if viewModel.chapters.count == 0 {
+                            emptyListView
+                        }else {
+                            chapterListView
+                        }
                     }
+                    if AudioService.shared.isCurrentChapterAvailable() {
+                        PlayerCellView(viewModel: playerCellViewModel)
+                            .onTapGesture {
+                                fullPlayerFrameHeight = 250
+                                fullPlayerOpacity = 1
+                            }
+                    }
+                    TabBarView(viewModel: viewModel)
                 }
                 .navigationBarTitle("Quran Malayalam",displayMode: .inline)
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        Button {
-                            print("Test")
-                        } label: {
-                            Image(systemName: "gearshape")
+                        HStack {
+                            Text("")
+                            NavigationLink(destination: DownloadQueueView()) {
+                                Image(systemName: "gearshape")
+                            }.accentColor(ThemeService.themeColor)
                         }
                     }
                     ToolbarItemGroup(placement: .navigationBarLeading) {
