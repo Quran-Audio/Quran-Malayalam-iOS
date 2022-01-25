@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CFD7AB59-0F59-4D72-94B2-039EA21CC7AB"
+            uuid = "D877FD06-D165-4542-90D4-4E6D61EA8C8A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Quran Malayalam/Services/AudioService.swift"
+            filePath = "Quran Malayalam/Services/DownloadService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "getPlayUrl()"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "processDownloadQueue()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "46B7AE09-9C06-48E1-A125-98D8A848BC62"
-            shouldBeEnabled = "No"
+            uuid = "0F45673E-67E8-435A-9FCF-A5670682D05E"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quran Malayalam/Services/DownloadService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "startDownload(urlText:completion:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "urlSession(_:downloadTask:didFinishDownloadingTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -25,7 +25,7 @@ struct DownnloadCell: View {
                         }
                     }
                     VStack {
-                        Text("Chapter 1")
+                        Text("\(viewModel.chapterName)")
                             .font(.system(size: 15)).bold()
                         Text("\(Int(viewModel.progress*100))% Downloaded")
                             .font(.system(size: 21)).bold()

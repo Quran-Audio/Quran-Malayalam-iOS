@@ -11,6 +11,7 @@ import CoreGraphics
 class DownloadCellViewModel:ObservableObject {
     @Published var progress:CGFloat = 0
     @Published var isDownloading:Bool = false
+    @Published var chapterName:String = ""
     
     
     private var model:ChapterModel? = ChapterModel(index: 1, name: "Surah Al Fathiha",
@@ -21,7 +22,10 @@ class DownloadCellViewModel:ObservableObject {
                                                    durationInSecs: 98)
     private var baseUrl:String? = AudioService.shared.loadBaseUrl()
     
-    init() {subscribeDownloadNotification()}
+    init() {
+        subscribeDownloadNotification()
+        
+    }
     
     func setModel(model:ChapterModel,baseUrl:String) {
         self.baseUrl = baseUrl
@@ -31,7 +35,7 @@ class DownloadCellViewModel:ObservableObject {
     
     func startDownload() {
         isDownloading = true
-        DownloadService.shared.startDownload()
+        DownloadService.shared.processDownloadQueue()
     }
     
     private func addToDownloadedList() {
@@ -48,6 +52,7 @@ extension DownloadCellViewModel {
         switch event {
         case let progressEvent as DownloadService.DownloadProgressEvent:
             progress = progressEvent.progress
+            chapterName = progressEvent.chapterName
             print("Progress \(progress)")
         case _ as DownloadService.DownloadFinishedEvent:
             addToDownloadedList()

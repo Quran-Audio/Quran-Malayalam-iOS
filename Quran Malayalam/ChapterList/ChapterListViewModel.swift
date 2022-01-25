@@ -91,17 +91,18 @@ extension ChapterListViewModel {
 extension ChapterListViewModel {
     func onDownloadChapter(chapter:ChapterModel) {
         if DataService.shared.isDownloaded(index: chapter.index) {
-            //FIXME: Delete the chapter mp3 file
+            //FIXME: Toast Here
             DataService.shared.deleteDownloaded(chapter: chapter)
         }else {
-            let fullUrl = "\(baseUrl)/\(chapter.fileName)"
-            do {
-                try DownloadService.shared.startDownload(urlText: fullUrl) { _, _ in
-                    DataService.shared.setDownloads(index: chapter.index)
-                }
-            }catch {
-                print("Download failed \(error.localizedDescription)")
-            }
+            //FIXME: Add to download queue
+            //            let fullUrl = "\(baseUrl)/\(chapter.fileName)"
+            //            do {
+            //                try DownloadService.shared.startDownload(urlText: fullUrl) { _, _ in
+            //                    DataService.shared.setDownloads(index: chapter.index)
+            //                }
+            //            }catch {
+            //                print("Download failed \(error.localizedDescription)")
+            //            }
         }
         self.listType = self.listType
     }

@@ -12,7 +12,7 @@ struct DataModel:Codable {
     let chapters:[ChapterModel]
 }
 
-struct ChapterModel:Codable {
+struct ChapterModel:Codable,Equatable {
     let index: Int
     let name: String
     let nameEn: String
@@ -21,4 +21,8 @@ struct ChapterModel:Codable {
     let size: String
     let durationInSecs: Int
     var isPlaying:Bool? = false //Not loaded from file
+    
+    static func ==(lhs: ChapterModel, rhs: ChapterModel) -> Bool {
+        return lhs.index == rhs.index && lhs.fileName == lhs.fileName
+    }
 }

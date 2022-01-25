@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C1586CF278F013000085F6E /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1586CE278F013000085F6E /* AudioService.swift */; };
-		2C19A6B52795D0C900949579 /* DownloadManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A6B42795D0C900949579 /* DownloadManagerView.swift */; };
-		2C19A6B72795DD9600949579 /* DownloadManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A6B62795DD9600949579 /* DownloadManagerViewModel.swift */; };
 		2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B444278FCB71005FB345 /* Url+Extensions.swift */; };
 		2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B446278FCC43005FB345 /* DownloadService.swift */; };
 		2C22C3B3279DB4D500EE3437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C22C3B2279DB4D500EE3437 /* LaunchScreen.storyboard */; };
@@ -56,8 +54,6 @@
 
 /* Begin PBXFileReference section */
 		2C1586CE278F013000085F6E /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
-		2C19A6B42795D0C900949579 /* DownloadManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManagerView.swift; sourceTree = "<group>"; };
-		2C19A6B62795DD9600949579 /* DownloadManagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManagerViewModel.swift; sourceTree = "<group>"; };
 		2C22B444278FCB71005FB345 /* Url+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+Extensions.swift"; sourceTree = "<group>"; };
 		2C22B446278FCC43005FB345 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		2C22C3B2279DB4D500EE3437 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -123,15 +119,6 @@
 				2C26A04D2792AA7900FC38C9 /* ThemeService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		2C19A6B32795D06900949579 /* DownloadManagerView */ = {
-			isa = PBXGroup;
-			children = (
-				2C19A6B42795D0C900949579 /* DownloadManagerView.swift */,
-				2C19A6B62795DD9600949579 /* DownloadManagerViewModel.swift */,
-			);
-			path = DownloadManagerView;
 			sourceTree = "<group>";
 		};
 		2C22B443278FCB50005FB345 /* Extensions */ = {
@@ -201,7 +188,6 @@
 				2CF9879F279B022100A4E5AB /* PlayerCell */,
 				2C463D9E278C611700099415 /* FullPlayer */,
 				2C8DA1D0279EF64C001FCD68 /* DownloadCell */,
-				2C19A6B32795D06900949579 /* DownloadManagerView */,
 				2C22B443278FCB50005FB345 /* Extensions */,
 				2C1586CD278F00D600085F6E /* Services */,
 				2C8D305F278A81A400674BC5 /* Quran_MalayalamApp.swift */,
@@ -406,13 +392,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C19A6B52795D0C900949579 /* DownloadManagerView.swift in Sources */,
 				2C7970392792628100A078BF /* ChapterListViewModel.swift in Sources */,
 				2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */,
 				2C463DA0278C614A00099415 /* FullPlayerView.swift in Sources */,
 				2C8DA1D2279EF6A2001FCD68 /* DownnloadCell.swift in Sources */,
 				2C79703B27926CAC00A078BF /* PlayerCellView.swift in Sources */,
-				2C19A6B72795DD9600949579 /* DownloadManagerViewModel.swift in Sources */,
 				2C26A04E2792AA7900FC38C9 /* ThemeService.swift in Sources */,
 				2C5559EF278D282300FE21FD /* FullPlayerViewModel.swift in Sources */,
 				2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */,
