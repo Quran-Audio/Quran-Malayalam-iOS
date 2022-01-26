@@ -12,7 +12,14 @@ struct DownloadQueueView: View {
     var padding:CGFloat = 5
     var lineWidth:CGFloat = 5
     var body: some View {
-        NavigationView {
+        VStack {
+            NavigatorView(showBackButton: true,
+                          title: "Settings") {
+                Text("").opacity(0)
+            } rightItems: {
+                Text("").opacity(0)
+            }
+            Spacer(minLength: 20)
             ScrollView {
                 VStack(spacing:0) {
                     if viewModel.downloadQueue.count > 0 {
@@ -40,13 +47,11 @@ struct DownloadQueueView: View {
                     }
                     Spacer()
                 }
-//                .navigationBarTitle("Settings",displayMode: .inline)
             }
         }
-//        .onAppear {
-//            UINavigationBarAppearance().backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(ThemeService.themeColor)]
-//            ThemeService.shared.navigationAppearance()
-//        }
+        .navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
         
     }
     

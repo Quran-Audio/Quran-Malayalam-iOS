@@ -13,34 +13,10 @@ struct ChapterListView: View {
     @State var fullPlayerFrameHeight:CGFloat = 0
     @State var fullPlayerOpacity:CGFloat = 0
     var body: some View {
-        VStack(spacing:0) {
-            ZStack(alignment: .bottom) {
+        NavigationView {
+            ZStack(alignment:.bottom) {
                 VStack(spacing:0) {
-                    NaviagationView(viewModel: viewModel,
-                                    playerCellViewModel:playerCellViewModel,
-                                    fullPlayerFrameHeight:$fullPlayerFrameHeight,
-                                    fullPlayerOpacity:$fullPlayerOpacity)
-                }
-                FullPlayerView(frameHeight: $fullPlayerFrameHeight,
-                               opacity:$fullPlayerOpacity)
-                    .shadow(color: ThemeService.whiteColor.opacity(0.2),
-                            radius: 1,
-                            x: 0,
-                            y: -1)
-            }
-        }
-        .background(ThemeService.themeColor)
-    }
-    
-    struct NaviagationView: View {
-        @ObservedObject var viewModel:ChapterListViewModel
-        @ObservedObject var playerCellViewModel:PlayerCellViewModel
-        @Binding var fullPlayerFrameHeight:CGFloat
-        @Binding var fullPlayerOpacity:CGFloat
-        
-        var body: some View {
-            NavigationView {
-                VStack(spacing:0) {
+                    NaviagationBar
                     ScrollView {
                         if viewModel.chapters.count == 0 {
                             emptyListView
@@ -57,34 +33,33 @@ struct ChapterListView: View {
                     }
                     TabBarView(viewModel: viewModel)
                 }
-                .navigationBarTitle("Quran Malayalam",displayMode: .inline)
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        HStack {
-                            Text("")
-                            NavigationLink(destination: DownloadQueueView()) {
-                                Image(systemName: "gearshape")
-                            }.accentColor(ThemeService.themeColor)
-                        }
-                    }
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                        Button {
-                            actionSheet()
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                    }
-                }
-                .foregroundColor(.white)
-                .background(ThemeService.themeColor)
-                
-            }
-            .onAppear {
-                ThemeService.shared.navigationAppearance()
+                FullPlayerView(frameHeight: $fullPlayerFrameHeight,
+                               opacity:$fullPlayerOpacity)
             }
         }
-        
-        @ViewBuilder private var emptyListView: some View {
+        .navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+    }
+    
+    @ViewBuilder private var NaviagationBar: some View {
+        NavigatorView(title: "Quran Malayalam") {
+            Button {
+                actionSheet()
+            } label: {
+                Image(systemName: "square.and.arrow.up")
+                    .font(.system(size: 20))
+            }
+        } rightItems: {
+            NavigationLink(destination: DownloadQueueView()) {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 20))
+            }
+        }.frame(height: 60)
+    }
+    
+    @ViewBuilder private var emptyListView: some View {
+        VStack {
             HStack {
                 Spacer()
                 if viewModel.listType == .downloads {
@@ -94,30 +69,32 @@ struct ChapterListView: View {
                 }
                 Spacer()
             }
-        }
-        
-        @ViewBuilder private var chapterListView: some View {
-            VStack(spacing:10) {
-                Spacer(minLength: 5)
-                ForEach(viewModel.chapters, id: \.index) { chapter in
-                    ChapterCell(viewModel: viewModel,
-                                chapter:chapter)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            self.viewModel.setCurrent(chapter: chapter)
-                        }
-                }
-                Spacer(minLength: 5)
-            }
-            .background(.white)
-        }
-        
-        private func actionSheet() {
-            let data = viewModel.shareText
-            let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-            UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+            Spacer()
         }
     }
+    
+    @ViewBuilder private var chapterListView: some View {
+        VStack(spacing:10) {
+            Spacer(minLength: 5)
+            ForEach(viewModel.chapters, id: \.index) { chapter in
+                ChapterCell(viewModel: viewModel,
+                            chapter:chapter)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        self.viewModel.setCurrent(chapter: chapter)
+                    }
+            }
+            Spacer(minLength: 5)
+        }
+        .background(.white)
+    }
+    
+    private func actionSheet() {
+        let data = viewModel.shareText
+        let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+    }
+
     
     struct TabBarView: View {
         @ObservedObject var viewModel:ChapterListViewModel
@@ -165,6 +142,9 @@ struct ChapterListView: View {
             }
             .foregroundColor(ThemeService.themeColor)
             .frame(height: 60)
+            .background(ThemeService
+                            .themeColor
+                            .ignoresSafeArea(edges:.bottom))
         }
     }
     

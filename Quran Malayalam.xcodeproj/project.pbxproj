@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C1586CF278F013000085F6E /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1586CE278F013000085F6E /* AudioService.swift */; };
+		2C1E7E3B27A0D86C00FC9EE6 /* NavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E7E3A27A0D86C00FC9EE6 /* NavigatorView.swift */; };
 		2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B444278FCB71005FB345 /* Url+Extensions.swift */; };
 		2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B446278FCC43005FB345 /* DownloadService.swift */; };
 		2C22C3B3279DB4D500EE3437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C22C3B2279DB4D500EE3437 /* LaunchScreen.storyboard */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		2C1586CE278F013000085F6E /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		2C1E7E3A27A0D86C00FC9EE6 /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
 		2C22B444278FCB71005FB345 /* Url+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+Extensions.swift"; sourceTree = "<group>"; };
 		2C22B446278FCC43005FB345 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		2C22C3B2279DB4D500EE3437 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -119,6 +121,14 @@
 				2C26A04D2792AA7900FC38C9 /* ThemeService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		2C1E7E3927A0D83B00FC9EE6 /* NavigatorView */ = {
+			isa = PBXGroup;
+			children = (
+				2C1E7E3A27A0D86C00FC9EE6 /* NavigatorView.swift */,
+			);
+			path = NavigatorView;
 			sourceTree = "<group>";
 		};
 		2C22B443278FCB50005FB345 /* Extensions */ = {
@@ -188,6 +198,7 @@
 				2CF9879F279B022100A4E5AB /* PlayerCell */,
 				2C463D9E278C611700099415 /* FullPlayer */,
 				2C8DA1D0279EF64C001FCD68 /* DownloadQueue */,
+				2C1E7E3927A0D83B00FC9EE6 /* NavigatorView */,
 				2C22B443278FCB50005FB345 /* Extensions */,
 				2C1586CD278F00D600085F6E /* Services */,
 				2C8D305F278A81A400674BC5 /* Quran_MalayalamApp.swift */,
@@ -408,6 +419,7 @@
 				2C8D3060278A81A400674BC5 /* Quran_MalayalamApp.swift in Sources */,
 				2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */,
 				2C1586CF278F013000085F6E /* AudioService.swift in Sources */,
+				2C1E7E3B27A0D86C00FC9EE6 /* NavigatorView.swift in Sources */,
 				2C8E50402791C3780050FADE /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

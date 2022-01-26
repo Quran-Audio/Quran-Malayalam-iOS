@@ -26,6 +26,10 @@ struct FullPlayerView: View {
         .cornerRadius(radius: 20,corners:[.topLeft,.topRight])
         .animation(.spring(dampingFraction: 0.55),value: frameHeight)
         .opacity(opacity)
+        .shadow(color: ThemeService.whiteColor.opacity(0.2),
+                radius: 1,
+                x: 0,
+                y: -1)
     }
     
     @ViewBuilder var closeButton: some View {
