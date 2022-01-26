@@ -13,35 +13,38 @@ struct ChapterListView: View {
     @State var fullPlayerFrameHeight:CGFloat = 0
     @State var fullPlayerOpacity:CGFloat = 0
     var body: some View {
-        NavigationView {
+        VStack {
             ZStack(alignment:.bottom) {
-                VStack(spacing:0) {
-                    NaviagationBar
-                    ScrollView {
-                        if viewModel.chapters.count == 0 {
-                            emptyListView
-                        }else {
-                            chapterListView
-                        }
-                    }
-                    if AudioService.shared.isCurrentChapterAvailable() {
-                        PlayerCellView(viewModel: playerCellViewModel)
-                            .onTapGesture {
-                                fullPlayerFrameHeight = 250
-                                fullPlayerOpacity = 1
+                NavigationView {
+                    VStack(spacing:0)  {
+                        NaviagationBar
+                        ScrollView {
+                            if viewModel.chapters.count == 0 {
+                                emptyListView
+                            }else {
+                                chapterListView
                             }
+                        }
+                        if AudioService.shared.isCurrentChapterAvailable() {
+                            PlayerCellView(viewModel: playerCellViewModel)
+                                .onTapGesture {
+                                    fullPlayerFrameHeight = 250
+                                    fullPlayerOpacity = 1
+                                }
+                        }
+                        TabBarView(viewModel: viewModel)
                     }
-                    TabBarView(viewModel: viewModel)
+                    .navigationBarHidden(true)
+                    .navigationBarTitle("")
+                    .navigationBarBackButtonHidden(true)
                 }
                 FullPlayerView(frameHeight: $fullPlayerFrameHeight,
                                opacity:$fullPlayerOpacity)
             }
         }
-        .navigationBarTitle("")
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
     }
     
+    //MARK: View Builders
     @ViewBuilder private var NaviagationBar: some View {
         NavigatorView(title: "Quran Malayalam") {
             Button {
@@ -55,7 +58,7 @@ struct ChapterListView: View {
                 Image(systemName: "gearshape")
                     .font(.system(size: 20))
             }
-        }.frame(height: 60)
+        }
     }
     
     @ViewBuilder private var emptyListView: some View {

@@ -41,6 +41,7 @@ extension NavigatorView {
         } label: {
             Image(systemName: "chevron.left")
                 .font(.title)
+                .font(.system(size: 20))
         }
     }
     

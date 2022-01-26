@@ -10,13 +10,7 @@ import UIKit
 class DownloadService: NSObject,URLSessionDownloadDelegate {
     var currentChapter:ChapterModel? {downloadList.first}
     private var baseUrl:String? = "https://archive.org/download/malayalam-meal/"
-    var downloadList:[ChapterModel] = [ChapterModel(index: 1,
-                                                    name: "Chapter 1",
-                                                    nameEn: "Chapter 1 en",
-                                                    nameMl: "Chapter 1",
-                                                    fileName: "",
-                                                    size: "",
-                                                    durationInSecs: 98)]
+    var downloadList:[ChapterModel] = []
     static var shared = DownloadService()
     private override init() {}
     private var task:URLSessionDownloadTask?

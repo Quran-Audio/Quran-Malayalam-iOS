@@ -15,9 +15,9 @@ struct DownloadQueueView: View {
         VStack {
             NavigatorView(showBackButton: true,
                           title: "Settings") {
-                Text("").opacity(0)
+                Text("").font(.system(size: 20)).opacity(0)
             } rightItems: {
-                Text("").opacity(0)
+                Text("").font(.system(size: 20)).opacity(0)
             }
             Spacer(minLength: 20)
             ScrollView {
@@ -70,10 +70,13 @@ struct DownloadQueueView: View {
                         Text("\(chapter.nameEn)")
                             .foregroundColor(ThemeService.themeColor.opacity(0.7))
                             .font(.system(size: 17))
+                        
                     }
                     .offset(x:15)
                     Spacer()
-                    Text("\(chapter.size)MB").font(.system(size: 15))
+                    Text("Size: \(chapter.size)")
+                        .foregroundColor(ThemeService.themeColor.opacity(0.8))
+                        .font(.system(size: 15))
                     Button {
                         viewModel.removeFromDownloadQueueList(chapter: chapter)
                     } label: {

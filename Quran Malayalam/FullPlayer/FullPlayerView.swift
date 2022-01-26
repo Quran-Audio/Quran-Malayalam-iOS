@@ -21,6 +21,11 @@ struct FullPlayerView: View {
             SliderView(viewModel: viewModel)
             Divider()
         }
+        .onAppear(perform: {
+            viewModel.subscribeAudioNotification()
+        }).onDisappear(perform: {
+            viewModel.unSubscribeAudioNotification()
+        })
         .background(ThemeService.themeColor)
         .frame(height: frameHeight)
         .cornerRadius(radius: 20,corners:[.topLeft,.topRight])
@@ -66,7 +71,7 @@ struct FullPlayerView: View {
         var body: some View {
             HStack(spacing: 30) {
                 Button {
-                    print("backward")
+                    viewModel.onPrevoius()
                 } label: {
                     Image(systemName: "backward")
                 }

@@ -19,7 +19,6 @@ struct PlayerCellView: View {
                     Rectangle().frame(width:geometry.size.width * viewModel.sliderValue,height: 5)
                         .foregroundColor(.yellow)
                 }.frame(height: 5)
-                
             }
             HStack {
                 ZStack {
@@ -31,7 +30,7 @@ struct PlayerCellView: View {
                                 .font(.system(size: 25))
                         }else {
                             Text("\(viewModel.currentChapter?.index ?? 0)")
-                                .font(.system(size: 30))
+                                .font(.system(size: 25))
                                 .foregroundColor(ThemeService.whiteColor)
                         }
                     }
@@ -42,13 +41,13 @@ struct PlayerCellView: View {
                             VStack(alignment: .leading,spacing: 0) {
                                 Text("سورَة \(viewModel.currentChapter?.name ?? "")")
                                     .foregroundColor(ThemeService.whiteColor)
-                                    .font(ThemeService.shared.arabicFont(size: 25).bold())
-                                //.offset(y:3)
+                                    .font(ThemeService.shared.arabicFont(size: 23).bold())
+                                .offset(y:3)
                                 
                                 Text("Surah \(viewModel.currentChapter?.nameEn ?? "")")
                                     .foregroundColor(ThemeService.whiteColor.opacity(0.7))
-                                    .font(.system(size: 18))
-                                    .offset(y:-6)
+                                    .font(.system(size: 15))
+                                    .offset(y:-3)
                             }
                         }
                         Spacer(minLength: 10)
@@ -60,7 +59,7 @@ struct PlayerCellView: View {
                         Image(systemName: viewModel.isPlaying ? "pause" : "play")
                             .foregroundColor(ThemeService.whiteColor)
                             .font(.system(size: 30))
-                            .frame(width: 50,height: 50).onTapGesture {
+                            .frame(width: 40,height: 40).onTapGesture {
                                 viewModel.playPause()
                             }
                         
@@ -68,16 +67,21 @@ struct PlayerCellView: View {
                 }
             }
             .background(ThemeService.themeColor)
-            Rectangle().frame(height: 0.5)
-                .foregroundColor(ThemeService.borderColor)
+            
         }
+        .onAppear(perform: {
+            viewModel.subscribeAudioNotification()
+        }).onDisappear(perform: {
+            viewModel.unSubscribeAudioNotification()
+        })
+        .frame(height: 59)
     }
     
     @ViewBuilder private var titleBox: some View {
         HStack(spacing:0) {
-            Rectangle().frame(width: 50,height: 75)
+            Rectangle().frame(width: 50,height: 50)
                 .foregroundColor(ThemeService.themeColor)
-            Rectangle().frame(width: 1,height: 75)
+            Rectangle().frame(width: 1,height: 50)
                 .foregroundColor(ThemeService.whiteColor)
         }
     }
