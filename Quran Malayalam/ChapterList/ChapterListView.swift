@@ -18,6 +18,7 @@ struct ChapterListView: View {
                 NavigationView {
                     VStack(spacing:0)  {
                         NaviagationBar
+                            .background(ThemeService.themeColor)
                         ScrollView {
                             if viewModel.chapters.count == 0 {
                                 Spacer(minLength: 20)
@@ -35,6 +36,7 @@ struct ChapterListView: View {
                                 }
                         }
                         TabBarView(viewModel: viewModel)
+                            .background(ThemeService.themeColor)
                     }
                     .navigationBarHidden(true)
                     .navigationBarTitle("")
@@ -43,7 +45,7 @@ struct ChapterListView: View {
                 FullPlayerView(frameHeight: $fullPlayerFrameHeight,
                                opacity:$fullPlayerOpacity)
             }
-        }
+        }.background(ThemeService.themeColor)
     }
     
     //MARK: View Builders

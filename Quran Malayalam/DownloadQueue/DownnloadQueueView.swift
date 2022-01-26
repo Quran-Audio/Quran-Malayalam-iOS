@@ -19,6 +19,7 @@ struct DownloadQueueView: View {
             } rightItems: {
                 Text("").font(.system(size: 20)).opacity(0)
             }
+            .background(ThemeService.themeColor)
             Spacer(minLength: 20)
             ScrollView {
                 VStack(spacing:0) {
