@@ -20,7 +20,9 @@ struct ChapterListView: View {
                         NaviagationBar
                         ScrollView {
                             if viewModel.chapters.count == 0 {
+                                Spacer(minLength: 20)
                                 emptyListView
+                                Spacer()
                             }else {
                                 chapterListView
                             }
