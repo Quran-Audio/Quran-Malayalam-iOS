@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ChapterCell:View {
-    @EnvironmentObject var toastData:ToastData
     @ObservedObject var viewModel:ChapterListViewModel
     @State var showSwipeButtons:Bool = false
+    var onFavourite:(ChapterModel) -> Void = { _ in }
     
     var chapter:ChapterModel
     var body: some View {
@@ -66,15 +66,7 @@ struct ChapterCell:View {
                             .fill(ThemeService.themeColor.opacity(0.8))
                             .frame(width: 44, height: 44)
                         Button {
-                            toastData.type = .info
-                            toastData.title = "Info"
-                            if viewModel.isDownloaded(chapter: chapter) {
-                                toastData.description = "File deleted successfully."
-                            }else {
-                                toastData.description = "Added to Download Queue."
-                            }
-                            toastData.showToast = true
-                            toastData.duration = 2
+                            //FIXME: Toast
                             viewModel.onDownloadChapter(chapter:chapter)
                             showSwipeButtons.toggle()
                         } label: {
@@ -87,16 +79,7 @@ struct ChapterCell:View {
                             .fill(ThemeService.themeColor.opacity(0.7))
                             .frame(width: 44, height: 44)
                         Button {
-                            toastData.type = .info
-                            toastData.title = "Info"
-                            if viewModel.isFavourite(chapter: chapter) {
-                                toastData.description = "Removed from favourite list."
-                            }else {
-                                toastData.description = "Added to favourite list"
-                            }
-                            toastData.showToast = true
-                            toastData.duration = 2
-                            viewModel.onFavouriteChapter(chapterIndex: chapter.index)
+                            onFavourite(chapter)
                             showSwipeButtons.toggle()
                         } label: {
                             let isFavourite = DataService.shared.isFavourite(index: chapter.index)

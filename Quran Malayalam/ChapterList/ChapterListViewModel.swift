@@ -51,6 +51,7 @@ class ChapterListViewModel: ObservableObject {
     
     private var data:DataModel?
     init() {
+        print("initiated")
         self.data = DataService.shared.loadData()
     }
 }

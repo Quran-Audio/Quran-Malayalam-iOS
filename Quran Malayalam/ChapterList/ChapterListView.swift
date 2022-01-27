@@ -8,52 +8,54 @@
 import SwiftUI
 
 struct ChapterListView: View {
-    @EnvironmentObject var toastData:ToastData
     @ObservedObject var viewModel = ChapterListViewModel()
     @ObservedObject var playerCellViewModel = PlayerCellViewModel()
     @State var fullPlayerFrameHeight:CGFloat = 0
     @State var fullPlayerOpacity:CGFloat = 0
+    @State var showToast:Bool = false
+    @State var toastTitle:String = ""
+    @State var toastDescriptiom:String = ""
+    @State var toastType:ToastView.ToasType = .info
     
     var body: some View {
         VStack {
-            ZStack {
-                ZStack(alignment:.bottom) {
-                    NavigationView {
-                        VStack(spacing:0)  {
-                            NaviagationBar
-                                .background(ThemeService.themeColor)
-                            ScrollView {
-                                if viewModel.chapters.count == 0 {
-                                    Spacer(minLength: 20)
-                                    emptyListView
-                                    Spacer()
-                                }else {
-                                    chapterListView
-                                }
+            ZStack(alignment:.bottom) {
+                NavigationView {
+                    VStack(spacing:0)  {
+                        NaviagationBar
+                            .background(ThemeService.themeColor)
+                        ScrollView {
+                            if viewModel.chapters.count == 0 {
+                                Spacer(minLength: 20)
+                                emptyListView
+                                Spacer()
+                            }else {
+                                chapterListView
                             }
-                            if AudioService.shared.isCurrentChapterAvailable() {
-                                PlayerCellView(viewModel: playerCellViewModel)
-                                    .onTapGesture {
-                                        fullPlayerFrameHeight = 250
-                                        fullPlayerOpacity = 1
-                                    }
-                            }
-                            TabBarView(viewModel: viewModel)
-                                .background(ThemeService.themeColor)
                         }
-                        .navigationBarHidden(true)
-                        .navigationBarTitle("")
-                        .navigationBarBackButtonHidden(true)
+                        if AudioService.shared.isCurrentChapterAvailable() {
+                            PlayerCellView(viewModel: playerCellViewModel)
+                                .onTapGesture {
+                                    fullPlayerFrameHeight = 250
+                                    fullPlayerOpacity = 1
+                                }
+                        }
+                        TabBarView(viewModel: viewModel)
+                            .background(ThemeService.themeColor)
                     }
-                    FullPlayerView(frameHeight: $fullPlayerFrameHeight,
-                                   opacity:$fullPlayerOpacity)
+                    .navigationBarHidden(true)
+                    .navigationBarTitle("")
+                    .navigationBarBackButtonHidden(true)
                 }
-                if toastData.showToast {
-                    ToastView()
-                }
+                FullPlayerView(frameHeight: $fullPlayerFrameHeight,
+                               opacity:$fullPlayerOpacity)
             }
         }
         .background(ThemeService.themeColor)
+        .toast(showToast: $showToast,
+               title: toastTitle,
+               description: toastDescriptiom,
+               type:toastType)
     }
     
     //MARK: View Builders
@@ -109,8 +111,17 @@ struct ChapterListView: View {
             Spacer(minLength: 5)
             ForEach(viewModel.chapters, id: \.index) { chapter in
                 ChapterCell(viewModel: viewModel,
-                            chapter:chapter)
-                    .contentShape(Rectangle())
+                            onFavourite: { chapter in
+                    if viewModel.isFavourite(chapter: chapter) {
+                        toastDescriptiom = "Removed from favourites"
+                    }else {
+                        toastDescriptiom = "Added to favourites"
+                    }
+                    toastTitle = "Info"
+                    self.showToast = true
+                    viewModel.onFavouriteChapter(chapterIndex: chapter.index)
+                    
+                },chapter: chapter)
                     .onTapGesture {
                         self.viewModel.setCurrent(chapter: chapter)
                     }

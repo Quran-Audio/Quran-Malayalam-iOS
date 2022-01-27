@@ -7,41 +7,51 @@
 
 import SwiftUI
 
-struct ToastView: View {
-    @EnvironmentObject var toastData:ToastData
-    var body: some View {
-        VStack(spacing:10) {
-            HStack {
-                image
-                    .font(.system(size: 20))
-                Text(toastData.title)
-                    .font(.system(size: 20))
+struct ToastView: ViewModifier {
+    @Binding var showToast:Bool
+    var title:String = ""
+    var description:String = ""
+    var type:ToasType = .info
+    var alignment:Alignment = .center
+    
+    func body(content:Content) -> some View {
+        ZStack(alignment: alignment) {
+            content
+            if showToast {
+                VStack(spacing:10) {
+                    HStack {
+                        image
+                            .font(.system(size: 20))
+                        Text(title)
+                            .font(.system(size: 20))
+                    }
+                    Text(description)
+                        .font(.system(size: 18))
+                        .foregroundColor(ThemeService.whiteColor.opacity(0.7))
+                }
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                      withAnimation {
+                        self.showToast = false
+                      }
+                    }
+                }
+                .padding()
+                .foregroundColor(ThemeService.whiteColor)
+                .background(ThemeService.themeColor)
+                .cornerRadius(15)
+                .shadow(color: ThemeService.themeColor.opacity(0.7),
+                        radius: 3, x: 1, y: 1)
             }
-            Text(toastData.description)
-                .font(.system(size: 18))
-                .foregroundColor(ThemeService.whiteColor.opacity(0.7))
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.toastData.showToast = false
-            }
-        }
-        .padding(.all)
-        .foregroundColor(ThemeService.whiteColor)
-        .background(ThemeService.themeColor)
-        .cornerRadius(15)
-        .shadow(color: ThemeService.themeColor.opacity(0.7),
-                radius: 3, x: 1, y: 1)
-        
     }
         
-    
     enum ToasType {
         case info,warning,error
     }
     
     @ViewBuilder var image: some View {
-        switch toastData.type {
+        switch type {
         case .info:
             Image(systemName: "info.circle")
         case .warning:
@@ -52,9 +62,34 @@ struct ToastView: View {
     }
 }
 
+extension View {
+    func toast(showToast:Binding<Bool>,
+               title:String = "",
+               description:String = "",
+               type:ToastView.ToasType = .info,
+               alignment:Alignment = .center) -> some View {
+        modifier(ToastView(showToast: showToast,
+                           title: title,
+                           description: description,
+                           type: type,
+                           alignment: alignment))
+    }
+}
+
 struct ToastView_Previews: PreviewProvider {
     static var previews: some View {
-        ToastView().environmentObject(ToastData())
+        VStack {
+            Text("Test")
+            Spacer()
+            HStack{
+                Spacer()
+            }
+        }.toast(showToast: .constant(true),
+                title: "Some Title",
+                description: "Some Description",
+                alignment: .bottom)
+            .background(ThemeService.whiteColor)
+        
     }
 }
 
