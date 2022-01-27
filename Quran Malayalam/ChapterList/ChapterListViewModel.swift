@@ -12,8 +12,14 @@ import CoreGraphics
 class ChapterListViewModel: ObservableObject {
     @Published var currentChapter:ChapterModel?
     @Published var isBuffering:Bool = false
-    @Published var listType:EListType = .all
-    var shareText: String {"App to Listen Quran Arabic and malayalam translation\n Url: "}
+    @Published var listType:EListType = .all {
+        didSet {
+            print("Set from data")
+        }
+    }
+    var shareText: String {
+        return "App to Listen Quran Arabic and malayalam translation\n Url: "
+    }
     var isPlaying:Bool {AudioService.shared.isPlaying}
     var chapterName:String {currentChapter?.name ?? ""}
     var sliderCurrentValue: CGFloat{AudioService.shared.currentTimeInSecs}
@@ -83,7 +89,11 @@ extension ChapterListViewModel {
         }else {
             DataService.shared.setFavourite(index: chapterIndex)
         }
-        self.listType = self.listType
+        //self.listType = self.listType
+    }
+    
+    func isFavourite(chapter:ChapterModel) -> Bool {
+        DataService.shared.isFavourite(index: chapter.index)
     }
 }
 
@@ -96,7 +106,11 @@ extension ChapterListViewModel {
         }else {
             DownloadService.shared.addToDownloadQueue(chapter: chapter)
         }
-        self.listType = self.listType
+        //self.listType = self.listType
+    }
+    
+    func isDownloaded(chapter:ChapterModel) -> Bool {
+        DataService.shared.isDownloaded(index: chapter.index)
     }
 }
 

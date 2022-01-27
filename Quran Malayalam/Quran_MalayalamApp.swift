@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Quran_MalayalamApp: App {
+    @StateObject var toastData:ToastData = ToastData()
     var body: some Scene {
         WindowGroup {
           ChapterListView()
+                .environmentObject(toastData)
         }
     }
 }

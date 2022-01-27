@@ -8,47 +8,71 @@
 import SwiftUI
 
 struct ChapterListView: View {
+    @EnvironmentObject var toastData:ToastData
     @ObservedObject var viewModel = ChapterListViewModel()
     @ObservedObject var playerCellViewModel = PlayerCellViewModel()
     @State var fullPlayerFrameHeight:CGFloat = 0
     @State var fullPlayerOpacity:CGFloat = 0
+    
     var body: some View {
         VStack {
-            ZStack(alignment:.bottom) {
-                NavigationView {
-                    VStack(spacing:0)  {
-                        NaviagationBar
-                            .background(ThemeService.themeColor)
-                        ScrollView {
-                            if viewModel.chapters.count == 0 {
-                                Spacer(minLength: 20)
-                                emptyListView
-                                Spacer()
-                            }else {
-                                chapterListView
-                            }
-                        }
-                        if AudioService.shared.isCurrentChapterAvailable() {
-                            PlayerCellView(viewModel: playerCellViewModel)
-                                .onTapGesture {
-                                    fullPlayerFrameHeight = 250
-                                    fullPlayerOpacity = 1
+            ZStack {
+                ZStack(alignment:.bottom) {
+                    NavigationView {
+                        VStack(spacing:0)  {
+                            NaviagationBar
+                                .background(ThemeService.themeColor)
+                            ScrollView {
+                                if viewModel.chapters.count == 0 {
+                                    Spacer(minLength: 20)
+                                    emptyListView
+                                    Spacer()
+                                }else {
+                                    chapterListView
                                 }
+                            }
+                            if AudioService.shared.isCurrentChapterAvailable() {
+                                PlayerCellView(viewModel: playerCellViewModel)
+                                    .onTapGesture {
+                                        fullPlayerFrameHeight = 250
+                                        fullPlayerOpacity = 1
+                                    }
+                            }
+                            TabBarView(viewModel: viewModel)
+                                .background(ThemeService.themeColor)
                         }
-                        TabBarView(viewModel: viewModel)
-                            .background(ThemeService.themeColor)
+                        .navigationBarHidden(true)
+                        .navigationBarTitle("")
+                        .navigationBarBackButtonHidden(true)
                     }
-                    .navigationBarHidden(true)
-                    .navigationBarTitle("")
-                    .navigationBarBackButtonHidden(true)
+                    FullPlayerView(frameHeight: $fullPlayerFrameHeight,
+                                   opacity:$fullPlayerOpacity)
                 }
-                FullPlayerView(frameHeight: $fullPlayerFrameHeight,
-                               opacity:$fullPlayerOpacity)
+                if toastData.showToast {
+                    ToastView()
+                }
             }
-        }.background(ThemeService.themeColor)
+        }
+        .background(ThemeService.themeColor)
     }
     
     //MARK: View Builders
+    @ViewBuilder private var toastView: some View {
+        NavigatorView(title: "Quran Malayalam") {
+            Button {
+                actionSheet()
+            } label: {
+                Image(systemName: "square.and.arrow.up")
+                    .font(.system(size: 20))
+            }
+        } rightItems: {
+            NavigationLink(destination: DownloadQueueView()) {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 20))
+            }
+        }
+    }
+    
     @ViewBuilder private var NaviagationBar: some View {
         NavigatorView(title: "Quran Malayalam") {
             Button {
@@ -101,7 +125,7 @@ struct ChapterListView: View {
         let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
-
+    
     
     struct TabBarView: View {
         @ObservedObject var viewModel:ChapterListViewModel

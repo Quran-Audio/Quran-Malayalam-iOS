@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2C1586CF278F013000085F6E /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1586CE278F013000085F6E /* AudioService.swift */; };
 		2C1E7E3B27A0D86C00FC9EE6 /* NavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E7E3A27A0D86C00FC9EE6 /* NavigatorView.swift */; };
-		2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B444278FCB71005FB345 /* Url+Extensions.swift */; };
 		2C22B447278FCC43005FB345 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C22B446278FCC43005FB345 /* DownloadService.swift */; };
 		2C22C3B3279DB4D500EE3437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C22C3B2279DB4D500EE3437 /* LaunchScreen.storyboard */; };
 		2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04B2792A23C00FC38C9 /* ChapterCellView.swift */; };
@@ -33,6 +32,8 @@
 		2C8E503B2791C2A20050FADE /* Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E503A2791C2A20050FADE /* Data.json */; };
 		2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E503D2791C2C70050FADE /* ChapterModel.swift */; };
 		2C8E50402791C3780050FADE /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E503F2791C3780050FADE /* DataService.swift */; };
+		2CC3683727A23DAC000C0E82 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC3683627A23DAC000C0E82 /* ToastView.swift */; };
+		2CC3683927A2468D000C0E82 /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC3683827A2468D000C0E82 /* ToastData.swift */; };
 		2CF987A1279B024F00A4E5AB /* PlayerCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF987A0279B024F00A4E5AB /* PlayerCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +57,6 @@
 /* Begin PBXFileReference section */
 		2C1586CE278F013000085F6E /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		2C1E7E3A27A0D86C00FC9EE6 /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
-		2C22B444278FCB71005FB345 /* Url+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+Extensions.swift"; sourceTree = "<group>"; };
 		2C22B446278FCC43005FB345 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		2C22C3B2279DB4D500EE3437 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C26A04B2792A23C00FC38C9 /* ChapterCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCellView.swift; sourceTree = "<group>"; };
@@ -84,6 +84,8 @@
 		2C8E503A2791C2A20050FADE /* Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Data.json; sourceTree = "<group>"; };
 		2C8E503D2791C2C70050FADE /* ChapterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterModel.swift; sourceTree = "<group>"; };
 		2C8E503F2791C3780050FADE /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		2CC3683627A23DAC000C0E82 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		2CC3683827A2468D000C0E82 /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
 		2CF987A0279B024F00A4E5AB /* PlayerCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,14 +131,6 @@
 				2C1E7E3A27A0D86C00FC9EE6 /* NavigatorView.swift */,
 			);
 			path = NavigatorView;
-			sourceTree = "<group>";
-		};
-		2C22B443278FCB50005FB345 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2C22B444278FCB71005FB345 /* Url+Extensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2C26A0512792BCFC00FC38C9 /* Fonts */ = {
@@ -199,8 +193,8 @@
 				2C463D9E278C611700099415 /* FullPlayer */,
 				2C8DA1D0279EF64C001FCD68 /* DownloadQueue */,
 				2C1E7E3927A0D83B00FC9EE6 /* NavigatorView */,
-				2C22B443278FCB50005FB345 /* Extensions */,
 				2C1586CD278F00D600085F6E /* Services */,
+				2CC3683527A23D8B000C0E82 /* Toast */,
 				2C8D305F278A81A400674BC5 /* Quran_MalayalamApp.swift */,
 				2C8D3061278A81A400674BC5 /* ContentView.swift */,
 				2C8D3063278A81A600674BC5 /* Assets.xcassets */,
@@ -256,8 +250,17 @@
 			isa = PBXGroup;
 			children = (
 				2C8E503D2791C2C70050FADE /* ChapterModel.swift */,
+				2CC3683827A2468D000C0E82 /* ToastData.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2CC3683527A23D8B000C0E82 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				2CC3683627A23DAC000C0E82 /* ToastView.swift */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 		2CF9879F279B022100A4E5AB /* PlayerCell */ = {
@@ -411,15 +414,16 @@
 				2C26A04E2792AA7900FC38C9 /* ThemeService.swift in Sources */,
 				2C5559EF278D282300FE21FD /* FullPlayerViewModel.swift in Sources */,
 				2C26A04C2792A23C00FC38C9 /* ChapterCellView.swift in Sources */,
+				2CC3683927A2468D000C0E82 /* ToastData.swift in Sources */,
 				2C8DA1D4279EF6C0001FCD68 /* DownloadQueueViewModel.swift in Sources */,
 				2C797037279256C300A078BF /* ChapterListView.swift in Sources */,
 				2C8D3062278A81A400674BC5 /* ContentView.swift in Sources */,
 				2CF987A1279B024F00A4E5AB /* PlayerCellViewModel.swift in Sources */,
-				2C22B445278FCB71005FB345 /* Url+Extensions.swift in Sources */,
 				2C8D3060278A81A400674BC5 /* Quran_MalayalamApp.swift in Sources */,
 				2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */,
 				2C1586CF278F013000085F6E /* AudioService.swift in Sources */,
 				2C1E7E3B27A0D86C00FC9EE6 /* NavigatorView.swift in Sources */,
+				2CC3683727A23DAC000C0E82 /* ToastView.swift in Sources */,
 				2C8E50402791C3780050FADE /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
