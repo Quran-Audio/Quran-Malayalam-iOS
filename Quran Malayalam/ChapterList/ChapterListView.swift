@@ -113,15 +113,15 @@ struct ChapterListView: View {
                 ChapterCell(viewModel: viewModel,
                             onFavourite: { chapter in
                     if viewModel.isFavourite(chapter: chapter) {
-                        toastDescriptiom = "Removed from favourites"
+                        toastTitle = "Removed from favourites"
                     }else {
-                        toastDescriptiom = "Added to favourites"
+                        toastTitle = "Added to favourites"
                     }
-                    toastTitle = "Info"
                     self.showToast = true
                     viewModel.onFavouriteChapter(chapterIndex: chapter.index)
                     
-                },chapter: chapter)
+                },
+                            chapter: chapter)
                     .onTapGesture {
                         self.viewModel.setCurrent(chapter: chapter)
                     }

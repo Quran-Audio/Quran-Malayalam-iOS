@@ -13,6 +13,7 @@ struct ToastView: ViewModifier {
     var description:String = ""
     var type:ToasType = .info
     var alignment:Alignment = .center
+    var duration:CGFloat = 1
     
     func body(content:Content) -> some View {
         ZStack(alignment: alignment) {
@@ -25,15 +26,10 @@ struct ToastView: ViewModifier {
                         Text(title)
                             .font(.system(size: 20))
                     }
-                    Text(description)
-                        .font(.system(size: 18))
-                        .foregroundColor(ThemeService.whiteColor.opacity(0.7))
-                }
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                      withAnimation {
-                        self.showToast = false
-                      }
+                    if(!description.isEmpty) {
+                        Text(description)
+                            .font(.system(size: 18))
+                            .foregroundColor(ThemeService.whiteColor.opacity(0.7))
                     }
                 }
                 .padding()
@@ -42,8 +38,18 @@ struct ToastView: ViewModifier {
                 .cornerRadius(15)
                 .shadow(color: ThemeService.themeColor.opacity(0.7),
                         radius: 3, x: 1, y: 1)
+                
+            }
+        }.onChange(of: showToast) { newValue in
+            if showToast {
+                DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                    withAnimation(.spring()) {
+                        showToast = false
+                    }
+                }
             }
         }
+        
     }
         
     enum ToasType {
