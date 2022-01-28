@@ -7,5 +7,9 @@
 		<string>Meera-05.1.ttf</string>
 		<string>XB Niloofar.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 </dict>
 </plist>

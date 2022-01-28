@@ -13,14 +13,6 @@ struct DownloadQueueView: View {
     var lineWidth:CGFloat = 5
     var body: some View {
         VStack {
-            NavigatorView(showBackButton: true,
-                          title: "Settings") {
-                Text("").font(.system(size: 20)).opacity(0)
-            } rightItems: {
-                Text("").font(.system(size: 20)).opacity(0)
-            }
-            .background(ThemeService.themeColor)
-            Spacer(minLength: 20)
             ScrollView {
                 VStack(spacing:0) {
                     if viewModel.downloadQueue.count > 0 {
@@ -49,6 +41,13 @@ struct DownloadQueueView: View {
                     Spacer()
                 }
             }
+            .navigatorView(title: "Settings",
+                           showBackButton: true) {
+                Text("").opacity(0)
+            } rightItems: {
+                Text("").opacity(0)
+            }
+
         }
         .navigationBarTitle("")
         .navigationBarBackButtonHidden(true)

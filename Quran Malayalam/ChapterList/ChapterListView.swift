@@ -20,32 +20,38 @@ struct ChapterListView: View {
     var body: some View {
         VStack {
             ZStack(alignment:.bottom) {
-                NavigationView {
-                    VStack(spacing:0)  {
-                        NaviagationBar
-                            .background(ThemeService.themeColor)
-                        ScrollView {
-                            if viewModel.chapters.count == 0 {
-                                Spacer(minLength: 20)
-                                emptyListView
-                                Spacer()
-                            }else {
-                                chapterListView
-                            }
+                VStack(spacing:0)  {
+                    ScrollView {
+                        if viewModel.chapters.count == 0 {
+                            Spacer(minLength: 20)
+                            emptyListView
+                            Spacer()
+                        }else {
+                            chapterListView
                         }
-                        if AudioService.shared.isCurrentChapterAvailable() {
-                            PlayerCellView(viewModel: playerCellViewModel)
-                                .onTapGesture {
-                                    fullPlayerFrameHeight = 250
-                                    fullPlayerOpacity = 1
-                                }
-                        }
-                        TabBarView(viewModel: viewModel)
-                            .background(ThemeService.themeColor)
                     }
-                    .navigationBarHidden(true)
-                    .navigationBarTitle("")
-                    .navigationBarBackButtonHidden(true)
+                    if AudioService.shared.isCurrentChapterAvailable() {
+                        PlayerCellView(viewModel: playerCellViewModel)
+                            .onTapGesture {
+                                fullPlayerFrameHeight = 250
+                                fullPlayerOpacity = 1
+                            }
+                    }
+                    TabBarView(viewModel: viewModel)
+                        .background(ThemeService.themeColor)
+                }
+                .navigatorView(title: "Quran Malayalam") {
+                    Button {
+                        actionSheet()
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 20))
+                    }
+                } rightItems: {
+                    NavigationLink(destination: DownloadQueueView()) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 20))
+                    }
                 }
                 FullPlayerView(frameHeight: $fullPlayerFrameHeight,
                                opacity:$fullPlayerOpacity)
@@ -59,38 +65,6 @@ struct ChapterListView: View {
     }
     
     //MARK: View Builders
-    @ViewBuilder private var toastView: some View {
-        NavigatorView(title: "Quran Malayalam") {
-            Button {
-                actionSheet()
-            } label: {
-                Image(systemName: "square.and.arrow.up")
-                    .font(.system(size: 20))
-            }
-        } rightItems: {
-            NavigationLink(destination: DownloadQueueView()) {
-                Image(systemName: "gearshape")
-                    .font(.system(size: 20))
-            }
-        }
-    }
-    
-    @ViewBuilder private var NaviagationBar: some View {
-        NavigatorView(title: "Quran Malayalam") {
-            Button {
-                actionSheet()
-            } label: {
-                Image(systemName: "square.and.arrow.up")
-                    .font(.system(size: 20))
-            }
-        } rightItems: {
-            NavigationLink(destination: DownloadQueueView()) {
-                Image(systemName: "gearshape")
-                    .font(.system(size: 20))
-            }
-        }
-    }
-    
     @ViewBuilder private var emptyListView: some View {
         VStack {
             HStack {
