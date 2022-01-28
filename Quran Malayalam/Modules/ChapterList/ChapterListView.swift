@@ -102,7 +102,9 @@ struct ChapterListView: View {
                     self.showToast = true
                     viewModel.onDownloadChapter(chapter:chapter)
                 },
-                            chapter: chapter).onTapGesture {
+                            chapter: chapter)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
                     self.viewModel.setCurrent(chapter: chapter)
                 }
             }
