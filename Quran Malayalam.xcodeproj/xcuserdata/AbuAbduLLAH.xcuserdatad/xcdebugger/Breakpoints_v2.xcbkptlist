@@ -33,7 +33,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
             endingLineNumber = "78"
-            landmarkName = "urlSession(_:didBecomeInvalidWithError:)"
+            landmarkName = "moveFrom(source:chapter:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -49,8 +49,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
-            landmarkName = "DownloadService"
-            landmarkType = "3">
+            landmarkName = "startFileDownload(chapter:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

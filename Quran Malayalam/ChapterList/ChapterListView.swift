@@ -110,8 +110,7 @@ struct ChapterListView: View {
         VStack(spacing:10) {
             Spacer(minLength: 5)
             ForEach(viewModel.chapters, id: \.index) { chapter in
-                ChapterCell(viewModel: viewModel,
-                            onFavourite: { chapter in
+                ChapterCell(onFavourite: { chapter in
                     if viewModel.isFavourite(chapter: chapter) {
                         toastTitle = "Removed from favourites"
                     }else {
@@ -119,12 +118,19 @@ struct ChapterListView: View {
                     }
                     self.showToast = true
                     viewModel.onFavouriteChapter(chapterIndex: chapter.index)
-                    
                 },
-                            chapter: chapter)
-                    .onTapGesture {
-                        self.viewModel.setCurrent(chapter: chapter)
+                            onDownload: { chapter in
+                    if viewModel.isDownloaded(chapter: chapter) {
+                        toastTitle = "Deleted file."
+                    }else {
+                        toastTitle = "Added to download queue."
                     }
+                    self.showToast = true
+                    viewModel.onDownloadChapter(chapter:chapter)
+                },
+                            chapter: chapter).onTapGesture {
+                    self.viewModel.setCurrent(chapter: chapter)
+                }
             }
             Spacer(minLength: 5)
         }

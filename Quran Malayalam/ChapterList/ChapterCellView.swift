@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ChapterCell:View {
-    @ObservedObject var viewModel:ChapterListViewModel
     @State var showSwipeButtons:Bool = false
     var onFavourite:(ChapterModel) -> Void = { _ in }
+    var onDownload:(ChapterModel) -> Void = { _ in }
     
     var chapter:ChapterModel
     var body: some View {
@@ -66,12 +66,11 @@ struct ChapterCell:View {
                             .fill(ThemeService.themeColor.opacity(0.8))
                             .frame(width: 44, height: 44)
                         Button {
-                            //FIXME: Toast
-                            viewModel.onDownloadChapter(chapter:chapter)
+                            onDownload(chapter)
                             showSwipeButtons.toggle()
                         } label: {
                             let isDownloaded = DataService.shared.isDownloaded(index: chapter.index)
-                            Image(systemName: isDownloaded ? "square.and.arrow.down.fill" : "square.and.arrow.down")
+                            Image(systemName: isDownloaded ? "checkmark.icloud.fill" : "icloud.and.arrow.down")
                         }
                     }
                     ZStack {
@@ -96,8 +95,7 @@ struct ChapterCell:View {
 
 struct ChapterCell_Previews: PreviewProvider {
     static var previews: some View {
-        ChapterCell(viewModel: ChapterListViewModel(),
-                    chapter:ChapterModel(index: 1,
+        ChapterCell(chapter:ChapterModel(index: 1,
                                          name: "ٱلْفَاتِحَة",
                                          nameEn: "Al-Fatihah",
                                          nameMl: "-",
