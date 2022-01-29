@@ -17,7 +17,7 @@ struct PlayerCellView: View {
                     Rectangle().frame(height: 5)
                         .foregroundColor(ThemeService.borderColor)
                     Rectangle().frame(width:geometry.size.width * viewModel.sliderValue,height: 5)
-                        .foregroundColor(.yellow)
+                        .foregroundColor(ThemeService.indigo)
                 }.frame(height: 5)
             }
             HStack {

@@ -83,7 +83,7 @@ struct DownloadQueueView: View {
                     } label: {
                         Image(systemName: "xmark.circle")
                             .font(.system(size: 20))
-                            .foregroundColor(.red)
+                            .foregroundColor(ThemeService.red)
                             .padding(.horizontal)
                     }.frame(width: 44, height: 44)
                 }.padding(.all,5)
@@ -110,7 +110,7 @@ struct DownloadQueueView: View {
             } label: {
                 Image(systemName: "xmark.circle")
                     .font(.system(size: 20))
-                    .foregroundColor(.red)
+                    .foregroundColor(ThemeService.red)
                     .padding(.horizontal)
             }
         }
@@ -128,7 +128,7 @@ struct DownloadQueueView: View {
                                 startAngle: Angle(degrees: 0),
                                 endAngle: Angle(degrees: 360),
                                 clockwise: false)
-                }.stroke(.red.opacity(0.1), style: StrokeStyle(lineWidth: lineWidth + 2,
+                }.stroke(ThemeService.red.opacity(0.1), style: StrokeStyle(lineWidth: lineWidth + 2,
                                                                lineCap: .square,
                                                                lineJoin: .bevel))
                 Path { path in
