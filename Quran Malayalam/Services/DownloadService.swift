@@ -14,6 +14,7 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
     static var shared = DownloadService()
     private override init() {}
     private var task:URLSessionDownloadTask?
+    private var session:URLSession?
     var isDownloadingInProgress:Bool = false
     
     func startDownload() {
@@ -34,10 +35,14 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
               let url = URL(string: "\(baseUrl)\(chapter.fileName)") else {
             return
         }
-        let session = URLSession(configuration: .default,
+        let conf = URLSessionConfiguration.default
+        conf.allowsCellularAccess = DataService.shared.getDownloadWith() == .cellularAndWifi ? true : false
+        conf.waitsForConnectivity = true
+        session?.invalidateAndCancel()
+        session = URLSession(configuration: conf,
                                  delegate: self,
                                  delegateQueue: .main)
-        task = session.downloadTask(with: url)
+        task = session?.downloadTask(with: url)
         task?.resume()
         isDownloadingInProgress = true
     }
@@ -69,6 +74,10 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         publishDownloadStopped()
         processDownloadQueue()
+    }
+    
+    func urlSession(_ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask) {
+        print("taskIsWaitingForConnectivity fi\(task.state)")
     }
     
     func moveFrom(source:URL,chapter:ChapterModel?) {
@@ -184,6 +193,7 @@ extension DownloadService {
     func cancelCurrentDownload() {
         isDownloadingInProgress = false
         removeFromDownloadQueue(chapter: downloadList.first)
+        session?.invalidateAndCancel()
         task?.cancel()
         publishDownloadStopped()
         processDownloadQueue()

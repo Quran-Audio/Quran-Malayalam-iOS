@@ -23,6 +23,10 @@ class DownloadQueueViewModel:ObservableObject {
         subscribeDownloadNotification()
         downloadQueue = DownloadService.shared.downloadList
     }
+    
+    func checkTheNetwork() {
+        //FIXME: check network connectivity
+    }
 
     func startDownload() {
         downloadQueue = DownloadService.shared.downloadList

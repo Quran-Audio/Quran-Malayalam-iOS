@@ -94,7 +94,11 @@ struct DownloadQueueView: View {
     @ViewBuilder var buttonPanel:some View {
         HStack(spacing:0) {
             Button {
-                viewModel.startDownload()
+                if ReachabilityService.isConnectedToNetwork() {
+                    viewModel.startDownload()
+                }else {
+                    //FIXME: Toast
+                }
             } label: {
                 Image(systemName: viewModel.isDownloading ? "pause":"play")
                     .font(.system(size: 30))

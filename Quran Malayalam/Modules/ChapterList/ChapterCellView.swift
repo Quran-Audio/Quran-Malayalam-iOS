@@ -30,7 +30,7 @@ struct ChapterCell:View {
                                 .foregroundColor(ThemeService.themeColor)
                             
                             Text("\(chapter.index)")
-                                .foregroundColor(.white)
+                                .foregroundColor(ThemeService.whiteColor)
                                 .font(.system(size: 19))
                         }
                         VStack(alignment:.leading) {
@@ -85,7 +85,7 @@ struct ChapterCell:View {
                             Image(systemName: isFavourite ? "star.fill": "star")
                         }
                     }
-                }.foregroundColor(.white)
+                }.foregroundColor(ThemeService.whiteColor)
             }
             
         }.foregroundColor(ThemeService.titleColor)

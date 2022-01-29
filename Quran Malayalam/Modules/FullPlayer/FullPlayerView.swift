@@ -109,9 +109,9 @@ struct FullPlayerView: View {
                        in: 0...viewModel.sliderMaxValue){ isEdited in
                     viewModel.seekTo(seconds: viewModel.sliderValue)
                 }
-                .accentColor(.white)
-                .padding(.horizontal)
-                .offset(y:10)
+                       .accentColor(ThemeService.whiteColor)
+                       .padding(.horizontal)
+                       .offset(y:10)
                 
                 HStack() {
                     Text("\(viewModel.currentTimeText)")
@@ -127,7 +127,7 @@ struct FullPlayerView: View {
     }
     
     struct LoaderView:View {
-        var tintColor:Color = .white
+        var tintColor:Color = ThemeService.whiteColor
         var scaleSize:CGFloat = 2.5
         
         var body: some View {

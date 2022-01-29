@@ -108,7 +108,7 @@ struct ChapterListView: View {
             }
             Spacer(minLength: 5)
         }
-        .background(.white)
+        .background(ThemeService.whiteColor)
     }
     
     private func actionSheet() {
