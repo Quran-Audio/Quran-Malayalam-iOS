@@ -26,33 +26,34 @@ class ChapterListViewModel: ObservableObject {
     var sliderMaxValue: CGFloat{CGFloat(currentChapter?.durationInSecs ?? 0)}
     var currentTimeText:String {AudioService.shared.currentTimeText}
     var durationText:String {AudioService.shared.durationText(secs: currentChapter?.durationInSecs ?? 0)}
-    var baseUrl:String {data?.baseUrl ?? ""}
+    var baseUrl:String {DataService.shared.baseUrl}
+    var chapterList:[ChapterModel] {DataService.shared.chapterList}
     
     
     
     var chapters:[ChapterModel] {
         switch listType {
         case .all:
-            return data?.chapters ?? []
+            return chapterList
         case .downloads:
             let downloads = DataService.shared.getDownloads()
-            return data?.chapters.filter({ chapter in
+            return chapterList.filter({ chapter in
                 downloads.contains(chapter.index)
-            }) ?? []
+            })
         case .favourites:
             let favourites = DataService.shared.getFavourites()
-            return data?.chapters.filter({ chapter in
+            return chapterList.filter({ chapter in
                 favourites.contains(chapter.index)
-            }) ?? []
+            })
         }
     }
         
 
     
-    private var data:DataModel?
+//    private var data:DataModel?
     init() {
         print("initiated")
-        self.data = DataService.shared.loadData()
+        //self.data = DataService.shared.chapterList
     }
 }
 
@@ -76,8 +77,7 @@ extension ChapterListViewModel {
     }
     
     func configureAudio() {
-        guard let baseUrl = data?.baseUrl,
-              let chapter = currentChapter else {return}
+        guard let chapter = currentChapter else {return}
         AudioService.shared.setModel(baseUrl: baseUrl, model: chapter)
     }
 }

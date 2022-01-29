@@ -36,12 +36,13 @@ struct DownloadQueueView: View {
                             }
                         }
                     }else {
+                        Spacer(minLength: 20)
                         Text("Empty Download queue")
                     }
                     Spacer()
                 }
             }
-            .navigatorView(title: "Settings",
+            .navigatorView(title: "Download Manager",
                            showBackButton: true) {
                 Text("").opacity(0)
             } rightItems: {

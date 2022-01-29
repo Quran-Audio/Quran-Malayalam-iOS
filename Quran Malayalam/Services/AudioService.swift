@@ -6,13 +6,23 @@
 //
 
 import Foundation
+import MediaPlayer
 import AVKit
 
 class AudioService {
     private static let currentChapterKey = "qa-current-chapter"
     private static let baseUrlKey = "qa-base-url"
     static var shared:AudioService = AudioService()
-    private init() {setupAudio()}
+    private init() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }catch {
+            print("Audio Error:\(error.localizedDescription)")
+        }
+        setupRemoteTransportControls()
+        setupAudio()
+    }
     private var timer = Timer()
     
     //var onPlayFinished: () -> Void = {}
@@ -242,5 +252,31 @@ extension Notification.Name {
     
     static var onChapterChange: Notification.Name {
         return .init(rawValue: "Audio.ChapterChange")
+    }
+}
+
+//MARK: Remote Transport Control
+extension AudioService {
+    func setupRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            if !self.isPlaying {
+                self.playPause()
+                return .success
+            }
+            return .commandFailed
+        }
+        
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            if self.isPlaying {
+                self.playPause()
+                return .success
+            }
+            return .commandFailed
+        }
+        
     }
 }

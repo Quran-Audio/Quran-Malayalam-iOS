@@ -25,6 +25,9 @@ struct NavigatorView<LeftItems,RightItems>: ViewModifier where LeftItems : View,
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
         }
+        .navigationBarHidden(true)
+        .navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
     }
     
     @ViewBuilder private var baseNaviator: some View {

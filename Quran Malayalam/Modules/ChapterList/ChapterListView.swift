@@ -41,14 +41,12 @@ struct ChapterListView: View {
                         .background(ThemeService.themeColor)
                 }
                 .navigatorView(title: "Quran Malayalam") {
-                    Button {
-                        actionSheet()
-                    } label: {
-                        Image(systemName: "square.and.arrow.up")
-                            .font(.system(size: 20))
+                    NavigationLink(destination: DownloadQueueView()) {
+                        Image(systemName: "icloud.and.arrow.down")
+                            .font(.system(size: 22))
                     }
                 } rightItems: {
-                    NavigationLink(destination: DownloadQueueView()) {
+                    NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gearshape")
                             .font(.system(size: 20))
                     }

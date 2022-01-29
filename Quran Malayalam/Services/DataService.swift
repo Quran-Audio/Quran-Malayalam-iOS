@@ -11,12 +11,12 @@ class DataService {
     static var shared = DataService()
     var baseUrl:String = ""
     var chapterList:[ChapterModel] = []
-    private init() {}
+    private init() {loadData()}
     
-    func loadData() -> DataModel? {
+    func loadData() {
         guard let path = Bundle.main.path(forResource: "Data", ofType: "json") else {
             print("Invalid file")
-            return nil
+            return
         }
         let decoder = JSONDecoder()
         do {
@@ -24,7 +24,6 @@ class DataService {
             let chapterMetaData = try decoder.decode(DataModel.self, from: data)
             baseUrl = chapterMetaData.baseUrl
             chapterList = chapterMetaData.chapters
-            return chapterMetaData
         } catch DecodingError.keyNotFound(let key, let context) {
             Swift.print("could not find key \(key) in JSON: \(context.debugDescription)")
         } catch DecodingError.valueNotFound(let type, let context) {
@@ -36,7 +35,6 @@ class DataService {
         } catch let error as NSError {
             NSLog("Error in read(from:ofType:) domain= \(error.domain), description= \(error.localizedDescription)")
         }
-        return nil
     }
     
     
@@ -114,5 +112,22 @@ class DataService {
         }catch {
             print("Error \(error)")
         }
+    }
+}
+
+//MARK: Download with
+extension DataService {
+    enum DownloadWith:Int {
+        case wifi
+        case cellularAndWifi
+    }
+    
+    func getDownloadWith() -> DownloadWith {
+        let rawValue = UserDefaults.standard.integer(forKey:"QMDownloadWWith")
+        return DownloadWith(rawValue:rawValue) ?? .wifi
+    }
+    
+    func set(downloadWith:DownloadWith) {
+        UserDefaults.standard.set(downloadWith.rawValue, forKey: "QMDownloadWWith")
     }
 }
