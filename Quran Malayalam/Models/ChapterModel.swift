@@ -9,6 +9,7 @@ import Foundation
 
 struct DataModel:Codable {
     let baseUrl: String
+    let shareText: String
     let chapters:[ChapterModel]
 }
 
