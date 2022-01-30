@@ -45,7 +45,7 @@ struct ChapterListView: View {
                 }
                 FullPlayerView(frameHeight: $fullPlayerFrameHeight,
                                opacity:$fullPlayerOpacity)
-            }.navigatorView(title: "Quran Malayalam") {
+            }.navigatorView(title: "Quran") {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     Button {
                         print("Download Button")
@@ -158,12 +158,6 @@ struct ChapterListView: View {
             Spacer(minLength: 5)
         }
         .background(ThemeService.whiteColor)
-    }
-    
-    private func actionSheet() {
-        let data = viewModel.shareText
-        let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
     
     
