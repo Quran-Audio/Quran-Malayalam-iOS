@@ -9,6 +9,9 @@ import SwiftUI
 
 struct DownloadQueueView: View {
     @ObservedObject var viewModel = DownloadQueueViewModel()
+    @State var showToast:Bool = false
+    @State var toastDescription:String = ""
+    @State var toastType:ToastView.ToasType = .warning
     var padding:CGFloat = 5
     var lineWidth:CGFloat = 5
     var body: some View {
@@ -48,6 +51,11 @@ struct DownloadQueueView: View {
             } rightItems: {
                 Text("").opacity(0)
             }
+            .toast(showToast: $showToast,
+                   title: "Warning",
+                   description: toastDescription,
+                   type: .warning,
+                   alignment: .center)
 
         }
         .navigationBarTitle("")
@@ -61,21 +69,21 @@ struct DownloadQueueView: View {
         var chapter:ChapterModel
         var body: some View {
             ZStack {
-                RoundedRectangle(cornerRadius: 5, style: .continuous)
-                    .strokeBorder(ThemeService.borderColor,lineWidth: 1)
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .strokeBorder(ThemeService.borderColor,lineWidth: 2)
                 HStack {
                     VStack(alignment:.leading) {
-                        Text("\(chapter.name)")
+                        Text("سورَة \(chapter.name) .\(chapter.index)")
                             .foregroundColor(ThemeService.themeColor)
-                            .font(.system(size: 20))
-                        Text("\(chapter.nameEn)")
+                            .font(ThemeService.shared.arabicFont(size: 23))
+                        Text("Surah \(chapter.nameEn)")
                             .foregroundColor(ThemeService.themeColor.opacity(0.7))
-                            .font(.system(size: 17))
+                            .font(.system(size: 18))
+                            .offset(x:20,y:-5)
                         
-                    }
-                    .offset(x:15)
+                    }.padding(.horizontal)
                     Spacer()
-                    Text("Size: \(chapter.size)")
+                    Text("\(chapter.size)B")
                         .foregroundColor(ThemeService.themeColor.opacity(0.8))
                         .font(.system(size: 15))
                     Button {
@@ -85,7 +93,7 @@ struct DownloadQueueView: View {
                             .font(.system(size: 20))
                             .foregroundColor(ThemeService.red)
                             .padding(.horizontal)
-                    }.frame(width: 44, height: 44)
+                    }.frame(width: 44, height: 55)
                 }.padding(.all,5)
             }.padding(.horizontal,20)
             
@@ -94,15 +102,19 @@ struct DownloadQueueView: View {
     @ViewBuilder var buttonPanel:some View {
         HStack(spacing:0) {
             Button {
-                if ReachabilityService.isConnectedToNetwork() {
+                if viewModel.isConnectedToNetwork {
                     viewModel.startDownload()
                 }else {
-                    //FIXME: Toast
+                    if let description = viewModel.connectionAlertMessage {
+                        self.toastDescription = description
+                        showToast = true
+                    }
+                    
                 }
             } label: {
                 Image(systemName: viewModel.isDownloading ? "pause":"play")
-                    .font(.system(size: 30))
-                    .foregroundColor(ThemeService.themeColor)
+                    .font(.system(size: 25))
+                    .foregroundColor(ThemeService.themeColor.opacity(0.9))
                     .padding(.horizontal)
             }
             Button {
@@ -149,10 +161,10 @@ struct DownloadQueueView: View {
     
     @ViewBuilder var title: some View {
         VStack{
-            Text("\(viewModel.chapterName)")
+            Text("سورَة \(viewModel.chapterName)")
                 .font(ThemeService.shared.arabicFont(size: 25))
                 .foregroundColor(ThemeService.themeColor)
-            Text("\(viewModel.chapterTrans)")
+            Text("Surah \(viewModel.chapterTrans)")
                 .font(.system(size: 20))
                 .foregroundColor(ThemeService.themeColor.opacity(0.7))
         }

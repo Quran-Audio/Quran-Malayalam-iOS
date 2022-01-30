@@ -31,9 +31,9 @@
             filePath = "Quran Malayalam/Services/DownloadService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "moveFrom(source:chapter:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "urlSession(_:taskIsWaitingForConnectivity:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,10 +63,26 @@
             filePath = "Quran Malayalam/Services/DownloadService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "urlSession(_:taskIsWaitingForConnectivity:)"
-            landmarkType = "7">
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "DownloadService"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5876E7B5-7778-4D5F-B9C8-6EC13CC3F572"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Quran Malayalam/Modules/DownloadQueue/DownloadQueueViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "connectionAlertMessage"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -24,8 +24,17 @@ class DownloadQueueViewModel:ObservableObject {
         downloadQueue = DownloadService.shared.downloadList
     }
     
-    func checkTheNetwork() {
-        //FIXME: check network connectivity
+    var isConnectedToNetwork:Bool {ReachabilityService.isConnectedToNetwork()}
+    
+    var connectionAlertMessage:String? {
+        let downloadWith = DataService.shared.getDownloadWith()
+        if !ReachabilityService.isConnectedToNetwork() {
+            if downloadWith == .cellularAndWifi {
+                return "Change the Download Setting to 'Cellular And Wifi'"
+            }
+            return "Please check the Innternet connection"
+        }
+        return nil
     }
 
     func startDownload() {

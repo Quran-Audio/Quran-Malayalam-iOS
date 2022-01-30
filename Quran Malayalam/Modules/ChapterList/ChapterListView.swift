@@ -40,19 +40,18 @@ struct ChapterListView: View {
                     TabBarView(viewModel: viewModel)
                         .background(ThemeService.themeColor)
                 }
-                .navigatorView(title: "Quran Malayalam") {
-                    NavigationLink(destination: DownloadQueueView()) {
-                        Image(systemName: "icloud.and.arrow.down")
-                            .font(.system(size: 22))
-                    }
-                } rightItems: {
-                    NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gearshape")
-                            .font(.system(size: 20))
-                    }
-                }
                 FullPlayerView(frameHeight: $fullPlayerFrameHeight,
                                opacity:$fullPlayerOpacity)
+            }.navigatorView(title: "Quran Malayalam") {
+                NavigationLink(destination: DownloadQueueView()) {
+                    Image(systemName: "icloud.and.arrow.down")
+                        .font(.system(size: 22))
+                }
+            } rightItems: {
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gearshape")
+                        .font(.system(size: 20))
+                }
             }
         }
         .background(ThemeService.themeColor)

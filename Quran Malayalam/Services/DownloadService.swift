@@ -9,7 +9,7 @@ import UIKit
 
 class DownloadService: NSObject,URLSessionDownloadDelegate {
     var currentChapter:ChapterModel? {downloadList.first}
-    private var baseUrl:String? = "https://archive.org/download/malayalam-meal/"
+    private var baseUrl:String = DataService.shared.baseUrl
     var downloadList:[ChapterModel] = []
     static var shared = DownloadService()
     private override init() {}
@@ -31,8 +31,7 @@ class DownloadService: NSObject,URLSessionDownloadDelegate {
     
     //FIXME: To Be deleted
     private func startFileDownload(chapter:ChapterModel) {
-        guard let baseUrl = baseUrl,
-              let url = URL(string: "\(baseUrl)\(chapter.fileName)") else {
+        guard let url = URL(string: "\(baseUrl)\(chapter.fileName)") else {
             return
         }
         let conf = URLSessionConfiguration.default
