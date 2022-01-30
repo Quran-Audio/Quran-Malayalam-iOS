@@ -54,7 +54,7 @@ struct DownloadQueueView: View {
             .toast(showToast: $showToast,
                    title: "Warning",
                    description: toastDescription,
-                   type: .warning,
+                   type: $toastType,
                    alignment: .center)
 
         }

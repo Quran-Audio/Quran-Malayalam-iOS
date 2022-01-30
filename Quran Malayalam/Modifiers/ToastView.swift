@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ToastView: ViewModifier {
     @Binding var showToast:Bool
+    @Binding var type:ToasType
     var title:String = ""
     var description:String = ""
-    var type:ToasType = .info
     var alignment:Alignment = .center
     var duration:CGFloat = 1
+    var onConfirm:(() -> Void)?
     
     func body(content:Content) -> some View {
         ZStack(alignment: alignment) {
@@ -31,6 +32,28 @@ struct ToastView: ViewModifier {
                             .font(.system(size: 18))
                             .foregroundColor(ThemeService.whiteColor.opacity(0.7))
                     }
+                    if type == .alert {
+                        HStack{
+                            Button {
+                                onConfirm?()
+                            } label: {
+                                Text("Ok")
+                                    .padding(.horizontal)
+                                    .frame(height: 40)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).strokeBorder())
+                                    .foregroundColor(ThemeService.borderColor)
+                            }
+                            Button {
+                                showToast = false
+                            } label: {
+                                Text("Cancel")
+                                    .padding(.horizontal)
+                                    .frame(height: 40)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).strokeBorder())
+                                    .foregroundColor(ThemeService.borderColor)
+                            }
+                        }
+                    }
                 }
                 .padding()
                 .foregroundColor(ThemeService.whiteColor)
@@ -42,9 +65,11 @@ struct ToastView: ViewModifier {
             }
         }.onChange(of: showToast) { newValue in
             if showToast {
-                DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                    withAnimation(.spring()) {
-                        showToast = false
+                if type != .alert {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                        withAnimation(.spring()) {
+                            showToast = false
+                        }
                     }
                 }
             }
@@ -53,7 +78,7 @@ struct ToastView: ViewModifier {
     }
         
     enum ToasType {
-        case info,warning,error
+        case info,warning,error,alert
     }
     
     @ViewBuilder var image: some View {
@@ -64,6 +89,8 @@ struct ToastView: ViewModifier {
             Image(systemName: "exclamationmark.triangle")
         case .error:
             Image(systemName: "xmark.circle")
+        case .alert:
+            Image(systemName: "exclamationmark.triangle")
         }
     }
 }
@@ -72,13 +99,18 @@ extension View {
     func toast(showToast:Binding<Bool>,
                title:String = "",
                description:String = "",
-               type:ToastView.ToasType = .info,
+               type:Binding<ToastView.ToasType>,
+               duration:Double = 1,
+               onConfirm:(() -> Void)? = nil,
                alignment:Alignment = .center) -> some View {
+        
         modifier(ToastView(showToast: showToast,
+                           type: type,
                            title: title,
                            description: description,
-                           type: type,
-                           alignment: alignment))
+                           alignment: alignment,
+                           duration: duration,
+                           onConfirm: onConfirm))
     }
 }
 
@@ -93,6 +125,7 @@ struct ToastView_Previews: PreviewProvider {
         }.toast(showToast: .constant(true),
                 title: "Some Title",
                 description: "Some Description",
+                type:.constant(.alert),
                 alignment: .bottom)
             .background(ThemeService.whiteColor)
         

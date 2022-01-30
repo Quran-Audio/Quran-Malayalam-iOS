@@ -16,6 +16,7 @@ struct ChapterListView: View {
     @State var toastTitle:String = ""
     @State var toastDescriptiom:String = ""
     @State var toastType:ToastView.ToasType = .info
+    @State var onToastConfirm:(() -> Void)?
     
     var body: some View {
         VStack {
@@ -58,7 +59,8 @@ struct ChapterListView: View {
         .toast(showToast: $showToast,
                title: toastTitle,
                description: toastDescriptiom,
-               type:toastType)
+               type: $toastType,
+               onConfirm: onToastConfirm)
     }
     
     //MARK: View Builders
@@ -82,22 +84,37 @@ struct ChapterListView: View {
             Spacer(minLength: 5)
             ForEach(viewModel.chapters, id: \.index) { chapter in
                 ChapterCell(onFavourite: { chapter in
+                    
                     if viewModel.isFavourite(chapter: chapter) {
+                        toastType = .info
                         toastTitle = "Removed from favourites"
+                        toastDescriptiom = ""
                     }else {
+                        toastType = .info
                         toastTitle = "Added to favourites"
+                        toastDescriptiom = ""
                     }
                     self.showToast = true
                     viewModel.onFavouriteChapter(chapterIndex: chapter.index)
                 },
                             onDownload: { chapter in
                     if viewModel.isDownloaded(chapter: chapter) {
-                        toastTitle = "Deleted file."
+                        toastType = .alert
+                        toastTitle = "Warning"
+                        toastDescriptiom = "Permanently delete the file?"
+                        self.showToast = true
+                        onToastConfirm = {
+                            viewModel.deleteChapter(chapter: chapter)
+                            self.showToast = false
+                        }
                     }else {
+                        toastType = .info
                         toastTitle = "Added to download queue."
+                        viewModel.addToDownloadQueue(chapter: chapter)
+                        toastDescriptiom = ""
+                        self.showToast = true
                     }
-                    self.showToast = true
-                    viewModel.onDownloadChapter(chapter:chapter)
+                    
                 },
                             chapter: chapter)
                     .contentShape(Rectangle())

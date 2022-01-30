@@ -100,14 +100,14 @@ extension ChapterListViewModel {
 
 //MARK: Download
 extension ChapterListViewModel {
-    func onDownloadChapter(chapter:ChapterModel) {
+    func addToDownloadQueue(chapter:ChapterModel) {
+        DownloadService.shared.addToDownloadQueue(chapter: chapter)
+    }
+    
+    func deleteChapter(chapter:ChapterModel) {
         if DataService.shared.isDownloaded(index: chapter.index) {
-            //FIXME: Toast Here
             DataService.shared.deleteDownloaded(chapter: chapter)
-        }else {
-            DownloadService.shared.addToDownloadQueue(chapter: chapter)
         }
-        //self.listType = self.listType
     }
     
     func isDownloaded(chapter:ChapterModel) -> Bool {
