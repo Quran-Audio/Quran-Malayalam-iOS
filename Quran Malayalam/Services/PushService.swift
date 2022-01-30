@@ -50,15 +50,15 @@ class PushService: NSObject {
         notificationContent.body = "Lets listen Quran. May ALLAH bless you"
         
         //Firday Trigger
-//        var date = DateComponents()
-//        date.hour = 7 // 7 AM
-//        date.minute = 1 // First Minute
-//        //        date.day = 6 // Friday
-//        let dailyTrigger = UNCalendarNotificationTrigger(dateMatching: date ,
-//                                                         repeats: true)
+        var date = DateComponents()
+        date.hour = 7 // 7 AM
+        date.minute = 1 // First Minute
+        //        date.day = 6 // Friday
+        let dailyTrigger = UNCalendarNotificationTrigger(dateMatching: date ,
+                                                         repeats: true)
         
         // Time Interval Trigger
-         let dailyTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: true)
+//         let dailyTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.0, repeats: true)
         
         // Create Notification Request
         let notificationRequest = UNNotificationRequest(identifier: "thafseer_app_firday local_notification",
