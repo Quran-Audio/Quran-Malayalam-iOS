@@ -22,6 +22,7 @@ struct SettingsView: View {
                 Spacer()
             }
         }
+        .foregroundColor(ThemeService.themeColor)
         .navigatorView(title: "Settings",
                         showBackButton: true) {
             Text("").opacity(0)

@@ -45,6 +45,7 @@ struct DownloadQueueView: View {
                     Spacer()
                 }
             }
+            .foregroundColor(ThemeService.themeColor)
             .navigatorView(title: "Download Manager",
                            showBackButton: true) {
                 Text("").opacity(0)

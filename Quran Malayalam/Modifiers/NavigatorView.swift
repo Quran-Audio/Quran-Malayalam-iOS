@@ -16,7 +16,7 @@ struct NavigatorView<LeftItems,RightItems>: ViewModifier where LeftItems : View,
     @ViewBuilder var rightItems:RightItems
     
     func body(content: Content) -> some View {
-        NavigationView {
+        if UIDevice.current.userInterfaceIdiom == .pad {
             VStack(spacing: 0) {
                 baseNaviator
                 content
@@ -24,10 +24,21 @@ struct NavigatorView<LeftItems,RightItems>: ViewModifier where LeftItems : View,
             .navigationBarHidden(true)
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
+        } else {
+            NavigationView {
+                VStack(spacing: 0) {
+                    baseNaviator
+                    content
+                }
+                .navigationBarHidden(true)
+                .navigationBarTitle("")
+                .navigationBarBackButtonHidden(true)
+            }
+            .navigationBarHidden(true)
+            .navigationBarTitle("")
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarHidden(true)
-        .navigationBarTitle("")
-        .navigationBarBackButtonHidden(true)
+        
     }
     
     @ViewBuilder private var baseNaviator: some View {

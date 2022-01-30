@@ -10,6 +10,8 @@ import SwiftUI
 struct ChapterListView: View {
     @ObservedObject var viewModel = ChapterListViewModel()
     @ObservedObject var playerCellViewModel = PlayerCellViewModel()
+    @State var showingDownloadSheet:Bool = false
+    @State var showingSettingsSheet:Bool = false
     @State var fullPlayerFrameHeight:CGFloat = 0
     @State var fullPlayerOpacity:CGFloat = 0
     @State var showToast:Bool = false
@@ -44,16 +46,47 @@ struct ChapterListView: View {
                 FullPlayerView(frameHeight: $fullPlayerFrameHeight,
                                opacity:$fullPlayerOpacity)
             }.navigatorView(title: "Quran Malayalam") {
-                NavigationLink(destination: DownloadQueueView()) {
-                    Image(systemName: "icloud.and.arrow.down")
-                        .font(.system(size: 22))
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    Button {
+                        print("Download Button")
+                        showingDownloadSheet = true
+                    } label: {
+                        Image(systemName: "icloud.and.arrow.down")
+                            .font(.system(size: 20))
+                    }
+                    .sheet(isPresented: $showingDownloadSheet) {
+                        showingDownloadSheet = false
+                    } content: {
+                        DownloadQueueView()
+                    }
+                }else {
+                    NavigationLink(destination: DownloadQueueView()) {
+                        Image(systemName: "icloud.and.arrow.down")
+                            .font(.system(size: 22))
+                    }
                 }
             } rightItems: {
-                NavigationLink(destination: SettingsView()) {
-                    Image(systemName: "gearshape")
-                        .font(.system(size: 20))
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    Button {
+                        print("Settings Button")
+                        showingSettingsSheet = true
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 20))
+                    }
+                    .sheet(isPresented: $showingSettingsSheet) {
+                        showingSettingsSheet = false
+                    } content: {
+                        SettingsView()
+                    }
+                }else {
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 20))
+                    }
                 }
             }
+            
         }
         .background(ThemeService.themeColor)
         .toast(showToast: $showToast,
