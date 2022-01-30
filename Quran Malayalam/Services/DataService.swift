@@ -10,6 +10,7 @@ import Foundation
 class DataService {
     static var shared = DataService()
     var baseUrl:String = ""
+    var shareText:String = ""
     var chapterList:[ChapterModel] = []
     private init() {loadData()}
     
@@ -23,6 +24,7 @@ class DataService {
             let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
             let chapterMetaData = try decoder.decode(DataModel.self, from: data)
             baseUrl = chapterMetaData.baseUrl
+            shareText = chapterMetaData.shareText
             chapterList = chapterMetaData.chapters
         } catch DecodingError.keyNotFound(let key, let context) {
             Swift.print("could not find key \(key) in JSON: \(context.debugDescription)")

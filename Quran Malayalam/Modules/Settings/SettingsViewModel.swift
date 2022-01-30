@@ -8,7 +8,7 @@
 import Foundation
 class SettingsViewModel:ObservableObject {
     var shareText: String {
-        return "App to Listen Quran Arabic and malayalam audio\n Url: "
+        return DataService.shared.shareText
     }
     
     @Published var downloadWith:DataService.DownloadWith = .wifi
