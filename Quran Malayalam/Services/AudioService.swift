@@ -189,6 +189,24 @@ extension AudioService {
         return  URL(string: "\(baseUrl)/\(chapter.fileName)")
         
     }
+    
+    func onNext() {
+        guard let currentChapter = loadChapter(),
+              currentChapter.index < 114 else {return}
+        
+        let chapter = DataService.shared.chapterList[currentChapter.index]
+        let baseUrl = DataService.shared.baseUrl
+        AudioService.shared.setModel(baseUrl: baseUrl, model: chapter)
+    }
+    
+    func onPrevoius() {
+        guard let currentChapter = loadChapter(),
+              currentChapter.index > 1 else {return}
+        
+        let chapter = DataService.shared.chapterList[currentChapter.index-2]
+        let baseUrl = DataService.shared.baseUrl
+        AudioService.shared.setModel(baseUrl: baseUrl, model: chapter)
+    }
 }
 //MARK: Notification
 extension AudioService {
@@ -277,6 +295,39 @@ extension AudioService {
             }
             return .commandFailed
         }
+        
+        commandCenter.previousTrackCommand.isEnabled = true
+        commandCenter.previousTrackCommand.addTarget{ [unowned self] event in
+            self.onPrevoius()
+            return .success
+        }
+        
+        commandCenter.nextTrackCommand.isEnabled = true
+        commandCenter.nextTrackCommand.addTarget{ [unowned self] event in
+            self.onNext()
+            return .success
+        }
+        
+        commandCenter.changePlaybackPositionCommand.isEnabled = true
+        commandCenter.changePlaybackPositionCommand.addTarget { [weak self](remoteEvent) -> MPRemoteCommandHandlerStatus in
+            guard let self = self else {return .commandFailed}
+            if let player = self.player {
+                let playerRate = player.rate
+                if let event = remoteEvent as? MPChangePlaybackPositionCommandEvent {
+                    player.seek(to: CMTime(seconds: event.positionTime, preferredTimescale: CMTimeScale(1000)), completionHandler: { [weak self](success) in
+                        guard let self = self else {return}
+                        if success {
+                            self.player?.rate = playerRate
+                        }
+                    })
+                    return .success
+                }
+            }
+            return .commandFailed
+        }
+        
+        // Register to receive events
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         
     }
 }

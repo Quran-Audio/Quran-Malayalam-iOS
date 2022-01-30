@@ -17,6 +17,7 @@ struct Quran_MalayalamApp: App {
     var body: some Scene {
         WindowGroup {
             ChapterListView()
+                .preferredColorScheme(.light)
         }
     }
 }
