@@ -90,6 +90,7 @@ class AudioService {
         saveBaseUrl(baseUrl)
         setupAudio()
         publishChapterChange()
+        setRemoteTrack(chapter: model)
     }
     
     private func setIsBuffering() {
@@ -328,6 +329,23 @@ extension AudioService {
         
         // Register to receive events
         UIApplication.shared.beginReceivingRemoteControlEvents()
+        
+    }
+    
+    func setRemoteTrack(chapter:ChapterModel) {
+        var currentTrack = [String:Any]()
+        currentTrack[MPMediaItemPropertyTitle] = chapter.nameEn
+        currentTrack[MPNowPlayingInfoPropertyElapsedPlaybackTime] = currentTimeInSecs
+        currentTrack[MPMediaItemPropertyPlaybackDuration] = chapter.durationInSecs / 1000
+        currentTrack[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
+        if let image = UIImage(named: "launch") {
+            let artWork:MPMediaItemArtwork = MPMediaItemArtwork(boundsSize: image.size) { size in
+                return image
+            }
+            currentTrack[MPMediaItemPropertyArtwork] = artWork
+        }
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = currentTrack
         
     }
 }
