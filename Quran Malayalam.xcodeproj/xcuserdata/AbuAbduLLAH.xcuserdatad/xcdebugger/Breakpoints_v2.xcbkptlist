@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A8236CF3-ADDE-47E8-8EC3-411976921580"
+            uuid = "4A5B012E-6896-4DE5-A1A2-6456B9009E07"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Quran Malayalam/Services/AudioService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "remoteControlReceived(with:)"
             landmarkType = "7">
          </BreakpointContent>

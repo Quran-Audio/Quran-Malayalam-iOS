@@ -289,17 +289,13 @@ extension AudioService {
         
         commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget { [unowned self] event in
-            DispatchQueue.main.async {
-                self.playPause()
-            }
+            self.playPause()
             return .success
         }
         
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget { [unowned self] event in
-            DispatchQueue.main.async {
-                self.playPause()
-            }
+            self.playPause()
             return .success
         }
         
@@ -355,6 +351,8 @@ extension AudioService {
     }
     
     override func remoteControlReceived(with event: UIEvent?) {
-        print(event)
+        let rc = event?.subtype
+        print("rc.rawValue: \(rc?.rawValue)")
+        // Do your thing
     }
 }
