@@ -9,19 +9,23 @@ import Foundation
 import MediaPlayer
 import AVKit
 
-class AudioService {
+class AudioService:UIResponder {
+    private var remoteCurrentTrack = [String:Any]()
     private static let currentChapterKey = "qa-current-chapter"
     private static let baseUrlKey = "qa-base-url"
     static var shared:AudioService = AudioService()
-    private init() {
+    private override init() {
+        super.init()
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
         }catch {
             print("Audio Error:\(error.localizedDescription)")
         }
-        setupRemoteTransportControls()
-        setupAudio()
+        // Register to receive events
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        self.setupRemoteTransportControls()
+        self.setupAudio()
     }
     private var timer = Timer()
     
@@ -69,6 +73,7 @@ class AudioService {
     
     
     func setupAudio() {
+        setRemoteTrack()
         guard let audioUrl = getPlayUrl() else {return}
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerEvent), userInfo: nil, repeats: true)
@@ -90,7 +95,6 @@ class AudioService {
         saveBaseUrl(baseUrl)
         setupAudio()
         publishChapterChange()
-        setRemoteTrack(chapter: model)
     }
     
     private func setIsBuffering() {
@@ -128,6 +132,10 @@ class AudioService {
     }
     
     @objc private func onTimerEvent() {
+        DispatchQueue.main.async {
+            self.setRemoteTrack()
+        }
+        
         publishAudioProgress()
         setIsBuffering()
     }
@@ -281,20 +289,18 @@ extension AudioService {
         
         commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget { [unowned self] event in
-            if !self.isPlaying {
+            DispatchQueue.main.async {
                 self.playPause()
-                return .success
             }
-            return .commandFailed
+            return .success
         }
         
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget { [unowned self] event in
-            if self.isPlaying {
+            DispatchQueue.main.async {
                 self.playPause()
-                return .success
             }
-            return .commandFailed
+            return .success
         }
         
         commandCenter.previousTrackCommand.isEnabled = true
@@ -324,7 +330,7 @@ extension AudioService {
                     return .success
                 }
             }
-            return .commandFailed
+            return .success
         }
         
         // Register to receive events
@@ -332,20 +338,23 @@ extension AudioService {
         
     }
     
-    func setRemoteTrack(chapter:ChapterModel) {
-        var currentTrack = [String:Any]()
-        currentTrack[MPMediaItemPropertyTitle] = chapter.nameEn
-        currentTrack[MPNowPlayingInfoPropertyElapsedPlaybackTime] = currentTimeInSecs
-        currentTrack[MPMediaItemPropertyPlaybackDuration] = chapter.durationInSecs / 1000
-        currentTrack[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
+    func setRemoteTrack() {
+        guard let chapter = loadChapter() else {return}
+        remoteCurrentTrack[MPMediaItemPropertyTitle] = chapter.nameEn
+        remoteCurrentTrack[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Int(currentTimeInSecs)
+        remoteCurrentTrack[MPMediaItemPropertyPlaybackDuration] = Int(chapter.durationInSecs)
+        remoteCurrentTrack[MPNowPlayingInfoPropertyPlaybackRate] = isPlaying ? 1:0
         if let image = UIImage(named: "launch") {
             let artWork:MPMediaItemArtwork = MPMediaItemArtwork(boundsSize: image.size) { size in
                 return image
             }
-            currentTrack[MPMediaItemPropertyArtwork] = artWork
+            remoteCurrentTrack[MPMediaItemPropertyArtwork] = artWork
         }
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = remoteCurrentTrack
         
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = currentTrack
-        
+    }
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        print(event)
     }
 }
