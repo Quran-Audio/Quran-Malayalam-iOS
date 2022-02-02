@@ -9,28 +9,23 @@ import Foundation
 import MediaPlayer
 import AVKit
 
-class AudioService:UIResponder {
+class AudioService {
     private var remoteCurrentTrack = [String:Any]()
     private static let currentChapterKey = "qa-current-chapter"
     private static let baseUrlKey = "qa-base-url"
     static var shared:AudioService = AudioService()
-    private override init() {
-        super.init()
+    private init() {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
         }catch {
             print("Audio Error:\(error.localizedDescription)")
         }
-        // Register to receive events
-        UIApplication.shared.beginReceivingRemoteControlEvents()
         self.setupRemoteTransportControls()
         self.setupAudio()
     }
     private var timer = Timer()
     
-    //var onPlayFinished: () -> Void = {}
-    //var onBuffering: (Bool) -> Void = { _ in }
     var isBuffering:Bool = false
     
     
@@ -348,11 +343,5 @@ extension AudioService {
         }
         MPNowPlayingInfoCenter.default().nowPlayingInfo = remoteCurrentTrack
         
-    }
-    
-    override func remoteControlReceived(with event: UIEvent?) {
-        let rc = event?.subtype
-        print("rc.rawValue: \(rc?.rawValue)")
-        // Do your thing
     }
 }
