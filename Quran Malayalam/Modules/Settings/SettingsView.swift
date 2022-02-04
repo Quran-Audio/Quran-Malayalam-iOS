@@ -16,7 +16,9 @@ struct SettingsView: View {
         ScrollView {
             VStack(alignment:.leading,spacing: 0) {
                 Spacer(minLength: 20)
-                downloadWithView
+                if TargetDevice.currentDevice != .nativeMac {
+                    downloadWithView
+                }
                 emailView
                 shareView
                 Spacer()

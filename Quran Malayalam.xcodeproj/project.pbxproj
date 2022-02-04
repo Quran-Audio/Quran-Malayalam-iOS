@@ -16,6 +16,7 @@
 		2C26A04E2792AA7900FC38C9 /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A04D2792AA7900FC38C9 /* ThemeService.swift */; };
 		2C26A0542792BD3200FC38C9 /* XB Niloofar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C26A0522792BD3200FC38C9 /* XB Niloofar.ttf */; };
 		2C26A0552792BD3200FC38C9 /* Meera-05.1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C26A0532792BD3200FC38C9 /* Meera-05.1.ttf */; };
+		2C3C695227AD449300900750 /* TargetDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C695127AD449300900750 /* TargetDevice.swift */; };
 		2C463DA0278C614A00099415 /* FullPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C463D9F278C614A00099415 /* FullPlayerView.swift */; };
 		2C55499227A43B1400D4206D /* NavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55499127A43B1400D4206D /* NavigatorView.swift */; };
 		2C55499627A4645B00D4206D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55499527A4645B00D4206D /* SettingsView.swift */; };
@@ -71,6 +72,7 @@
 		2C26A0522792BD3200FC38C9 /* XB Niloofar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "XB Niloofar.ttf"; sourceTree = "<group>"; };
 		2C26A0532792BD3200FC38C9 /* Meera-05.1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Meera-05.1.ttf"; sourceTree = "<group>"; };
 		2C26A0562792BDB400FC38C9 /* Quran-Malayalam-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Quran-Malayalam-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2C3C695127AD449300900750 /* TargetDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetDevice.swift; sourceTree = "<group>"; };
 		2C463D9F278C614A00099415 /* FullPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayerView.swift; sourceTree = "<group>"; };
 		2C55499127A43B1400D4206D /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
 		2C55499527A4645B00D4206D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				2C8AB3A027A4FEDB00F2ACA3 /* ReachabilityService.swift */,
 				2C1D665927A6876F00AE8393 /* RatingService.swift */,
 				2C1D665B27A688C700AE8393 /* PushService.swift */,
+				2C3C695127AD449300900750 /* TargetDevice.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				2C8E503E2791C2C70050FADE /* ChapterModel.swift in Sources */,
 				2C8AB39D27A4D35300F2ACA3 /* SettingsViewModel.swift in Sources */,
 				2C1586CF278F013000085F6E /* AudioService.swift in Sources */,
+				2C3C695227AD449300900750 /* TargetDevice.swift in Sources */,
 				2CC3683727A23DAC000C0E82 /* ToastView.swift in Sources */,
 				2C8E50402791C3780050FADE /* DataService.swift in Sources */,
 				2C8AB39F27A4D9BC00F2ACA3 /* MailView.swift in Sources */,
@@ -614,7 +618,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Quran Malayalam/Quran Malayalam.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Quran Malayalam/Preview Content\"";
 				DEVELOPMENT_TEAM = 46445P5L6D;
 				ENABLE_PREVIEWS = YES;
@@ -649,7 +653,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Quran Malayalam/Quran Malayalam.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Quran Malayalam/Preview Content\"";
 				DEVELOPMENT_TEAM = 46445P5L6D;
 				ENABLE_PREVIEWS = YES;
