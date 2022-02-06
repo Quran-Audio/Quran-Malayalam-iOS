@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C22C3B3279DB4D500EE3437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C22C3B2279DB4D500EE3437 /* LaunchScreen.storyboard */; };
-		2C3F704727AF963F00E10BCE /* QuranAudioPlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3F704627AF963F00E10BCE /* QuranAudioPlayerKit */; };
 		2C8D3060278A81A400674BC5 /* Quran_MalayalamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D305F278A81A400674BC5 /* Quran_MalayalamApp.swift */; };
 		2C8D3064278A81A600674BC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D3063278A81A600674BC5 /* Assets.xcassets */; };
 		2C8D3067278A81A600674BC5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D3066278A81A600674BC5 /* Preview Assets.xcassets */; };
@@ -16,6 +15,7 @@
 		2C8D307B278A81A600674BC5 /* Quran_MalayalamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D307A278A81A600674BC5 /* Quran_MalayalamUITests.swift */; };
 		2C8D307D278A81A600674BC5 /* Quran_MalayalamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D307C278A81A600674BC5 /* Quran_MalayalamUITestsLaunchTests.swift */; };
 		2C8E503B2791C2A20050FADE /* Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E503A2791C2A20050FADE /* Data.json */; };
+		527A3C9027AFB43E002219CB /* QuranAudioPlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 527A3C8F27AFB43E002219CB /* QuranAudioPlayerKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +49,7 @@
 		2C8D307A278A81A600674BC5 /* Quran_MalayalamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quran_MalayalamUITests.swift; sourceTree = "<group>"; };
 		2C8D307C278A81A600674BC5 /* Quran_MalayalamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quran_MalayalamUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2C8E503A2791C2A20050FADE /* Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Data.json; sourceTree = "<group>"; };
+		527A3C8E27AFB41E002219CB /* QuranAudioPlayerKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = QuranAudioPlayerKit; path = ../QuranAudioPlayerKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C3F704727AF963F00E10BCE /* QuranAudioPlayerKit in Frameworks */,
+				527A3C9027AFB43E002219CB /* QuranAudioPlayerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +88,7 @@
 		2C8D3053278A81A400674BC5 = {
 			isa = PBXGroup;
 			children = (
+				527A3C8D27AFB41E002219CB /* Packages */,
 				2C8D305E278A81A400674BC5 /* Quran Malayalam */,
 				2C8D306F278A81A600674BC5 /* Quran MalayalamTests */,
 				2C8D3079278A81A600674BC5 /* Quran MalayalamUITests */,
@@ -152,6 +154,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		527A3C8D27AFB41E002219CB /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				527A3C8E27AFB41E002219CB /* QuranAudioPlayerKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,7 +179,7 @@
 			);
 			name = "Quran Malayalam";
 			packageProductDependencies = (
-				2C3F704627AF963F00E10BCE /* QuranAudioPlayerKit */,
+				527A3C8F27AFB43E002219CB /* QuranAudioPlayerKit */,
 			);
 			productName = "Quran Malayalam";
 			productReference = 2C8D305C278A81A400674BC5 /* Quran Malayalam.app */;
@@ -244,7 +254,6 @@
 			);
 			mainGroup = 2C8D3053278A81A400674BC5;
 			packageReferences = (
-				2C3F704527AF963F00E10BCE /* XCRemoteSwiftPackageReference "QuranAudioPlayerKit" */,
 			);
 			productRefGroup = 2C8D305D278A81A400674BC5 /* Products */;
 			projectDirPath = "";
@@ -650,21 +659,9 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		2C3F704527AF963F00E10BCE /* XCRemoteSwiftPackageReference "QuranAudioPlayerKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Quran-Audio/QuranAudioPlayerKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		2C3F704627AF963F00E10BCE /* QuranAudioPlayerKit */ = {
+		527A3C8F27AFB43E002219CB /* QuranAudioPlayerKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2C3F704527AF963F00E10BCE /* XCRemoteSwiftPackageReference "QuranAudioPlayerKit" */;
 			productName = QuranAudioPlayerKit;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -29,7 +29,6 @@ struct Quran_MalayalamApp: App {
     var body: some Scene {
         WindowGroup {
             QuranAudioPlayerKit()
-                .preferredColorScheme(.light)
         }
     }
 }
