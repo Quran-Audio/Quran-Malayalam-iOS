@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import QuranAudioPlayerKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -22,11 +23,12 @@ struct Quran_MalayalamApp: App {
     init() {
         RatingService.shared.checkAndAskForReview()
         PushService.shared.askForPushPermission()
+        QuranAudioPlayerKit.registerFonts()
     }
     
     var body: some Scene {
         WindowGroup {
-            ChapterListView()
+            QuranAudioPlayerKit()
                 .preferredColorScheme(.light)
         }
     }
