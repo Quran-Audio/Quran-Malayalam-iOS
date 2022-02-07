@@ -1,11 +1,15 @@
 {
     "baseUrl": "https://archive.org/download/malayalam-meal/",
     "shareText":"Quran Malayalam, app for those who love to listen, Quran Malayalam meaning\n\n iOS: https://itunes.apple.com/in/app/quran-audio-malayalam/id1607731815?mt=8 \n\n MacOS:macappstore://itunes.apple.com/in/app/quran-audio-malayalam/id1607731815?mt=8",
+    "mail": {
+        "subject": "Quran Audio Malayalam - iPhone",
+        "to": ["abidkuwaitamani@gmail.com","abuabdullah.sed@gmail.com"]
+    },
     "chapters": [
         {
             "index": 1,
             "name": "ٱلْفَاتِحَة",
-            "nameEn": "Al-Fatihah",
+            "nameTrans": "Al-Fatihah",
             "nameMl": "അല്‍ ഫാത്തിഹ",
             "fileName": "000_Al_Fattiha.mp3",
             "size": "767.8K",
@@ -14,7 +18,7 @@
         {
             "index": 2,
             "name": "ٱلْبَقَرَة",
-            "nameEn": "Al-Baqarah",
+            "nameTrans": "Al-Baqarah",
             "nameMl": "അല്‍ ബഖറ",
             "fileName": "002_Al_Baqarah.mp3",
             "size": "108.9M",
@@ -23,7 +27,7 @@
         {
             "index": 3,
             "name": "آلِ عِمْرَان",
-            "nameEn": "Ali 'Imran",
+            "nameTrans": "Ali 'Imran",
             "nameMl": "ആലു ഇംറാന്‍",
             "fileName": "003_Al_Imran.mp3",
             "size": "56.5M",
@@ -32,7 +36,7 @@
         {
             "index": 4,
             "name": "ٱلنِّسَاء",
-            "nameEn": "An-Nisa",
+            "nameTrans": "An-Nisa",
             "nameMl": "അന്നിസാഅ്",
             "fileName": "004_An_Nisa.mp3",
             "size": "66.4M",
@@ -41,7 +45,7 @@
         {
             "index": 5,
             "name": "ٱلْمَائِدَة",
-            "nameEn": "Al-Ma'idah",
+            "nameTrans": "Al-Ma'idah",
             "nameMl": "അല്‍ മാഇദഃ",
             "fileName": "005_Al_Maeda.mp3",
             "size": "44.4M",
@@ -50,7 +54,7 @@
         {
             "index": 6,
             "name": "ٱلْأَنْعَام",
-            "nameEn": "Al-An'am",
+            "nameTrans": "Al-An'am",
             "nameMl": "അല്‍ അന്‍ആം",
             "fileName": "006_Al_Anam.mp3",
             "size": "49.5M",
@@ -59,7 +63,7 @@
         {
             "index": 7,
             "name": "ٱلْأَعْرَاف",
-            "nameEn": "Al-A'raf",
+            "nameTrans": "Al-A'raf",
             "nameMl": "അല്‍ അഅ്റാഫ്",
             "fileName": "007_Al_Araf.mp3",
             "size": "63.3M",
@@ -68,7 +72,7 @@
         {
             "index": 8,
             "name": "ٱلْأَنْفَال",
-            "nameEn": "Al-Anfal",
+            "nameTrans": "Al-Anfal",
             "nameMl": "അല്‍ അന്‍ഫാല്‍",
             "fileName": "008_Al_Anfal.mp3",
             "size": "20.7M",
@@ -77,7 +81,7 @@
         {
             "index": 9,
             "name": "ٱلتَّوْبَة",
-            "nameEn": "At-Tawbah",
+            "nameTrans": "At-Tawbah",
             "nameMl": "അത്തൌബ",
             "fileName": "009_At_Touba.mp3",
             "size": "42.0M",
@@ -86,7 +90,7 @@
         {
             "index": 10,
             "name": "يُونُس",
-            "nameEn": "Yunus",
+            "nameTrans": "Yunus",
             "nameMl": "യൂനുസ്",
             "fileName": "010_Yunus.mp3",
             "size": "29.8M",
@@ -95,7 +99,7 @@
         {
             "index": 11,
             "name": "هُود",
-            "nameEn": "Hud",
+            "nameTrans": "Hud",
             "nameMl": "ഹൂദ്",
             "fileName": "011_Hud.mp3",
             "size": "32.8M",
@@ -104,7 +108,7 @@
         {
             "index": 12,
             "name": "يُوسُف",
-            "nameEn": "Yusuf",
+            "nameTrans": "Yusuf",
             "nameMl": "യൂസുഫ്",
             "fileName": "012_Yusuf.mp3",
             "size": "28.9M",
@@ -113,7 +117,7 @@
         {
             "index": 13,
             "name": "ٱلرَّعْد",
-            "nameEn": "Ar-Ra'd",
+            "nameTrans": "Ar-Ra'd",
             "nameMl": "അര്‍റഅ്ദ്",
             "fileName": "013_Ar_Raad.mp3",
             "size": "15.2M",
@@ -122,7 +126,7 @@
         {
             "index": 14,
             "name": "إِبْرَاهِيم",
-            "nameEn": "Ibrahim",
+            "nameTrans": "Ibrahim",
             "nameMl": "ഇബ്രാഹീം",
             "fileName": "014_Ibrahim.mp3",
             "size": "952.7K",
@@ -131,7 +135,7 @@
         {
             "index": 15,
             "name": "ٱلْحِجْر",
-            "nameEn": "Al-Hijr",
+            "nameTrans": "Al-Hijr",
             "nameMl": "അല്‍ ഹിജ്ര്‍",
             "fileName": "015_Al_Hijr.mp3",
             "size": "13.6M",
@@ -140,7 +144,7 @@
         {
             "index": 16,
             "name": "ٱلنَّحْل",
-            "nameEn": "An-Nahl",
+            "nameTrans": "An-Nahl",
             "nameMl": "അന്നഹ്ല്‍",
             "fileName": "016_An_Nahl.mp3",
             "size": "33.4M",
@@ -149,7 +153,7 @@
         {
             "index": 17,
             "name": "ٱلْإِسْرَاء",
-            "nameEn": "Al-Isra",
+            "nameTrans": "Al-Isra",
             "nameMl": "അല്‍ ഇസ്റാഅ്",
             "fileName": "017_Al_Isra.mp3",
             "size": "27.1M",
@@ -158,7 +162,7 @@
         {
             "index": 18,
             "name": "ٱلْكَهْف",
-            "nameEn": "Al-Kahf",
+            "nameTrans": "Al-Kahf",
             "nameMl": "അല്‍ കഹ്ഫ്",
             "fileName": "018_Al_Kahf.mp3",
             "size": "25.9M",
@@ -167,7 +171,7 @@
         {
             "index": 19,
             "name": "مَرْيَم",
-            "nameEn": "Maryam",
+            "nameTrans": "Maryam",
             "nameMl": "മര്‍യം",
             "fileName": "019_Maryam.mp3",
             "size": "18.0M",
@@ -176,7 +180,7 @@
         {
             "index": 20,
             "name": "طه",
-            "nameEn": "Ta-Ha",
+            "nameTrans": "Ta-Ha",
             "nameMl": "ത്വാഹാ",
             "fileName": "020_Taha.mp3",
             "size": "24.3M",
@@ -185,7 +189,7 @@
         {
             "index": 21,
             "name": "ٱلْأَنْبِيَاء",
-            "nameEn": "Al-Anbiya",
+            "nameTrans": "Al-Anbiya",
             "nameMl": "അല്‍ അന്‍ബിയാഅ്",
             "fileName": "021_Al_Anbiya.mp3",
             "size": "20.8M",
@@ -194,7 +198,7 @@
         {
             "index": 22,
             "name": "ٱلْحَجّ",
-            "nameEn": "Al-Hajj",
+            "nameTrans": "Al-Hajj",
             "nameMl": "അല്‍ ഹജ്ജ്",
             "fileName": "022_Al_Hajj.mp3",
             "size": "21.4M",
@@ -203,7 +207,7 @@
         {
             "index": 23,
             "name": "ٱلْمُؤْمِنُون",
-            "nameEn": "Al-Mu'minun",
+            "nameTrans": "Al-Mu'minun",
             "nameMl": "അല്‍ മുഅ്മിനൂന്‍",
             "fileName": "023_Al_Muminoom.mp3",
             "size": "18.4M",
@@ -212,7 +216,7 @@
         {
             "index": 24,
             "name": "ٱلنُّور",
-            "nameEn": "An-Nur",
+            "nameTrans": "An-Nur",
             "nameMl": "അന്നൂര്‍",
             "fileName": "024_An_Nur.mp3",
             "size": "21.5M",
@@ -221,7 +225,7 @@
         {
             "index": 25,
             "name": "ٱلْفُرْقَان",
-            "nameEn": "Al-Furqan",
+            "nameTrans": "Al-Furqan",
             "nameMl": "അല്‍ ഫുര്‍ഖാന്‍",
             "fileName": "025_Al_Furqan.mp3",
             "size": "1.4M",
@@ -230,7 +234,7 @@
         {
             "index": 26,
             "name": "ٱلشُّعَرَاء",
-            "nameEn": "Ash-Shu'ara",
+            "nameTrans": "Ash-Shu'ara",
             "nameMl": "അശ്ശുഅറാഅ്",
             "fileName": "026_Ash_Shuara.mp3",
             "size": "23.5M",
@@ -239,7 +243,7 @@
         {
             "index": 27,
             "name": "ٱلنَّمْل",
-            "nameEn": "An-Naml",
+            "nameTrans": "An-Naml",
             "nameMl": "അന്നംല്‍",
             "fileName": "027_An_Naml.mp3",
             "size": "19.4M",
@@ -248,7 +252,7 @@
         {
             "index": 28,
             "name": "ٱلْقَصَص",
-            "nameEn": "Al-Qasas",
+            "nameTrans": "Al-Qasas",
             "nameMl": "അല്‍ ഖസസ്",
             "fileName": "028_Al_Qasas.mp3",
             "size": "24.2M",
@@ -257,7 +261,7 @@
         {
             "index": 29,
             "name": "ٱلْعَنْكَبُوت",
-            "nameEn": "Al-Ankabut",
+            "nameTrans": "Al-Ankabut",
             "nameMl": "അല്‍ അന്‍കബൂത്",
             "fileName": "029_Al_Ankaboot.mp3",
             "size": "15.9M",
@@ -266,7 +270,7 @@
         {
             "index": 30,
             "name": "ٱلرُّوم",
-            "nameEn": "Ar-Rum",
+            "nameTrans": "Ar-Rum",
             "nameMl": "അര്‍റൂം",
             "fileName": "030_Ar_Rum.mp3",
             "size": "13.9M",
@@ -275,7 +279,7 @@
         {
             "index": 31,
             "name": "لُقْمَان",
-            "nameEn": "Luqmaan",
+            "nameTrans": "Luqmaan",
             "nameMl": "ലുഖ്മാന്‍",
             "fileName": "031_Luqman.mp3",
             "size": "9.3M",
@@ -284,7 +288,7 @@
         {
             "index": 32,
             "name": "ٱلسَّجْدَة",
-            "nameEn": "As-Sajdah",
+            "nameTrans": "As-Sajdah",
             "nameMl": "അസ്സജദഃ",
             "fileName": "032_As_Sajada.mp3",
             "size": "6.2M",
@@ -293,7 +297,7 @@
         {
             "index": 33,
             "name": "ٱلْأَحْزَاب",
-            "nameEn": "Al-Ahzaab",
+            "nameTrans": "Al-Ahzaab",
             "nameMl": "അല്‍ അഹ്സാബ്",
             "fileName": "033_Al_Ahzab.mp3",
             "size": "22.5M",
@@ -302,7 +306,7 @@
         {
             "index": 34,
             "name": "سَبَأ",
-            "nameEn": "Saba (surah)",
+            "nameTrans": "Saba (surah)",
             "nameMl": "സബഅ്",
             "fileName": "034_Saba.mp3",
             "size": "14.2M",
@@ -311,7 +315,7 @@
         {
             "index": 35,
             "name": "فَاطِر",
-            "nameEn": "Faatir",
+            "nameTrans": "Faatir",
             "nameMl": "ഫാത്വിര്‍",
             "fileName": "035_Fatir.mp3",
             "size": "12.2M",
@@ -320,7 +324,7 @@
         {
             "index": 36,
             "name": "يس",
-            "nameEn": "Ya-Sin",
+            "nameTrans": "Ya-Sin",
             "nameMl": "യാസീന്‍",
             "fileName": "036_Yasin.mp3",
             "size": "13.3M",
@@ -329,7 +333,7 @@
         {
             "index": 37,
             "name": "ٱلصَّافَّات",
-            "nameEn": "As-Saaffaat",
+            "nameTrans": "As-Saaffaat",
             "nameMl": "അസ്സ്വാഫ്ഫാത്ത്",
             "fileName": "037_As-Saffat.mp3",
             "size": "17.0M",
@@ -338,7 +342,7 @@
         {
             "index": 38,
             "name": "ص",
-            "nameEn": "Saad",
+            "nameTrans": "Saad",
             "nameMl": "സ്വാദ്",
             "fileName": "038_Sad.mp3",
             "size": "13.1M",
@@ -347,7 +351,7 @@
         {
             "index": 39,
             "name": "ٱلزُّمَر",
-            "nameEn": "Az-Zumar",
+            "nameTrans": "Az-Zumar",
             "nameMl": "അസ്സുമര്‍",
             "fileName": "039_Az_Zumar.mp3",
             "size": "19.9M",
@@ -356,7 +360,7 @@
         {
             "index": 40,
             "name": "غَافِ",
-            "nameEn": "Ghafir",
+            "nameTrans": "Ghafir",
             "nameMl": "അല്‍ മുഅ്മിന്‍",
             "fileName": "040_Ghafir.mp3",
             "size": "20.3M",
@@ -365,7 +369,7 @@
         {
             "index": 41,
             "name": "فُصِّلَت",
-            "nameEn": "Fussilat",
+            "nameTrans": "Fussilat",
             "nameMl": "ഫുസ്സിലത്ത്",
             "fileName": "041_Fussilat.mp3",
             "size": "14.5M",
@@ -374,7 +378,7 @@
         {
             "index": 42,
             "name": "ٱلشُّورىٰ",
-            "nameEn": "Ash-Shura",
+            "nameTrans": "Ash-Shura",
             "nameMl": "അശ്ശൂറാ",
             "fileName": "042_Ash_Shura.mp3",
             "size": "15.1M",
@@ -383,7 +387,7 @@
         {
             "index": 43,
             "name": "ٱلْزُّخْرُف",
-            "nameEn": "Az-Zukhruf",
+            "nameTrans": "Az-Zukhruf",
             "nameMl": "അസ്സുഖ്റുഫ്",
             "fileName": "043_Az_Zukuruf.mp3",
             "size": "16.3M",
@@ -392,7 +396,7 @@
         {
             "index": 44,
             "name": "ٱلدُّخَان",
-            "nameEn": "Ad-Dukhaan",
+            "nameTrans": "Ad-Dukhaan",
             "nameMl": "അദ്ദുഖാന്‍",
             "fileName": "044_Adh_Dhukhan.mp3",
             "size": "6.9M",
@@ -401,7 +405,7 @@
         {
             "index": 45,
             "name": "ٱلْجَاثِيَة",
-            "nameEn": "Al-Jaathiyah",
+            "nameTrans": "Al-Jaathiyah",
             "nameMl": "അല്‍ ജാഥിയഃ",
             "fileName": "045_Al_Jathiya.mp3",
             "size": "8.1M",
@@ -410,7 +414,7 @@
         {
             "index": 46,
             "name": "ٱلْأَحْقَاف",
-            "nameEn": "Al-Ahqaaf",
+            "nameTrans": "Al-Ahqaaf",
             "nameMl": "അല്‍ അഹ്ഖാഫ്",
             "fileName": "046_Al_Ahqaf.mp3",
             "size": "10.4M",
@@ -419,7 +423,7 @@
         {
             "index": 47,
             "name": "مُحَمَّد",
-            "nameEn": "Muhammad",
+            "nameTrans": "Muhammad",
             "nameMl": "മുഹമ്മദ്",
             "fileName": "047_Mohammed.mp3",
             "size": "9.4M",
@@ -428,7 +432,7 @@
         {
             "index": 48,
             "name": "ٱلْفَتْح",
-            "nameEn": "Al-Fath",
+            "nameTrans": "Al-Fath",
             "nameMl": "അല്‍ ഫത്ഹ്",
             "fileName": "048_Al_Fathah.mp3",
             "size": "10.4M",
@@ -437,7 +441,7 @@
         {
             "index": 49,
             "name": "ٱلْحُجُرَات",
-            "nameEn": "Al-Hujuraat",
+            "nameTrans": "Al-Hujuraat",
             "nameMl": "അല്‍ ഹുജുറാത്",
             "fileName": "049_Al_Hujurat.mp3",
             "size": "6.5M",
@@ -446,7 +450,7 @@
         {
             "index": 50,
             "name": "ق",
-            "nameEn": "Qaaf",
+            "nameTrans": "Qaaf",
             "nameMl": "ഖാഫ്",
             "fileName": "050_Qaf.mp3",
             "size": "7.3M",
@@ -455,7 +459,7 @@
         {
             "index": 51,
             "name": "ٱلذَّارِيَات",
-            "nameEn": "Adh-Dhaariyaat",
+            "nameTrans": "Adh-Dhaariyaat",
             "nameMl": "അദ്ദാരിയാത്",
             "fileName": "051_Adh_Dhariyat.mp3",
             "size": "6.7M",
@@ -464,7 +468,7 @@
         {
             "index": 52,
             "name": "ٱلطُّور",
-            "nameEn": "At-Toor",
+            "nameTrans": "At-Toor",
             "nameMl": "അത്ത്വൂര്‍",
             "fileName": "052_At_Tur.mp3",
             "size": "6.4M",
@@ -473,7 +477,7 @@
         {
             "index": 53,
             "name": "ٱلنَّجْم",
-            "nameEn": "An-Najm",
+            "nameTrans": "An-Najm",
             "nameMl": "അന്നജ്മ്",
             "fileName": "053_Al_Najm.mp3",
             "size": "7.1M",
@@ -482,7 +486,7 @@
         {
             "index": 54,
             "name": "ٱلْقَمَر",
-            "nameEn": "Al-Qamar",
+            "nameTrans": "Al-Qamar",
             "nameMl": "അല്‍ ഖമര്‍",
             "fileName": "054_Al_Qamar.mp3",
             "size": "7.5M",
@@ -491,7 +495,7 @@
         {
             "index": 55,
             "name": "ٱلرَّحْمَٰن",
-            "nameEn": "Ar-Rahman",
+            "nameTrans": "Ar-Rahman",
             "nameMl": "അര്‍റഹ് മാന്‍‍",
             "fileName": "055_Ar_Rahman.mp3",
             "size": "9.3M",
@@ -500,7 +504,7 @@
         {
             "index": 56,
             "name": "ٱلْوَاقِعَة",
-            "nameEn": "Al-Waqi'a",
+            "nameTrans": "Al-Waqi'a",
             "nameMl": "അല്‍ വാഖിഅ",
             "fileName": "056_Al_Waqia.mp3",
             "size": "8.5M",
@@ -509,7 +513,7 @@
         {
             "index": 57,
             "name": "ٱلْحَدِيد",
-            "nameEn": "Al-Hadeed",
+            "nameTrans": "Al-Hadeed",
             "nameMl": "അല്‍ ഹദീദ്",
             "fileName": "057_Al_Hadeeth.mp3",
             "size": "10.9M",
@@ -518,7 +522,7 @@
         {
             "index": 58,
             "name": "ٱلْمُجَادِلَة",
-            "nameEn": "Al-Mujadila",
+            "nameTrans": "Al-Mujadila",
             "nameMl": "അല്‍ മുജാദിലഃ",
             "fileName": "058_Al_Mujadillah.mp3",
             "size": "8.1M",
@@ -527,7 +531,7 @@
         {
             "index": 59,
             "name": "ٱلْحَشْر",
-            "nameEn": "Al-Hashr",
+            "nameTrans": "Al-Hashr",
             "nameMl": "അല്‍ ഹശ്ര്‍",
             "fileName": "059_Al_Hashr.mp3",
             "size": "8.1M",
@@ -536,7 +540,7 @@
         {
             "index": 60,
             "name": "ٱلْمُمْتَحَنَة",
-            "nameEn": "Al-Mumtahanah",
+            "nameTrans": "Al-Mumtahanah",
             "nameMl": "അല്‍ മുംതഹിനഃ",
             "fileName": "060_Al_Mumthahana.mp3",
             "size": "6.3M",
@@ -545,7 +549,7 @@
         {
             "index": 61,
             "name": "ٱلصَّفّ",
-            "nameEn": "As-Saff",
+            "nameTrans": "As-Saff",
             "nameMl": "അസ്സ്വഫ്ഫ്",
             "fileName": "061_As_Saff.mp3",
             "size": "4.0M",
@@ -554,7 +558,7 @@
         {
             "index": 62,
             "name": "ٱلْجُمُعَة",
-            "nameEn": "Al-Jumu'ah",
+            "nameTrans": "Al-Jumu'ah",
             "nameMl": "അല്‍ ജുമുഅഃ",
             "fileName": "062_Al_Juma.mp3",
             "size": "3.1M",
@@ -563,7 +567,7 @@
         {
             "index": 63,
             "name": "ٱلْمُنَافِقُون",
-            "nameEn": "Al-Munafiqoon",
+            "nameTrans": "Al-Munafiqoon",
             "nameMl": "അല്‍ മുനാഫിഖൂന്‍",
             "fileName": "063_Al_Munafiqoon.mp3",
             "size": "3.1M",
@@ -572,7 +576,7 @@
         {
             "index": 64,
             "name": "ٱلتَّغَابُن",
-            "nameEn": "At-Taghabun",
+            "nameTrans": "At-Taghabun",
             "nameMl": "അല്‍ തഗാബൂന്‍",
             "fileName": "064_At_Tagabun.mp3",
             "size": "4.2M",
@@ -581,7 +585,7 @@
         {
             "index": 65,
             "name": "ٱلطَّلَاق",
-            "nameEn": "At-Talaq",
+            "nameTrans": "At-Talaq",
             "nameMl": "അത്ത്വലാഖ്",
             "fileName": "065_At_Talaq.mp3",
             "size": "5.1M",
@@ -590,7 +594,7 @@
         {
             "index": 66,
             "name": "ٱلتَّحْرِيم",
-            "nameEn": "At-Tahreem",
+            "nameTrans": "At-Tahreem",
             "nameMl": "അത്തഹ് രീം",
             "fileName": "066_At_Tahrim.mp3",
             "size": "4.5M",
@@ -599,7 +603,7 @@
         {
             "index": 67,
             "name": "ٱلْمُلْك",
-            "nameEn": "Al-Mulk",
+            "nameTrans": "Al-Mulk",
             "nameMl": "അല്‍ മുല്‍ക്ക്",
             "fileName": "067_Al_Mulk.mp3",
             "size": "5.8M",
@@ -608,7 +612,7 @@
         {
             "index": 68,
             "name": "ٱلْقَلَم            ",
-            "nameEn": "Al-Qalam",
+            "nameTrans": "Al-Qalam",
             "nameMl": "അല്‍ ഖലം",
             "fileName": "068_Al_Qalam.mp3",
             "size": "6.1M",
@@ -617,7 +621,7 @@
         {
             "index": 69,
             "name": "ٱلْحَاقَّة            ",
-            "nameEn": "Al-Haaqqa",
+            "nameTrans": "Al-Haaqqa",
             "nameMl": "അല്‍ ഹാക്ക്വഃ",
             "fileName": "069_Al-Haqa.mp3",
             "size": "5.3M",
@@ -626,7 +630,7 @@
         {
             "index": 70,
             "name": "ٱلْمَعَارِج            ",
-            "nameEn": "Al-Ma'aarij",
+            "nameTrans": "Al-Ma'aarij",
             "nameMl": "അല്‍ മആരിജ്",
             "fileName": "070_Al_Maarij.mp3",
             "size": "4.4M ",
@@ -635,7 +639,7 @@
         {
             "index": 71,
             "name": "نُوح",
-            "nameEn": "Nuh",
+            "nameTrans": "Nuh",
             "nameMl": "നൂഹ്",
             "fileName": "071_Nooh.mp3",
             "size": "4.3M",
@@ -644,7 +648,7 @@
         {
             "index": 72,
             "name": "ٱلْجِنّ            ",
-            "nameEn": "Al-Jinn",
+            "nameTrans": "Al-Jinn",
             "nameMl": "അല്‍ ജിന്ന്",
             "fileName": "072_Al_Jinn.mp3",
             "size": "5.1M",
@@ -653,7 +657,7 @@
         {
             "index": 73,
             "name": "ٱلْمُزَّمِّل            ",
-            "nameEn": "Al-Muzzammil",
+            "nameTrans": "Al-Muzzammil",
             "nameMl": "അല്‍ മുസമ്മില്‍",
             "fileName": "073_Al_Muzzamil.mp3",
             "size": "4.0M",
@@ -662,7 +666,7 @@
         {
             "index": 74,
             "name": "ٱلْمُدَّثِّر            ",
-            "nameEn": "Al-Muddaththir",
+            "nameTrans": "Al-Muddaththir",
             "nameMl": "അല്‍ മുദ്ദഥിര്‍",
             "fileName": "074_Al_Mudathir.mp3",
             "size": "4.9M",
@@ -671,7 +675,7 @@
         {
             "index": 75,
             "name": "ٱلْقِيَامَة",
-            "nameEn": "Al-Qiyamah",
+            "nameTrans": "Al-Qiyamah",
             "nameMl": "അല്‍ ഖിയാമഃ",
             "fileName": "075_Al_Qiyama.mp3",
             "size": "3.2M",
@@ -680,7 +684,7 @@
         {
             "index": 76,
             "name": "ٱلْإِنْسَان            ",
-            "nameEn": "Al-Insaan",
+            "nameTrans": "Al-Insaan",
             "nameMl": "അല്‍ ഇന്‍സാന്‍",
             "fileName": "076_Al_Insan.mp3",
             "size": "5.0M",
@@ -689,7 +693,7 @@
         {
             "index": 77,
             "name": "ٱلْمُرْسَلَات            ",
-            "nameEn": "Al-Mursalaat",
+            "nameTrans": "Al-Mursalaat",
             "nameMl": "അല്‍ മുര്‍സലാത്ത്",
             "fileName": "077_Al_Mursalat.mp3",
             "size": "4.1M",
@@ -698,7 +702,7 @@
         {
             "index": 78,
             "name": "ٱلنَّبَأ            ",
-            "nameEn": "An-Naba'",
+            "nameTrans": "An-Naba'",
             "nameMl": "അന്നബഉ്",
             "fileName": "078_An_Naba.mp3",
             "size": "4.0M",
@@ -707,7 +711,7 @@
         {
             "index": 79,
             "name": "ٱلنَّازِعَات            ",
-            "nameEn": "An-Naazi'aat",
+            "nameTrans": "An-Naazi'aat",
             "nameMl": "അന്നാസിആത്ത്",
             "fileName": "079_AN_Naasiat.mp3",
             "size": "3.9M",
@@ -716,7 +720,7 @@
         {
             "index": 80,
             "name": "عَبَسَ",
-            "nameEn": "Abasa",
+            "nameTrans": "Abasa",
             "nameMl": "അബസ",
             "fileName": "080_Abasa.mp3",
             "size": "3.2M",
@@ -725,7 +729,7 @@
         {
             "index": 81,
             "name": "ٱلتَّكْوِير",
-            "nameEn": "At-Takweer",
+            "nameTrans": "At-Takweer",
             "nameMl": "അത്തക് വീര്‍",
             "fileName": "081_At_Takweer.mp3",
             "size": "2.2M",
@@ -734,7 +738,7 @@
         {
             "index": 82,
             "name": "ٱلْإِنْفِطَار",
-            "nameEn": "Al-Infitar",
+            "nameTrans": "Al-Infitar",
             "nameMl": "അല്‍ ഇന്‍ഫിത്വാര്‍",
             "fileName": "082_Al_Infitar.mp3",
             "size": "1.8M",
@@ -743,7 +747,7 @@
         {
             "index": 83,
             "name": "ٱلْمُطَفِّفِين            ",
-            "nameEn": "Al-Mutaffifeen",
+            "nameTrans": "Al-Mutaffifeen",
             "nameMl": "അല്‍ മുതഫ്ഫിഫീന്‍",
             "fileName": "083_Al_Muthaffiffeen.mp3",
             "size": "3.6M",
@@ -752,7 +756,7 @@
         {
             "index": 84,
             "name": "ٱلْإِنْشِقَاق",
-            "nameEn": "Al-Inshiqaaq",
+            "nameTrans": "Al-Inshiqaaq",
             "nameMl": "അല്‍ ഇന്‍ശിഖാഖ്",
             "fileName": "084_Al_Inshiqaq.mp3",
             "size": "2.4M",
@@ -761,7 +765,7 @@
         {
             "index": 85,
             "name": "ٱلْبُرُوج",
-            "nameEn": "Al-Burooj",
+            "nameTrans": "Al-Burooj",
             "nameMl": "അല്‍ ബുറൂജ്",
             "fileName": "085_Al_Burooj.mp3",
             "size": "2.4M",
@@ -770,7 +774,7 @@
         {
             "index": 86,
             "name": "ٱلطَّارِق",
-            "nameEn": "At-Taariq",
+            "nameTrans": "At-Taariq",
             "nameMl": "അത്ത്വാരിഖ്",
             "fileName": "086_At_Tariq.mp3",
             "size": "1.5M",
@@ -779,7 +783,7 @@
         {
             "index": 87,
             "name": "ٱلْأَعْلَىٰ",
-            "nameEn": "Al-A'la",
+            "nameTrans": "Al-A'la",
             "nameMl": "അല്‍ അഅ് ലാ",
             "fileName": "087_Al_Ala.mp3",
             "size": "1.6M",
@@ -788,7 +792,7 @@
         {
             "index": 88,
             "name": "ٱلْغَاشِيَة",
-            "nameEn": "Al-Ghaashiyah",
+            "nameTrans": "Al-Ghaashiyah",
             "nameMl": "അല്‍ ഗാശിയഃ",
             "fileName": "088_Al_Ghashiya.mp3",
             "size": "2.1M",
@@ -797,7 +801,7 @@
         {
             "index": 89,
             "name": "ٱلْفَجْر",
-            "nameEn": "Al-Fajr",
+            "nameTrans": "Al-Fajr",
             "nameMl": "അല്‍ ഫജ്ര്‍",
             "fileName": "089_Al_Fajr.mp3",
             "size": "2.8M",
@@ -806,7 +810,7 @@
         {
             "index": 90,
             "name": "ٱلْبَلَد",
-            "nameEn": "Al-Balad",
+            "nameTrans": "Al-Balad",
             "nameMl": "അല്‍ ബലദ്",
             "fileName": "090_Al_Balad.mp3",
             "size": "1.6M",
@@ -815,7 +819,7 @@
         {
             "index": 91,
             "name": "ٱلشَّمْس",
-            "nameEn": "Ash-Shams",
+            "nameTrans": "Ash-Shams",
             "nameMl": "അശ്ശംസ്",
             "fileName": "091_Ash_Shams.mp3",
             "size": "1.5M",
@@ -824,7 +828,7 @@
         {
             "index": 92,
             "name": "ٱللَّيْل",
-            "nameEn": "Al-Layl",
+            "nameTrans": "Al-Layl",
             "nameMl": "അല്‍ലൈല്‍",
             "fileName": "092_Al_Lail.mp3",
             "size": "1.7M",
@@ -833,7 +837,7 @@
         {
             "index": 93,
             "name": "ٱلضُّحَىٰ",
-            "nameEn": "Ad-Dhuha",
+            "nameTrans": "Ad-Dhuha",
             "nameMl": "അള്ള്വുഹാ",
             "fileName": "093_Adh_Dhuha.mp3",
             "size": "1.0M",
@@ -842,7 +846,7 @@
         {
             "index": 94,
             "name": "ٱلشَّرْح",
-            "nameEn": "Ash-Sharh",
+            "nameTrans": "Ash-Sharh",
             "nameMl": "അശ്ശര്‍ഹ്",
             "fileName": "094_Ash_Sharh.mp3",
             "size": "798.6K",
@@ -851,7 +855,7 @@
         {
             "index": 95,
             "name": "ٱلتِّين",
-            "nameEn": "At-Tin",
+            "nameTrans": "At-Tin",
             "nameMl": "അത്തീന്‍",
             "fileName": "095_At_Tin.mp3",
             "size": "923.7K",
@@ -860,7 +864,7 @@
         {
             "index": 96,
             "name": "ٱلْعَلَق",
-            "nameEn": "Al-Alaq",
+            "nameTrans": "Al-Alaq",
             "nameMl": "അല്‍ അലഖ്",
             "fileName": "096_Al_Alaq.mp3",
             "size": "1.6M",
@@ -869,7 +873,7 @@
         {
             "index": 97,
             "name": "ٱلْقَدْر",
-            "nameEn": "Al-Qadr",
+            "nameTrans": "Al-Qadr",
             "nameMl": "അല്‍ ഖദ്ര്‍",
             "fileName": "097_Al_Qadr.mp3",
             "size": "783.1K",
@@ -878,7 +882,7 @@
         {
             "index": 98,
             "name": "ٱلْبَيِّنَة",
-            "nameEn": "Al-Bayyinahh",
+            "nameTrans": "Al-Bayyinahh",
             "nameMl": "അല്‍ ബയ്യിനഃ",
             "fileName": "098_Al_Bayyinah.mp3",
             "size": "1.8M",
@@ -887,7 +891,7 @@
         {
             "index": 99,
             "name": "ٱلزَّلْزَلَة",
-            "nameEn": "Az-Zalzalah",
+            "nameTrans": "Az-Zalzalah",
             "nameMl": "അല്‍ സല്‍സലഃ",
             "fileName": "099_Al_Zalzalah.mp3",
             "size": "962.7K",
@@ -896,7 +900,7 @@
         {
             "index": 100,
             "name": "ٱلْعَادِيَات",
-            "nameEn": "Al-'Adiyat",
+            "nameTrans": "Al-'Adiyat",
             "nameMl": "അല്‍ ആദിയാത്",
             "fileName": "100_Al_Adhiyat.mp3",
             "size": "1.1M",
@@ -905,7 +909,7 @@
         {
             "index": 101,
             "name": "ٱلْقَارِعَة",
-            "nameEn": "Al-Qaari'ah",
+            "nameTrans": "Al-Qaari'ah",
             "nameMl": "അല്‍ ഖാരിഅ",
             "fileName": "101_Al_Qaria.mp3",
             "size": "978.6K",
@@ -914,7 +918,7 @@
         {
             "index": 102,
             "name": "ٱلتَّكَاثُر",
-            "nameEn": "At-Takathur",
+            "nameTrans": "At-Takathur",
             "nameMl": "അത്തകാഥുര്‍",
             "fileName": "102_At_Takazur.mp3",
             "size": "876.7K",
@@ -923,7 +927,7 @@
         {
             "index": 103,
             "name": "ٱلْعَصْر",
-            "nameEn": "Al-'Asr",
+            "nameTrans": "Al-'Asr",
             "nameMl": "അല്‍ അസ്വര്‍",
             "fileName": "103_Al_Asr.mp3",
             "size": "478.6K",
@@ -932,7 +936,7 @@
         {
             "index": 104,
             "name": "ٱلْهُمَزَة",
-            "nameEn": "Al-Humazah",
+            "nameTrans": "Al-Humazah",
             "nameMl": "അല്‍ ഹുമസഃ",
             "fileName": "104_Al_Humaza.mp3",
             "size": "915.7K",
@@ -941,7 +945,7 @@
         {
             "index": 105,
             "name": "ٱلْفِيل",
-            "nameEn": "Al-Fil",
+            "nameTrans": "Al-Fil",
             "nameMl": "അല്‍ ഫീല്‍",
             "fileName": "105_Al_Feel.mp3",
             "size": "697.1K",
@@ -950,7 +954,7 @@
         {
             "index": 106,
             "name": "قُرَيْش",
-            "nameEn": "Quraysh",
+            "nameTrans": "Quraysh",
             "nameMl": "ഖുറൈഷ്",
             "fileName": "106_Quraish.mp3",
             "size": "595.7K",
@@ -959,7 +963,7 @@
         {
             "index": 107,
             "name": "ٱلْمَاعُون",
-            "nameEn": "Al-Maa'oon",
+            "nameTrans": "Al-Maa'oon",
             "nameMl": "അല്‍ മാഊന്‍",
             "fileName": "107_Al_Maoon.mp3",
             "size": "791.2K",
@@ -968,7 +972,7 @@
         {
             "index": 108,
             "name": "ٱلْكَوْثَر",
-            "nameEn": "Al-Kawthar",
+            "nameTrans": "Al-Kawthar",
             "nameMl": "അല്‍ കൌഥര്‍‍",
             "fileName": "108_Al_Kouthar.mp3",
             "size": "501.6K",
@@ -977,7 +981,7 @@
         {
             "index": 109,
             "name": "ٱلْكَافِرُون",
-            "nameEn": "Al-Kaafiroon",
+            "nameTrans": "Al-Kaafiroon",
             "nameMl": "അല്‍ കാഫിറൂന്‍",
             "fileName": "109_Al_Kafiroon.mp3",
             "size": "689.2K",
@@ -986,7 +990,7 @@
         {
             "index": 110,
             "name": "ٱلنَّصْر",
-            "nameEn": "An-Nasr",
+            "nameTrans": "An-Nasr",
             "nameMl": "അന്നസ്ര്‍",
             "fileName": "110_An_Nasr.mp3",
             "size": "619.2K",
@@ -995,7 +999,7 @@
         {
             "index": 111,
             "name": "ٱلْمَسَد",
-            "nameEn": "Al-Masad",
+            "nameTrans": "Al-Masad",
             "nameMl": "അല്‍ മസദ്",
             "fileName": "111_Al_Masad.mp3",
             "size": "650.2K",
@@ -1004,7 +1008,7 @@
         {
             "index": 112,
             "name": "ٱلْإِخْلَاص",
-            "nameEn": "Al-Ikhlaas",
+            "nameTrans": "Al-Ikhlaas",
             "nameMl": "അല്‍ ഇഖ് ലാസ്",
             "fileName": "112_Al_Ikhlas.mp3",
             "size": "478.6K",
@@ -1013,7 +1017,7 @@
         {
             "index": 113,
             "name": "ٱلْفَلَق",
-            "nameEn": "Al-Falaq",
+            "nameTrans": "Al-Falaq",
             "nameMl": "അല്‍ ഫലഖ്",
             "fileName": "113_Al_Falaq.mp3",
             "size": "595.7K",
@@ -1022,7 +1026,7 @@
         {
             "index": 114,
             "name": "ٱلنَّاس",
-            "nameEn": "An-Naas",
+            "nameTrans": "An-Naas",
             "nameMl": "അന്നാസ്",
             "fileName": "114_An_Nass.mp3",
             "size": "603.7K",
