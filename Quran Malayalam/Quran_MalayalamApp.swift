@@ -33,3 +33,10 @@ struct Quran_MalayalamApp: App {
         }
     }
 }
+
+
+struct Quran_MalayalamApp_Previews: PreviewProvider {
+    static var previews: some View {
+        QuranAudioPlayerKit()
+    }
+}
