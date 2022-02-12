@@ -30,7 +30,6 @@ struct Quran_MalayalamApp: App {
         WindowGroup {
             QuranAudioPlayerKit()
                 .onAppear(perform: { requestReviewIfNeeded() })
-                .preferredColorScheme(.light)
         }
     }
     
